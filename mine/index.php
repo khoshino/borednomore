@@ -18,7 +18,7 @@ sort of script that populates the event name, url, and wall url, yeah?
 <li><a href="???">Event #6</a>'s <a href="???">Wall</a></li>
 </ul>
 
-<a href="../index.html">Back to Main</a>
+<a href="../index.php">Back to Main</a>
 </body>
 
 </html>
