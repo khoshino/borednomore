@@ -7,7 +7,7 @@ sort of script that populates the event name, url, and wall url, yeah?
 <body>
 
 <h1>My Events</h1>
-<form method="link" action="../main.php">
+<form method="link" action="../index.php">
 <input type="submit" value="Home"></form>
 <ul>
 <li><a href="???">Event #1</a>'s <a href="???">Wall</a></li>
