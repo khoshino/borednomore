@@ -12,16 +12,10 @@
   js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=240585475995480";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-<script>
-    FB.init({ 
-        appId:'YOUR_APP_ID', cookie:true, 
-        status:true, xfbml:true, oauth:true
-    });
-</script>
 
 <h1>Bored No More</h1>
 <h3>Let's Do Something!</h3>
-<div class="fb-login-button" data-show-faces="false" data-width="200" data-max-rows="1"></div>
+<div class="fb-login-button" data-perms="read_friendlists" data-show-faces="false" data-width="200" data-max-rows="1"></div>
 <form method="link" action="create/create_event_type.php">
 <input type="submit" value="Create an Event"></form>
 <form method="link" action="mine/index.php">
