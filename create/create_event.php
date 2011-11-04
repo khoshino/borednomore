@@ -1,4 +1,11 @@
 <!DOCTYPE html>
+<?php
+$con = mysql_connect("mysql.cs147.org", "khoshino", "JXDBsbH9");
+if (!$con)
+    {
+        die('Could not connect: ' . mysql_error());
+    }
+?>
 <html>
 <head><title>CreateEventsPage</title>
 	<!--scripts to use JQuery Mobile-->
