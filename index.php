@@ -1,5 +1,4 @@
-<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US"
-     xmlns:fb="https://www.facebook.com/2008/fbml"> 
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US"> 
 <head>
   <title>Bored no More</title>
   <meta name="viewport" 
