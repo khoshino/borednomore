@@ -55,7 +55,7 @@ function handleStatusChange(response) {
 </div>
 
 <script>
-  function loginUser() {    
+  function loginUser() {
     FB.login(function(response) { }, {scope:'read_friendlists'});     
     }
 </script>
