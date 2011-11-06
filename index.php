@@ -59,7 +59,7 @@ function handleStatusChange(response) {
     FB.login(function(response) { }, {scope:'read_friendlists'});     
     }
 </script>
-<div class="fb-login-button" scope="read_friendlists" data-show-faces="false" data-width="200" data-max-rows="1"></div>
+<div class="fb-login-button" data-perms="read_friendlists" data-show-faces="false" data-width="200" data-max-rows="1"></div>
 		<form method="link" action="create/create_event_type.php">
 		<input type="submit" value="Create an Event"></form>
 		<form method="link" action="mine/myEvents.php">
