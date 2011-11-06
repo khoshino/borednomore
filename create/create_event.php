@@ -1,18 +1,5 @@
 <!DOCTYPE html>
-<?php
-$con = mysql_connect("mysql.cs147.org", "khoshino", "JXDBsbH9");
-$success = false;
-if (!$con)
-    {
-        die('Could not connect: ' . mysql_error());
-    }
-mysql_select_db("khoshino_mysql", $con);
 
-mysql_query("INSERT INTO events (name, location, category, start_time, duration, private) VALUES ('','','','','','')"); 
-
-mysql_close($con);
-
-?>
 <html>
 <head><title>CreateEventsPage</title>
 	<!--scripts to use JQuery Mobile-->
@@ -20,27 +7,7 @@ mysql_close($con);
 	<script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.0rc2/jquery.mobile-1.0rc2.min.js"></script> 
 	<script type="text/javascript">
-	function checkForm()
-	{
-	  var eventTitle = $("#eventTitle").val();
-	  var eventName  = $("#eventLocation").val();
-	  var checked    = $('input:radio[name=radio]:checked').val();
-	  var isPublic   = $("#radio-public").val();
-	  var isPrivate  = $("#radio-private").val();
-	  var eventDesc  = $("#eventDescription").val();
-	  var startHour  = parseInt($("#select-hour").val());
-	  var startMin   = parseInt($("#select-min").val());
-	  var startAMPM  = parseInt($("#select-amPm").val()); // PM == 12, AM == 0
-	  var duration   = parseInt($("#select-hour-dur").val());
-	  var durationmin= parseInt($("#select-min-dur").val());
-	}
-	function insertDatabase()
-	{
-	}
-	function handleSubmit()
-	{
-	   checkForm();
-	}
+
 	</script>
 </head>
 
@@ -60,7 +27,7 @@ mysql_close($con);
 	
 	<div data-role="content" id = "createEventContent">
 		<p> Required fields are marked with an '*' </p>
-		<form id = "createEventForm" >
+		<form id = "createEventForm" action = "../mine/myEvents.php" method="POST">
 		*Title: <input type="text" id="eventTitle" name="eventTitle" required="required" /><br />
 		*Location: <input type="text" id="eventLocation" name="location" required="required" /><br />
 		
@@ -164,7 +131,7 @@ mysql_close($con);
 		<textarea id = "eventDescription" rows="4" cols="60" > 
 			 A description of your awesome event! 
 		</textarea><br/>	
-		<input type = "submit" value ="Create Event!" onClick="handleSubmit()"><br />
+		<input type = "submit" value ="Create Event!" ><br /> <!--onClick="handleSubmit()"-->
 		</form>
 	</div> 
 	<div data-role="footer">footer...</div> 
