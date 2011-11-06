@@ -46,7 +46,6 @@ mysql_close($con);
 
 <body>
 
-
 <div data-role="page" id = "createEvent" data-title="createEvent"> 
 	<div data-role="header">
 		<h1 class = "pageTitleText"><b> Create an Event </b></h1>
