@@ -1,26 +1,17 @@
 <!DOCTYPE html>
-<?php
-$con = mysql_connect("mysql.cs147.org", "khoshino", "JXDBsbH9");
-$success = false;
-if (!$con)
-    {
-        die('Could not connect: ' . mysql_error());
-    }
 
-    
-    mysql_close($con);
-?>
 <html>
 <head><title>CreateEventsPage</title>
 	<!--scripts to use JQuery Mobile-->
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0rc2/jquery.mobile-1.0rc2.min.css" />
 	<script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.0rc2/jquery.mobile-1.0rc2.min.js"></script> 
-	
+	<script type="text/javascript">
+
+	</script>
 </head>
 
 <body>
-
 
 <div data-role="page" id = "createEvent" data-title="createEvent"> 
 	<div data-role="header">
@@ -36,9 +27,9 @@ if (!$con)
 	
 	<div data-role="content" id = "createEventContent">
 		<p> Required fields are marked with an '*' </p>
-		<form id = "createEventForm" >
-		*Title: <input type="text" name="eventTitle" required="required" /><br />
-		*Location: <input type="text" name="location" required="required" /><br />
+		<form id = "createEventForm" action = "../mine/myEvents.php" method="POST">
+		*Title: <input type="text" id="eventTitle" name="eventTitle" required="required" /><br />
+		*Location: <input type="text" id="eventLocation" name="location" required="required" /><br />
 		
 		
 		<div data-role = "fieldcontain" data-type = "horizontal">
@@ -51,18 +42,18 @@ if (!$con)
 				<div class = "ui-block-b">
 				<label for = "select-hour" > Hour</label>
 				<select name = "select-hour" id = "select-hour">
-					<option value = "1"> 1</option>
-					<option value = "2"> 2</option>
-					<option value = "3"> 3</option>
-					<option value = "4"> 4</option>
-					<option value = "5"> 5</option>
-					<option value = "6"> 6</option>
-					<option value = "7"> 7</option>
-					<option value = "8"> 8</option>
-					<option value = "9"> 9</option>
-					<option value = "10"> 10</option>
-					<option value = "11"> 11</option>
-					<option value = "12"> 12</option>
+					<option value = 1> 1</option>
+					<option value = 2> 2</option>
+					<option value = 3> 3</option>
+					<option value = 4> 4</option>
+					<option value = 5> 5</option>
+					<option value = 6> 6</option>
+					<option value = 7> 7</option>
+					<option value = 8> 8</option>
+					<option value = 9> 9</option>
+					<option value = 10> 10</option>
+					<option value = 11> 11</option>
+					<option value = 12> 12</option>
 				</select>
 				
 				 
@@ -127,20 +118,20 @@ if (!$con)
 		<div data-role = "fieldcontain" >
 			<fieldset data-role = "controlgroup" data-type = "horizontal">
 			<legend>Event Type:</legend>
-			<input type = "radio" name = "radio" id="radio-public" value= "0" checked = "checked">
+			<input type = "radio" name = "radio" id="radio-public" value= "public" checked = "checked">
 			<label for = "radio-public"> Public </label>
 			
-         	<input type="radio" name="radio" id="radio-private" value="1" >
+         	<input type="radio" name="radio" id="radio-private" value="private" >
 			<label for = "radio-private"> Private</label>
 			
 			</fieldset>
 		</div>
 		<!--Description:<input type="textarea" name="description" value="Write a description of your event here!" size="30" onfocus="value=''"><br />-->
 		Description: <br />
-		<textarea id = "description" rows="4" cols="60" > 
+		<textarea id = "eventDescription" rows="4" cols="60" > 
 			 A description of your awesome event! 
 		</textarea><br/>	
-		<input type = "submit" value ="Create Event!"<br />
+		<input type = "submit" value ="Create Event!" ><br /> <!--onClick="handleSubmit()"-->
 		</form>
 	</div> 
 	<div data-role="footer">footer...</div> 
