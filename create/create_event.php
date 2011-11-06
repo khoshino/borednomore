@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <?php
 $con = mysql_connect("mysql.cs147.org", "khoshino", "JXDBsbH9");
-$success = false
+$success = false;
 if (!$con)
     {
         die('Could not connect: ' . mysql_error());
     }
-else
-    {
-        $success = true;
-    }
+
+    
+    mysql_close($con);
 ?>
 <html>
 <head><title>CreateEventsPage</title>
@@ -21,9 +20,6 @@ else
 </head>
 
 <body>
-<?php
-    print_r($success);
-?>
 
 
 <div data-role="page" id = "createEvent" data-title="createEvent"> 
