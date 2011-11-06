@@ -9,6 +9,10 @@
 <body>
 <div data-type = "page" id ="eventTemplate" name = "eventTemplate">
 	<div data-type = "header">
+		<h1 class = "pageTitleText">My Events</h1>
+		<!-- Navigation Buttons-- Change these links to link to different back pages or add links to new pages-->
+		<a href = "../index.php">Back</a>
+		<a href = "../index.php" >Home</a>
 	</div>
 	<div data-type = "content" id = "eventTemplateContent">
 		
