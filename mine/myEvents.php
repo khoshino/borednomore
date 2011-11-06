@@ -52,7 +52,7 @@ sort of script that populates the event name, url, and wall url, yeah?
 -->
 <body>
 <?php
-    echo "Contents of GET are:";
+    echo "Length of GET is:" . count($_GET) . "<br/>";
     foreach ($_GET as $val) {
         echo $val;
         echo $_GET[$val];
