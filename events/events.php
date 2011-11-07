@@ -7,11 +7,7 @@ if (!$con)
         die('Could not connect:' . mysql_error());
     }
 mysql_select_db("khoshino_mysql", $con);
-	$query = "SELECT * "
-    . "FROM `events` "
-    . "WHERE `category` = \'games\ '"
-    . "ORDER BY `name` ASC "
-    . "LIMIT 0 , 30";
+	$query = "SELECT `name` FROM `events` WHERE `category` = 'games' ORDER BY `name` ASC";
 	
  $result = mysql_query($query, $con);
  $sql = "SELECT *\n"
