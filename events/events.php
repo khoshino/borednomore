@@ -80,7 +80,7 @@ mysql_close($con);
 		<div id = "searchResults">
 		<?php
 		echo 'sql is:' . $sql . '<br/>';
-		echo 'result is:' . $result' ;
+		echo 'result is:' . $result '<br/>' ;
 		
 		while($row = mysql_fetch_row($result)){
 		  echo $row[0] ;
