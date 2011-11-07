@@ -1,4 +1,19 @@
 <!DOCTYPE html>
+<?
+$con = mysql_connect("mysql.cs147.org", "khoshino", "JXDBsbH9");
+$success = false;
+if (!$con)
+    {
+        die('Could not connect:' . mysql_error());
+    }
+mysql_select_db("khoshino_mysql", $con);
+
+ $result = mysql_query("SELECT * FROM khoshino_mysql");
+	
+
+mysql_close($con);
+
+?>
 <html>
 <head><title>SearchEventsPage</title>
 	<!--scripts to use JQuery Mobile-->
@@ -7,6 +22,12 @@
 	<script src="http://code.jquery.com/mobile/1.0rc2/jquery.mobile-1.0rc2.min.js"></script> 
 </head>
 <body>
+<div>
+	while($row = mysql_fetch_array($result)){
+		echo $row['e_id'] . " " . $row['name'];
+		echo "<br />";
+	}
+</div>
 
 <div data-role = "page" id = "searchEvents" data-title = "searchEvents">
 	<div data-role = "header">
