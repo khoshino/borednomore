@@ -10,12 +10,7 @@ mysql_select_db("khoshino_mysql", $con);
 	$query = "SELECT `name` FROM `events` WHERE `category` = 'games' ORDER BY `name` ASC";
 	
  $result = mysql_query($query, $con);
- $sql = "SELECT *\n"
-    . "FROM `events`\n"
-    . "WHERE `category` = \'games\'\n"
-    . "\n"
-    . "ORDER BY `name` ASC\n"
-    . "LIMIT 0 , 30";
+ 
  $title = $_POST["eventTitle"];
  $fbid  = 5525335; // temporary facebook id. I don't know who this is.
  $loc   = $_POST["location"];
@@ -41,7 +36,8 @@ mysql_close($con);
 <p>
 <?php
 		while($row = mysql_fetch_row($result)){
-		  echo $row[0] ;
+		  echo " Row:" . $row . "event id:" . $row["e_id"] . "<br/> name:" . $row["name"] . "<br/> category:".  $row["category"] . "<br/>
+			description:" . $row["description"] . "<br/>";
 		  echo '<br/>';
 		}
 ?> 
@@ -79,7 +75,7 @@ mysql_close($con);
 		</div>	
 		<div id = "searchResults">
 		<?php
-		echo 'sql is:' . $sql . '<br/>';
+		echo 'sql is:' . $query. '<br/>';
 		echo 'result is:' . $result . '<br/>';
 		
 		while($row = mysql_fetch_row($result)){
