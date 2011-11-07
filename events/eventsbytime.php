@@ -8,7 +8,7 @@ if (!$con)
     }
 mysql_select_db("khoshino_mysql", $con);
 
- $ result = mysql_query("SELECT * FROM khoshino_mysql");
+ $result = mysql_query("SELECT * FROM khoshino_mysql");
 	while($row = mysql_fetch_array($result)){
 		echo $row['e_id'] . " " . $row['name'];
 		echo "<br />";
