@@ -14,7 +14,7 @@ mysql_select_db("khoshino_mysql", $con);
     . "ORDER BY `name` ASC\n"
     . "LIMIT 0 , 30";
 	
- $result = mysql_query(query);
+ $result = mysql_query($query, $con);
  $sql = "SELECT *\n"
     . "FROM `events`\n"
     . "WHERE `category` = \'games\'\n"
