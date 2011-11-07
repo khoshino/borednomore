@@ -1,18 +1,89 @@
 <!DOCTYPE html>
 <?php
-    $con = mysql_connect("mysql.cs147.org", "khoshino", "JXDBsbH9");
-    $success = false;
-    if (!$con)
-    {
-        die('Could not connect: ' . mysql_error());
-    }
-    
-    
-    //mysql_select_db("khoshino_mysql", $con);
-    
-    //mysql_query("INSERT INTO events (name, location, category, start_time, duration, private) VALUES ('','','','','','')"); 
-    
-    mysql_close($con);
+ $con = mysql_connect("mysql.cs147.org", "khoshino", "JXDBsbH9");
+ $success = false;
+ $failure_reason = "";
+ if (!$con)
+ {
+  die('Could not connect: ' . mysql_error());
+ }
+ // Here in this mess of code, we validate the form server-side 
+ $title = $_POST["eventTitle"];
+ $fbid  = 5525335; // temporary facebook id. I don't know who this is.
+ $loc   = $_POST["location"];
+ $category = "games";
+ $hour  = intval($_POST["select-hour"]);
+ $min   = intval($_POST["select-min"]);
+ $ampm  = intval($_POST["select-amPm"]);
+ $starthour = -1;
+ if (gettype($hour) == "integer" && gettype($ampm) == "integer" && gettype($min) == "integer" && $hour >= 1 && $hour <= 12 && ($min == 0 || $min == 15 || $min == 30 || $min == 45) && ($ampm == 0 || $ampm == 12))
+  $starthour = $hour + $ampm;
+ $hour_d= intval($_POST["select-hour-dur"]);
+ $min_d = intval($_POST["select-min-dur"]);
+ $duration = -1;
+ if (gettype($hour_d) == "integer" && gettype($min_d) == "integer" && ($hour_d >= 1 && $hour_d <= 12) && ($min_d == 0 || $min_d == 15 || $min_d == 30 || $min_d == 45))
+  $duration = $hour_d * 60 + $min_d;
+ $public= $_POST["radio"];
+ $isPrivate = -1;
+ if ($public == "public")
+  $isPrivate = 0;
+ if ($public == "private")
+  $isPrivate = 1;
+ $desc  = $_POST["eventDescription"];
+ $cur_date = date("Y-m-d");
+ $start_time = -1;
+ if ($starthour > -1)
+  $start_time = $cur_date . " " . $starthour . ":" . $min . ":00"; 
+ $add_to_database = true;
+ $failure_loc = -1;
+ if (gettype($title) != "string" || strlen($title) <= 0 || strlen($title) > 40) {
+  $add_to_database = false;
+  $failure_loc = 0;
+ }
+ if (gettype($loc) != "string" || strlen($loc) <= 0 || strlen($loc) > 80) {
+  $add_to_database = false;
+  $failure_loc = 1;
+ }
+ if (gettype($category) != "string" || strlen($category) <= 0 || strlen($category) > 30)
+ {
+  $add_to_database = false;
+  $failure_loc = 2;
+ }
+ if ($start_time == -1)
+ {
+  $add_to_database = false;
+  $failure_loc = 3;
+ }
+ if ($duration == -1)
+ {
+  $add_to_database = false;
+  $failure_loc = 4;
+ }
+ if ($isPrivate == -1)
+ {
+  $add_to_database = false; 
+  $failure_loc = 5;
+ }
+ if (gettype($desc) != "string" || strlen($desc) > 255)
+ {
+  $add_to_database = false;
+  $failure_loc = 6;
+ }
+ if (gettype($fbid) != "integer" || $fbid < 0)
+ {
+  $add_to_database = false;
+  $failure_loc = 7;
+ } 
+ if ($add_to_database) {
+  mysql_select_db("khoshino_mysql", $con);
+  $query = "INSERT INTO events (name, location, category, start_time, duration, private, description) VALUES('". mysqL_real_escape_string($title) ."', '". mysql_real_escape_string($loc) ."', '". mysql_real_escape_string($category) ."', '". $start_time ."', '". $duration ."', '". $isPrivate ."','". mysql_real_escape_string($desc) ."')";
+  //$success = mysql_query("INSERT INTO events (name, location, category, start_time, duration, private) VALUES ('" . mysql_real_escape_string($title) . "','" . mysql_real_escape_string($loc) . "','" . mysql_real_escape_string($category) . "','" . $start_time ."','" . $duration . "','" . $isPrivate . "')"); 
+  $success = mysql_query($query);
+  if (!$success)
+   $failure_reason = mysql_error($success);
+ }
+
+ mysql_close($con);
     
 ?>
 <html>
@@ -51,14 +122,6 @@ sort of script that populates the event name, url, and wall url, yeah?
     */
 -->
 <body>
-<?php
-    echo "Length of GET is:" . count($_GET) . "<br/>";
-    foreach ($_GET as $val) {
-        echo $val;
-        echo $_GET[$val];
-        echo "<br/>";
-    }
-?>
 <div data-role = "page" id = "myEvents" data-title = "myEvents"> 
 	<div data-role = "header">
 		<h1 class = "pageTitleText">My Events</h1>
@@ -66,7 +129,20 @@ sort of script that populates the event name, url, and wall url, yeah?
 		<a href = "../index.php">Back</a>
 		<a href = "../index.php" >Home</a>
 	</div>
-	<div data-role = "content" id = "myEventsContent">			
+	<div data-role = "content" id = "myEventsContent">
+		<?php 
+		 echo "title: " . $title . "<br/>";
+		 echo "location: " . $loc  . "<br/>";
+		 echo "hour, min: " . ($hour + $ampm) . ", " . $min . "<br/>";
+		 echo "duration: " . $hour . " hours and " . $min . " minutes<br/>";
+		 echo "publicness: " . $public . "<br/>";
+		 echo "description: " . $desc . "<br/>";
+		 echo "current time: " . date('Y-m-d H:i:s') . "<br/>";
+		 if ($add_to_database)
+		  echo "database input was successful!<br/>";
+		 else
+		  echo "database input failed because: " . $failure_loc . "<br/>";
+		?>
 		<form method="link" action="../index.php">
 		<input type="submit" value="Home"></form>
 		<ul>
