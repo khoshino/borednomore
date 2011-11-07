@@ -7,8 +7,21 @@ if (!$con)
         die('Could not connect:' . mysql_error());
     }
 mysql_select_db("khoshino_mysql", $con);
-
- $result = mysql_query("SELECT * FROM khoshino_mysql");
+	$query = "SELECT *\n"
+    . "FROM `events`\n"
+    . "WHERE `category` = \'games\'\n"
+    . "\n"
+    . "ORDER BY `name` ASC\n"
+    . "LIMIT 0 , 30";
+ $result = mysql_query(query);
+ $title = $_POST["eventTitle"];
+ $fbid  = 5525335; // temporary facebook id. I don't know who this is.
+ $loc   = $_POST["location"];
+ $category = "games";
+ $hour  = intval($_POST["select-hour"]);
+ $min   = intval($_POST["select-min"]);
+ $ampm  = intval($_POST["select-amPm"]);
+ $starthour = -1;
 	
 
 mysql_close($con);
@@ -23,12 +36,14 @@ mysql_close($con);
 </head>
 <body>
 <div>
-<?
-	while($row = mysql_fetch_array($result)){
-		echo $row['e_id'] . " " . $row['name'];
-		echo "<br />";
-	}
-	?>
+<p>
+<?php
+		while($row = mysql_fetch_row($resource)){
+		  echo $row[0] ;
+		  echo '<br/>';
+		}
+?> 
+</p>
 </div>
 
 <div data-role = "page" id = "searchEvents" data-title = "searchEvents">
