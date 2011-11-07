@@ -123,8 +123,13 @@ mysql_close($con);
 			
 				echo "in eventPages DIv<br/>";
 				for($i; $i < $numRows; $i++){
+					
+		
 					echo $pagesArray[$i];
+					echo $i . '<br/>';
+					
 				}
+				echo $pagesArray;
 				?>
 			</div>
 		</div>
