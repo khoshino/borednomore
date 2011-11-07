@@ -1,18 +1,38 @@
 <!DOCTYPE html>
 <?php
-    $con = mysql_connect("mysql.cs147.org", "khoshino", "JXDBsbH9");
-    $success = false;
-    if (!$con)
-    {
-        die('Could not connect: ' . mysql_error());
-    }
+ $con = mysql_connect("mysql.cs147.org", "khoshino", "JXDBsbH9");
+ $success = false;
+ if (!$con)
+ {
+  die('Could not connect: ' . mysql_error());
+ }
     
+ $title = $_POST["eventTitle"];
+ $loc   = $_POST["location"];
+ $category = "games";
+ $hour  = $_POST["select-hour"];
+ $min   = $_POST["select-min"];
+ $ampm  = $_POST["select-amPm"];
+ $hour_d= $_POST["select-hour-dur"];
+ $min_d = $_POST["select-min-dur"];
+ $public= $_POST["radio"];
+ $desc  = $_POST["eventDescription"];
+ 
+ $add_to_database = true;
+ if (gettype($title) != "string" || strlen($title) <= 0 || strlen($title) > 40)
+  $add_to_database = false;
+ if (gettype($loc) != "string" || strlen($loc) <= 0 || strlen($loc) > 80)
+  $add_to_database = false;
+ if (gettype($category) != "string" || strlen($category) <= 0 || strlen($category) > 30)
+  $add_to_database = false;
+
+
     
-    //mysql_select_db("khoshino_mysql", $con);
+ //mysql_select_db("khoshino_mysql", $con);
     
-    //mysql_query("INSERT INTO events (name, location, category, start_time, duration, private) VALUES ('','','','','','')"); 
+ //mysql_query("INSERT INTO events (name, location, category, start_time, duration, private) VALUES ('','','','','','')"); 
     
-    mysql_close($con);
+ mysql_close($con);
     
 ?>
 <html>
@@ -51,17 +71,6 @@ sort of script that populates the event name, url, and wall url, yeah?
     */
 -->
 <body>
-<?php
- $title = $_POST["eventTitle"];
- $loc   = $_POST["location"];
- $hour  = $_POST["select-hour"];
- $min   = $_POST["select-min"];
- $ampm  = $_POST["select-amPm"];
- $hour_d= $_POST["select-hour-dur"];
- $min_d = $_POST["select-min-dur"];
- $public= $_POST["radio"];
- $desc  = $_POST["eventDescription"];
-?>
 <div data-role = "page" id = "myEvents" data-title = "myEvents"> 
 	<div data-role = "header">
 		<h1 class = "pageTitleText">My Events</h1>
@@ -77,6 +86,7 @@ sort of script that populates the event name, url, and wall url, yeah?
 		 echo "duration: " . $hour . " hours and " . $min . " minutes<br/>";
 		 echo "publicness: " . $public . "<br/>";
 		 echo "description: " . $desc . "<br/>";
+		 echo "current time: " . date('Y-m-d H:i:s') . "<br/>";
 		?>
 		<form method="link" action="../index.php">
 		<input type="submit" value="Home"></form>
