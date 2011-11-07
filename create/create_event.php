@@ -128,7 +128,7 @@
 		</div>
 		<!--Description:<input type="textarea" name="description" value="Write a description of your event here!" size="30" onfocus="value=''"><br />-->
 		Description: <br />
-		<textarea id = "eventDescription" rows="4" cols="60" > 
+		<textarea id = "eventDescription" name = "eventDescription" rows="4" cols="60" > 
 			 A description of your awesome event! 
 		</textarea><br/>	
 		<input type = "submit" value ="Create Event!" ><br /> <!--onClick="handleSubmit()"-->
