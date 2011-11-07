@@ -109,7 +109,7 @@ mysql_close($con);
 		  echo '<br/>';
 		}
 		*/
-		 
+		 ?>
 			<ul>
 			<li> "TEST"
 			
@@ -118,7 +118,7 @@ mysql_close($con);
 			<li> "event3"
 			</ul>
 			<div id = "eventPages">
-				echo "in eventPages DIv<br/>";
+				<?echo "in eventPages DIv<br/>";
 				for($i; $i < $numRows; $i++){
 					echo $pagesArray[$i];
 				}
