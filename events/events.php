@@ -80,7 +80,7 @@ mysql_close($con);
 		<div id = "searchResults">
 		<?php
 		echo 'sql is:' . $sql . '<br/>';
-		echo 'result is:' . $result '<br/>' ;
+		echo 'result is:' . $result . '<br/>';
 		
 		while($row = mysql_fetch_row($result)){
 		  echo $row[0] ;
@@ -89,7 +89,7 @@ mysql_close($con);
 		?> 
 			<ul>
 			<li> "TEST"
-			<li> "is this even working"
+			
 			<li> "event1"
 			<li> "event2"
 			<li> "event3"
