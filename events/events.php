@@ -45,7 +45,7 @@ mysql_close($con);
 <div>
 <p>
 <?php
-		while($row = mysql_fetch_row($sql)){
+		while($row = mysql_fetch_row($result)){
 		  echo $row[0] ;
 		  echo '<br/>';
 		}
@@ -87,7 +87,7 @@ mysql_close($con);
 		echo "sql is:" . $sql;
 		echo "result is:" . $result;
 		
-		while($row = mysql_fetch_row($sql)){
+		while($row = mysql_fetch_row($result)){
 		  echo $row[0] ;
 		  echo '<br/>';
 		}
