@@ -69,7 +69,7 @@ mysql_close($con);
 		echo 'result is:' . $result . '<br/>';
 		
 		while($row = mysql_fetch_row($result)){
-		  echo " Row:" . $row . "event id:" . $row["e_id"] . "<br/> name:" . $row["name"] . "<br/> category:".  $row["category"] . "<br/>
+		  echo " Row:" . $row . "<br/> $row[0]:" . $row[0] . "<br/>$row[1]:" . $row[1] . "<br/>event id:" . $row["e_id"] . "<br/> name:" . $row["name"] . "<br/> category:".  $row["category"] . "<br/>
 			description:" . $row["description"] . "<br/>";
 		  echo '<br/>';
 		}
