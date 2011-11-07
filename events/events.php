@@ -83,17 +83,18 @@ mysql_close($con);
 			print_r($eventArray);
 			$test = "test";
 			$test2 .= $test;
-			$eventPage = '<div data-role = "page"> event page: ';#. $eventArray['name'] . '</div>';
+			$eventPage = ' event page: ';#. $eventArray['name'] . '</div>';
 			$newPagesHtml .= $eventPage;
 			echo 'eventPage:' . $eventPage . '<br/>';
 			echo 'eventArray["name"]:' . $eventArray['name'];
-			
+			echo $test;
 			#$eventPages.apppend("PHP Test append <br/>");
 			 #CreateEventPage($eventArray);
 		  
 		  echo "<br/>";
 		}
 		echo 'newPagesHtml:' . $newPagesHtml;
+		echo $test2;
 		/*
 		while($row = mysql_fetch_row($result)){
 		  echo " Row:" . $row . "<br/> $row[0]:" . $row[0] . "<br/>$row[1]:" . $row[1] . "<br/>event id:" . $row["e_id"] . "<br/> name:" . $row["name"] . "<br/> category:".  $row["category"] . "<br/>
