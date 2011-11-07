@@ -81,7 +81,7 @@ mysql_close($con);
 		for( $i = 0; $i < $numRows; $i++){
 			$eventArray = mysql_fetch_array($result);
 			print_r($eventArray);
-			$eventPage = '<div data-role = "page"> event page: '. $eventArray['name'] . '</div>';)
+			$eventPage = '<div data-role = "page"> event page: '. $eventArray['name'] . '</div>';
 			$newPagesHtml = $newPagesHtml . $eventPage;
 			echo 'eventPage:' . $eventPage . '<br/>';
 			echo 'eventArray["name"]:' . $eventArray['name'];
