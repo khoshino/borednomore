@@ -81,11 +81,15 @@ mysql_close($con);
 		for( $i = 0; $i < $numRows; $i++){
 			$eventArray = mysql_fetch_array($result);
 			print_r($eventArray);
-			$test = "test";
-			$test2 .= $test;
+			
+			#$test = "test";
+			#$test2 .= $test;
 			$name  = $eventArray['name'];
 			$eventPage = ' <div >event page: '. $name . '</div>';
+			$pagesArray[$i] =$eventPage;
+			
 			$newPagesHtml .= $eventPage;
+			/*
 			echo 'eventPage:' . $eventPage . '<br/>';
 			echo 'eventArray["name"]:' . $eventArray['name'];
 			echo $test;
@@ -93,6 +97,7 @@ mysql_close($con);
 			 #CreateEventPage($eventArray);
 		  
 		  echo "<br/>";
+		  */
 		}
 		echo 'newPagesHtml:' . $newPagesHtml;
 		echo $test2;
@@ -104,7 +109,7 @@ mysql_close($con);
 		  echo '<br/>';
 		}
 		*/
-		?> 
+		 
 			<ul>
 			<li> "TEST"
 			
@@ -112,7 +117,13 @@ mysql_close($con);
 			<li> "event2"
 			<li> "event3"
 			</ul>
-			<div id = "eventPages"> </div>
+			<div id = "eventPages">
+				echo "in eventPages DIv<br/>";
+				for($i; $i < $numRows; $i++){
+					echo $pagesArray[$i];
+				}
+				?>
+			</div>
 		</div>
 	</div>
 	<div 
