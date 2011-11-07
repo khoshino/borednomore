@@ -7,11 +7,10 @@ if (!$con)
         die('Could not connect:' . mysql_error());
     }
 mysql_select_db("khoshino_mysql", $con);
-	$query = "SELECT *\n"
-    . "FROM `events`\n"
-    . "WHERE `category` = \'games\'\n"
-    . "\n"
-    . "ORDER BY `name` ASC\n"
+	$query = "SELECT * "
+    . "FROM `events` "
+    . "WHERE `category` = \'games\ '"
+    . "ORDER BY `name` ASC "
     . "LIMIT 0 , 30";
 	
  $result = mysql_query($query, $con);
@@ -65,17 +64,17 @@ mysql_close($con);
 		<div id="menu" >
 		
 		<h1 class = "pageTitleText"><b> Search Menu</b> </h1>
-		<button onclick = "JavaScript:alert('searching by Category'); window.location.href='eventsbytime.php'">
+		<button onclick = "window.location.href='eventsbytime.php'">
 			<img src="http://www.garrykelly.ie/wp-content/uploads/2010/05/20061006213300Sports_icon.png	" alt="Category" />
 			Category
 		</button>
 		
-		<button onclick = "JavaScript:alert('searching by Location'); window.location.href='eventsbytime.php'">
+		<button onclick = " window.location.href='eventsbytime.php'">
 			<img src="http://www.garrykelly.ie/wp-content/uploads/2010/05/20061006213300Sports_icon.png	" alt="Location" />
 			Location
 		</button>
 		
-		<button onclick = "JavaScript:alert('searching by TIME'); window.location.href='eventsbytime.php'">
+		<button onclick = " window.location.href='eventsbytime.php'">
 			<img src="http://www.garrykelly.ie/wp-content/uploads/2010/05/20061006213300Sports_icon.png	" alt="Time" />
 			Time
 		</button>
@@ -84,8 +83,8 @@ mysql_close($con);
 		</div>	
 		<div id = "searchResults">
 		<?php
-		echo "sql is:" . $sql;
-		echo "result is:" . $result;
+		echo 'sql is:' . $sql . '<br/>';
+		echo 'result is:' . $result' ;
 		
 		while($row = mysql_fetch_row($result)){
 		  echo $row[0] ;
