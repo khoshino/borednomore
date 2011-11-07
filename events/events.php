@@ -76,6 +76,12 @@ mysql_close($con);
 			
 		</div>	
 		<div id = "searchResults">
+		<?php
+		while($row = mysql_fetch_row($result)){
+		  echo $row[0] ;
+		  echo '<br/>';
+		}
+		?> 
 			<ul>
 			<li> "event1"
 			<li> "event2"
