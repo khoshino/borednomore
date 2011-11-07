@@ -23,10 +23,12 @@ mysql_close($con);
 </head>
 <body>
 <div>
+<?
 	while($row = mysql_fetch_array($result)){
 		echo $row['e_id'] . " " . $row['name'];
 		echo "<br />";
 	}
+	?>
 </div>
 
 <div data-role = "page" id = "searchEvents" data-title = "searchEvents">
