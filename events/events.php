@@ -109,7 +109,8 @@ mysql_close($con);
 		  echo '<br/>';
 		}
 		*/
-		 ?>
+		#echoing this Html so I can keep using php and still have access to my info from database
+		 echo '
 			<ul>
 			<li> "TEST"
 			
@@ -117,8 +118,10 @@ mysql_close($con);
 			<li> "event2"
 			<li> "event3"
 			</ul>
-			<div id = "eventPages">
-				<?echo "in eventPages DIv<br/>";
+			<div id = "eventPages">'; 
+			
+			
+				echo "in eventPages DIv<br/>";
 				for($i; $i < $numRows; $i++){
 					echo $pagesArray[$i];
 				}
@@ -126,8 +129,9 @@ mysql_close($con);
 			</div>
 		</div>
 	</div>
-	<div 
+	
 	<div data-role = "footer">footer...</div>
+</div>
 
 </body>
 </html>
