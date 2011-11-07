@@ -81,16 +81,17 @@ mysql_close($con);
 		for( $i = 0; $i < $numRows; $i++){
 			$eventArray = mysql_fetch_array($result);
 			print_r($eventArray);
-			$eventPage = '<div data-role = "page"> event page: '. $eventArray['name'] . '</div>';
-			$newPagesHtml = $newPagesHtml .$eventPage;
+			$eventPage = '<div data-role = "page"> event page: '. $eventArray['name'] . '</div>';)
+			$newPagesHtml = $newPagesHtml . $eventPage;
 			echo 'eventPage:' . $eventPage . '<br/>';
+			echo 'eventArray["name"]:' . $eventArray['name'];
 			
 			#$eventPages.apppend("PHP Test append <br/>");
 			 #CreateEventPage($eventArray);
 		  
 		  echo "<br/>";
 		}
-		echo 'newPagesHtml:' . newPagesHtml;
+		echo 'newPagesHtml:' . $newPagesHtml;
 		/*
 		while($row = mysql_fetch_row($result)){
 		  echo " Row:" . $row . "<br/> $row[0]:" . $row[0] . "<br/>$row[1]:" . $row[1] . "<br/>event id:" . $row["e_id"] . "<br/> name:" . $row["name"] . "<br/> category:".  $row["category"] . "<br/>
