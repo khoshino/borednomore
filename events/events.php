@@ -77,10 +77,13 @@ mysql_close($con);
 		$numRows =  mysql_num_rows($result);
 		echo 'numRows:' . $numRows;
 		$newPagesHtml = '';
+		$test2 = '';
 		for( $i = 0; $i < $numRows; $i++){
 			$eventArray = mysql_fetch_array($result);
 			print_r($eventArray);
-			$eventPage = '<div data-role = "page"> event page: '. $eventArray['name'] . '</div>';
+			$test = "test";
+			$test2 .= $test;
+			$eventPage = '<div data-role = "page"> event page: ';#. $eventArray['name'] . '</div>';
 			$newPagesHtml .= $eventPage;
 			echo 'eventPage:' . $eventPage . '<br/>';
 			echo 'eventArray["name"]:' . $eventArray['name'];
