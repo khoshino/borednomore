@@ -130,6 +130,7 @@ mysql_close($con);
 					
 				}
 				echo $pagesArray;
+				print_r($pagesArray)
 				?>
 			</div>
 		</div>
