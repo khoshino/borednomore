@@ -93,6 +93,7 @@ mysql_close($con);
 		}
 		?> 
 			<ul>
+			<li> "TEST"
 			<li> "is this even working"
 			<li> "event1"
 			<li> "event2"
