@@ -81,7 +81,7 @@ mysql_close($con);
 		  $eventArray = mysql_fetch_array($result);
 		  print_r($eventArray);
 		 
-			$(eventPages).apppend("PHP Test append <br/>");
+			$eventPages.apppend("PHP Test append <br/>");
 			 CreateEventPage($eventArray);
 		  
 		  echo "<br/>";
