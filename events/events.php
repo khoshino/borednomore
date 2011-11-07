@@ -67,10 +67,11 @@ mysql_close($con);
 		<?php
 		echo 'sql is:' . $query. '<br/>';
 		echo 'result is:' . $result . '<br/>';
-		
+		echo 'numRows:' . mysql_num_rows($result);
 		while($row = mysql_fetch_row($result)){
 		  echo " Row:" . $row . "<br/> $row[0]:" . $row[0] . "<br/>$row[1]:" . $row[1] . "<br/>event id:" . $row["e_id"] . "<br/> name:" . $row["name"] . "<br/> category:".  $row["category"] . "<br/>
 			description:" . $row["description"] . "<br/>";
+		  print_r(mysql_fetch_assoc($result));
 		  echo '<br/>';
 		}
 		?> 
