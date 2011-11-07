@@ -83,7 +83,7 @@ mysql_close($con);
 			print_r($eventArray);
 			$test = "test";
 			$test2 .= $test;
-			$eventPage = ' event page: ';#. $eventArray['name'] . '</div>';
+			$eventPage = ' <div >event page: '. $eventArray['name'] . '</div>';
 			$newPagesHtml .= $eventPage;
 			echo 'eventPage:' . $eventPage . '<br/>';
 			echo 'eventArray["name"]:' . $eventArray['name'];
