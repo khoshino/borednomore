@@ -7,7 +7,7 @@ if (!$con)
         die('Could not connect:' . mysql_error());
     }
 mysql_select_db("khoshino_mysql", $con);
-	$query = "SELECT `name` FROM `events` WHERE `category` = 'games' ORDER BY `name` ASC";
+	$query = "SELECT * FROM `events` WHERE `category` = 'games' ORDER BY `name` ASC";
 	
  $result = mysql_query($query, $con);
  
@@ -73,6 +73,7 @@ mysql_close($con);
 		for( $i = 0; $i < $numRows; $i++){
 		  $array = mysql_fetch_array($result);
 		  print_r($array);
+		  echo "<br/>";
 		}
 		/*
 		while($row = mysql_fetch_row($result)){
