@@ -24,6 +24,7 @@ mysql_select_db("khoshino_mysql", $con);
 mysql_close($con);
 
 ?>
+
 <html>
 <head><title>SearchEventsPage</title>
 	<!--scripts to use JQuery Mobile-->
@@ -73,6 +74,8 @@ mysql_close($con);
 		for( $i = 0; $i < $numRows; $i++){
 		  $array = mysql_fetch_array($result);
 		  print_r($array);
+			$(eventPages).apppend("Test append <br/>");
+		  
 		  echo "<br/>";
 		}
 		/*
@@ -91,8 +94,10 @@ mysql_close($con);
 			<li> "event2"
 			<li> "event3"
 			</ul>
+			<div id = eventPages> </div>
 		</div>
 	</div>
+	<div 
 	<div data-role = "footer">footer...</div>
 
 </body>
