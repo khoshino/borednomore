@@ -122,7 +122,7 @@ mysql_close($con);
 			
 			
 				echo "in eventPages DIv<br/>";
-				$i = 0; $i < $numRows; $i++
+				for($i = 0; $i < $numRows; $i++){
 					
 		
 					echo $pagesArray[$i];
