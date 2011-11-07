@@ -84,7 +84,7 @@ mysql_close($con);
 		</div>	
 		<div id = "searchResults">
 		<?php
-		while($row = mysql_fetch_row($result)){
+		while($row = mysql_fetch_row($sql)){
 		  echo $row[0] ;
 		  echo '<br/>';
 		}
