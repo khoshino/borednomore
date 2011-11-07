@@ -32,17 +32,7 @@ mysql_close($con);
 	<script src="http://code.jquery.com/mobile/1.0rc2/jquery.mobile-1.0rc2.min.js"></script> 
 </head>
 <body>
-<div>
-<p>
-<?php
-		while($row = mysql_fetch_row($result)){
-		  echo " Row:" . $row . "event id:" . $row["e_id"] . "<br/> name:" . $row["name"] . "<br/> category:".  $row["category"] . "<br/>
-			description:" . $row["description"] . "<br/>";
-		  echo '<br/>';
-		}
-?> 
-</p>
-</div>
+
 
 <div data-role = "page" id = "searchEvents" data-title = "searchEvents">
 	<div data-role = "header">
@@ -79,7 +69,8 @@ mysql_close($con);
 		echo 'result is:' . $result . '<br/>';
 		
 		while($row = mysql_fetch_row($result)){
-		  echo $row[0] ;
+		  echo " Row:" . $row . "event id:" . $row["e_id"] . "<br/> name:" . $row["name"] . "<br/> category:".  $row["category"] . "<br/>
+			description:" . $row["description"] . "<br/>";
 		  echo '<br/>';
 		}
 		?> 
