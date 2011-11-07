@@ -52,12 +52,7 @@ sort of script that populates the event name, url, and wall url, yeah?
 -->
 <body>
 <?php
-    echo "Length of GET is:" . count($_GET) . "<br/>";
-    foreach ($_GET as $val) {
-        echo $val;
-        echo $_GET[$val];
-        echo "<br/>";
-    }
+    echo "Length of POST is:" . count($_POST) . "<br/>";
 ?>
 <div data-role = "page" id = "myEvents" data-title = "myEvents"> 
 	<div data-role = "header">
@@ -66,7 +61,8 @@ sort of script that populates the event name, url, and wall url, yeah?
 		<a href = "../index.php">Back</a>
 		<a href = "../index.php" >Home</a>
 	</div>
-	<div data-role = "content" id = "myEventsContent">			
+	<div data-role = "content" id = "myEventsContent">
+		<?php echo "test" . $_POST["eventTitle"];?>			
 		<form method="link" action="../index.php">
 		<input type="submit" value="Home"></form>
 		<ul>
