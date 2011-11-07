@@ -2,6 +2,7 @@
 <?php
  $con = mysql_connect("mysql.cs147.org", "khoshino", "JXDBsbH9");
  $success = false;
+ $failure_reason = "";
  if (!$con)
  {
   die('Could not connect: ' . mysql_error());
@@ -11,14 +12,14 @@
  $fbid  = 5525335; // temporary facebook id. I don't know who this is.
  $loc   = $_POST["location"];
  $category = "games";
- $hour  = $_POST["select-hour"];
- $min   = $_POST["select-min"];
- $ampm  = $_POST["select-amPm"];
+ $hour  = intval($_POST["select-hour"]);
+ $min   = intval($_POST["select-min"]);
+ $ampm  = intval($_POST["select-amPm"]);
  $starthour = -1;
  if (gettype($hour) == "integer" && gettype($ampm) == "integer" && gettype($min) == "integer" && $hour >= 1 && $hour <= 12 && ($min == 0 || $min == 15 || $min == 30 || $min == 45) && ($ampm == 0 || $ampm == 12))
   $starthour = $hour + $ampm;
- $hour_d= $_POST["select-hour-dur"];
- $min_d = $_POST["select-min-dur"];
+ $hour_d= intval($_POST["select-hour-dur"]);
+ $min_d = intval($_POST["select-min-dur"]);
  $duration = -1;
  if (gettype($hour_d) == "integer" && gettype($min_d) == "integer" && ($hour_d >= 1 && $hour_d <= 12) && ($min_d == 0 || $min_d == 15 || $min_d == 30 || $min_d == 45))
   $duration = $hour_d * 60 + $min_d;
@@ -26,7 +27,7 @@
  $isPrivate = -1;
  if ($public == "public")
   $isPrivate = 0;
- if ($public == "private");
+ if ($public == "private")
   $isPrivate = 1;
  $desc  = $_POST["eventDescription"];
  $cur_date = date("Y-m-d");
@@ -34,28 +35,54 @@
  if ($starthour > -1)
   $start_time = $cur_date . " " . $starthour . ":" . $min . ":00"; 
  $add_to_database = true;
- if (gettype($title) != "string" || strlen($title) <= 0 || strlen($title) > 40)
+ $failure_loc = -1;
+ if (gettype($title) != "string" || strlen($title) <= 0 || strlen($title) > 40) {
   $add_to_database = false;
- if (gettype($loc) != "string" || strlen($loc) <= 0 || strlen($loc) > 80)
+  $failure_loc = 0;
+ }
+ if (gettype($loc) != "string" || strlen($loc) <= 0 || strlen($loc) > 80) {
   $add_to_database = false;
+  $failure_loc = 1;
+ }
  if (gettype($category) != "string" || strlen($category) <= 0 || strlen($category) > 30)
+ {
   $add_to_database = false;
+  $failure_loc = 2;
+ }
  if ($start_time == -1)
+ {
   $add_to_database = false;
+  $failure_loc = 3;
+ }
  if ($duration == -1)
+ {
   $add_to_database = false;
+  $failure_loc = 4;
+ }
  if ($isPrivate == -1)
+ {
   $add_to_database = false; 
+  $failure_loc = 5;
+ }
  if (gettype($desc) != "string" || strlen($desc) > 255)
+ {
   $add_to_database = false;
+  $failure_loc = 6;
+ }
  if (gettype($fbid) != "integer" || $fbid < 0)
+ {
   $add_to_database = false;
- 
+  $failure_loc = 7;
+ } 
  if ($add_to_database) {
   mysql_select_db("khoshino_mysql", $con);
-     
-  mysql_query("INSERT INTO events (name, location, category, start_time, duration, private) VALUES ('" . mysql_real_escape_string($title) . "','" . mysql_real_escape_string($loc) . "','" . mysql_real_escape_string($category) . "','" . $start_time ."','" . $duration . "','" . $isPrivate . "')"); 
+  $query = "INSERT INTO events (name, location, category, start_time, duration, private, description) VALUES('". mysqL_real_escape_string($title) ."', '". mysql_real_escape_string($loc) ."', '". mysql_real_escape_string($category) ."', '". $start_time ."', '". $duration ."', '". $isPrivate ."','". mysql_real_escape_string($desc) ."')";
+  //$success = mysql_query("INSERT INTO events (name, location, category, start_time, duration, private) VALUES ('" . mysql_real_escape_string($title) . "','" . mysql_real_escape_string($loc) . "','" . mysql_real_escape_string($category) . "','" . $start_time ."','" . $duration . "','" . $isPrivate . "')"); 
+  $success = mysql_query($query);
+  if (!$success)
+   $failure_reason = mysql_error($success);
  }
+
  mysql_close($con);
     
 ?>
@@ -111,7 +138,10 @@ sort of script that populates the event name, url, and wall url, yeah?
 		 echo "publicness: " . $public . "<br/>";
 		 echo "description: " . $desc . "<br/>";
 		 echo "current time: " . date('Y-m-d H:i:s') . "<br/>";
-		 echo "added to database?: " . $add_to_database . "<br/>";
+		 if ($add_to_database)
+		  echo "database input was successful!<br/>";
+		 else
+		  echo "database input failed because: " . $failure_loc . "<br/>";
 		?>
 		<form method="link" action="../index.php">
 		<input type="submit" value="Home"></form>
