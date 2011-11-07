@@ -38,7 +38,7 @@ mysql_close($con);
 <div>
 <p>
 <?php
-		while($row = mysql_fetch_row($resource)){
+		while($row = mysql_fetch_row($result)){
 		  echo $row[0] ;
 		  echo '<br/>';
 		}
