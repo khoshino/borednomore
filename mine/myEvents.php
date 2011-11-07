@@ -52,7 +52,15 @@ sort of script that populates the event name, url, and wall url, yeah?
 -->
 <body>
 <?php
-    echo "Length of POST is:" . count($_POST) . "<br/>";
+ $title = $_POST["eventTitle"];
+ $loc   = $_POST["location"];
+ $hour  = $_POST["select-hour"];
+ $min   = $_POST["select-min"];
+ $ampm  = $_POST["select-amPm"];
+ $hour_d= $_POST["select-hour-dur"];
+ $min_d = $_POST["select-min-dur"];
+ $public= $_POST["radio"];
+ $desc  = $_POST["eventDescription"];
 ?>
 <div data-role = "page" id = "myEvents" data-title = "myEvents"> 
 	<div data-role = "header">
@@ -62,7 +70,14 @@ sort of script that populates the event name, url, and wall url, yeah?
 		<a href = "../index.php" >Home</a>
 	</div>
 	<div data-role = "content" id = "myEventsContent">
-		<?php echo "test" . $_POST["eventTitle"];?>			
+		<?php 
+		 echo "title: " . $title . "<br/>";
+		 echo "location: " . $loc  . "<br/>";
+		 echo "hour, min: " . ($hour + $ampm) . ", " . $min . "<br/>";
+		 echo "duration: " . $hour . " hours and " . $min . " minutes<br/>";
+		 echo "publicness: " . $public . "<br/>";
+		 echo "description: " . $desc . "<br/>";
+		?>
 		<form method="link" action="../index.php">
 		<input type="submit" value="Home"></form>
 		<ul>
