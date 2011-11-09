@@ -48,6 +48,12 @@ function base64_url_decode($input) {
 $appid     = 240585475995480;
 $appsecret = "1107e44f761f958af687e126f9428ed3";
 
+function get_friendlist($access_token, $user_id) {
+ $jsonresult = file_get_contents("https://graph.facebook.com/" . $user_id . "/friends?access_token=" . $access_token);
+ parse_str($jsonresult, $data);
+ 
+}
+
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US"> 
 <head><title>Bored no More</title>
@@ -99,15 +105,22 @@ function handleStatusChange(response) {
 		<h3>Let's Do Something!</h3>
 <?php
  $signed_request = parse_signed_request($_COOKIE['fbsr_' . $appid], $appsecret);
- // This code checks that the facebook cookie can be accessed
- /*if ($signed_request != null) {
+ // This code checks that the facebook cookie can be accessed. It also generates
+ // the access token for facebook.
+ if ($signed_request != null) {
   foreach ($signed_request as $key => $value) {
    echo $key . ": " . $value . "<br/>";
   }
+  $access_token = file_get_contents("https://graph.facebook.com/oauth/access_token?client_id=" . $appid . "&redirect_uri=&client_secret=" . $appsecret . "&code=" . $signed_request['code']);
+  parse_str($access_token, $at_response);
+  $access_token = $at_response['access_token'];
+  $expires = $at_response['expires'] + time();
+  echo "access token: " . $access_token . '<br/>';
+  echo "expires at: " . $expires . '<br/>';
  } else {
   echo "fail";
- }*/
-
+ }
+ 
 ?>
 <div id="login">
   <p><button onClick="loginUser();">Login</button></p>
