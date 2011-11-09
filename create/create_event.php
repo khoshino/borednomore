@@ -16,7 +16,7 @@
 <div data-role="page" id = "createEvent" data-title="createEvent"> 
 	<div data-role="header">
 		<h1 class = "pageTitleText"><b> Create an Event </b></h1>
-		<!-- Navigation Buttons-- Change these links to link to different back pages or add links to new pages-->
+		<!-- Navigation Buttons- Change these links to link to different back pages or add links to new pages-->
 		<a href = "./create_event_type.php">Back</a>
 		<a href = "../index.php" >Home</a>
 		
@@ -30,6 +30,7 @@
 		<form id = "createEventForm" action = "../mine/myEvents.php" method="POST">
 		*Title: <input type="text" id="eventTitle" name="eventTitle" required="required" /><br />
 		*Location: <input type="text" id="eventLocation" name="location" required="required" /><br />
+		*Type: <?php echo $_POST["type"]; ?><br /><br />
 		
 		
 		<div data-role = "fieldcontain" data-type = "horizontal">
@@ -128,8 +129,7 @@
 		</div>
 		<!--Description:<input type="textarea" name="description" value="Write a description of your event here!" size="30" onfocus="value=''"><br />-->
 		Description: <br />
-		<textarea id = "eventDescription" name = "eventDescription" rows="4" cols="60" > 
-			 A description of your awesome event! 
+		<textarea id = "eventDescription" name = "eventDescription" rows="4" cols="60"  placeholder="A description of your awesome event!"> 
 		</textarea><br/>	
 		<input type = "submit" value ="Create Event!" ><br /> <!--onClick="handleSubmit()"-->
 		</form>
