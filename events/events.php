@@ -97,10 +97,14 @@ mysql_close($con);
 						<a href = "../index.php">Back</a>\n
 						<a href = "../index.php" >Home</a>\n
 					</div>\n
-					<div data-role = "content" id = "'. $pgId . 'Content">\n 
+					<div data-role = "content" id = "' . $pgId . 'Content">\n 
+						Content GOES HERE. \n
 					</div>\n
 					<div data-role = "footer" >footer...</div>\n';
 			$pagesArray[$i] =$eventPage;
+			
+			
+			
 			
 			$newPagesHtml .= $eventPage;
 			/*
@@ -155,3 +159,4 @@ mysql_close($con);
 
 </body>
 </html>
+
