@@ -85,7 +85,22 @@ mysql_close($con);
 			#$test = "test";
 			#$test2 .= $test;
 			$name  = $eventArray['name'];
-			$eventPage = ' <div >event page: '. $name . '</div>';
+			$pgId = "event" . $eventArray['e_id'];
+			$pgTitle = $pgId . "_" . $name;
+			/*$eventPage is a string holding all the html need to display an event for this page*/
+//***************BEGIN CODE FOR EVENT PAGE (for a single event)***************************************
+			$eventPage = 
+			' <div data-role = "page" id = "'. $pgId . '" data-title = "' . $pgTitle . '">\n
+					<div data-role = "header">\n
+						<h1 class = "pageTitleText">' . $name ' Event</h1>\n
+						<!-- Navigation Buttons-- Change these links to link to different back pages or add links to new pages-->\n
+						<a href = "../index.php">Back</a>\n
+						<a href = "../index.php" >Home</a>\n
+					</div>\n
+					<div data-role = "content" id = "'. $pgId . 'Content">\n 
+						
+					</div>\n
+					<div data-role = "footer" >footer...</div>\n'$event page: '. $name . '</div>';
 			$pagesArray[$i] =$eventPage;
 			
 			$newPagesHtml .= $eventPage;
@@ -121,12 +136,12 @@ mysql_close($con);
 			<div id = "eventPages">'; 
 			
 			
-				echo "in eventPages DIv<br/>";
+				echo "in eventPages DIv<br/>\n";
 				for($i = 0; $i < $numRows; $i++){
 					
 		
 					echo $pagesArray[$i];
-					echo $i . '<br/>';
+					echo $i . '<br/\n>';
 					
 				}
 				echo $pagesArray;
