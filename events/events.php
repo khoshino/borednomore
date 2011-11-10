@@ -97,14 +97,11 @@ mysql_close($con);
 						<a href = "../index.php">Back</a>\n
 						<a href = "../index.php" >Home</a>\n
 					</div>\n
-					
-					
-					
-					
 					<div data-role = "content" id = "' . $pgId . 'Content">\n 
 						Content GOES HERE. \n
 					</div>\n
-					<div data-role = "footer" >footer...</div>\n';
+					<div data-role = "footer" >footer...</div>
+					</div>';
 			$pagesArray[$i] =$eventPage;
 			
 			
@@ -121,8 +118,8 @@ mysql_close($con);
 		  echo "<br/>";
 		  */
 		}
-		echo 'newPagesHtml:' . $newPagesHtml;
-		echo $test2;
+		//echo 'newPagesHtml:' . $newPagesHtml;
+		//echo $test2;
 		/*
 		while($row = mysql_fetch_row($result)){
 		  echo " Row:" . $row . "<br/> $row[0]:" . $row[0] . "<br/>$row[1]:" . $row[1] . "<br/>event id:" . $row["e_id"] . "<br/> name:" . $row["name"] . "<br/> category:".  $row["category"] . "<br/>
@@ -148,7 +145,7 @@ mysql_close($con);
 					
 		
 					echo $pagesArray[$i];
-					echo $i . '<br/\n>';
+				//	echo $i . '<br/\n>';
 					
 				}
 				echo $pagesArray;
