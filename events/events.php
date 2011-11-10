@@ -98,9 +98,8 @@ mysql_close($con);
 						<a href = "../index.php" >Home</a>\n
 					</div>\n
 					<div data-role = "content" id = "'. $pgId . 'Content">\n 
-						
 					</div>\n
-					<div data-role = "footer" >footer...</div>\n'$event page: '. $name . '</div>';
+					<div data-role = "footer" >footer...</div>\n';
 			$pagesArray[$i] =$eventPage;
 			
 			$newPagesHtml .= $eventPage;
