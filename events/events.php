@@ -92,7 +92,7 @@ mysql_close($con);
 			$eventPage = 
 			' <div data-role = "page" id = "'. $pgId . '" data-title = "' . $pgTitle . '">\n
 					<div data-role = "header">\n
-						<h1 class = "pageTitleText">' . $name ' Event</h1>\n
+						<h1 class = "pageTitleText">' . $name .' Event</h1>\n
 						<!-- Navigation Buttons-- Change these links to link to different back pages or add links to new pages-->\n
 						<a href = "../index.php">Back</a>\n
 						<a href = "../index.php" >Home</a>\n
