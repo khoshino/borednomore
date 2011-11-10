@@ -145,11 +145,11 @@ mysql_close($con);
 					
 		
 					echo $pagesArray[$i];
-				//	echo $i . '<br/\n>';
+					echo '\n\n<br/>';
 					
 				}
-				echo $pagesArray;
-				print_r($pagesArray)
+				//echo $pagesArray;
+				//print_r($pagesArray)
 				?>
 			</div>
 		</div>
