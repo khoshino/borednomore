@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <?php
+ include "../utility.php";
+ /*** Initialize connection with Database here ***/
  $con = mysql_connect("mysql.cs147.org", "khoshino", "JXDBsbH9");
  $success = false;
  $failure_reason = "";
@@ -8,10 +10,11 @@
   die('Could not connect: ' . mysql_error());
  }
  // Here in this mess of code, we validate the form server-side 
+ /*** Initialize all the column variables here ***/
  $title = $_POST["eventTitle"];
  $fbid  = 5525335; // temporary facebook id. I don't know who this is.
  $loc   = $_POST["location"];
- $category = "games";
+ $category = $_POST["eventType"];
  $hour  = intval($_POST["select-hour"]);
  $min   = intval($_POST["select-min"]);
  $ampm  = intval($_POST["select-amPm"]);
@@ -32,6 +35,13 @@
  $desc  = $_POST["eventDescription"];
  $cur_date = date("Y-m-d");
  $start_time = -1;
+ $fbtoken = get_fbtoken($appid, $appsecret);
+ $user_id = 0;
+ if ($fbtoken != null) {
+  $user_id = intval($fbtoken['user_id']);
+ }
+
+ /*** Do basic security by checking input server-side here ***/
  if ($starthour > -1)
   $start_time = $cur_date . " " . $starthour . ":" . $min . ":00"; 
  $add_to_database = true;
@@ -39,6 +49,14 @@
  if (gettype($title) != "string" || strlen($title) <= 0 || strlen($title) > 40) {
   $add_to_database = false;
   $failure_loc = 0;
+ }
+ if (gettype($category) != "string" || !($category == 'food' || $category == 'sport' || $category == 'game' || $category == 'watch' || $category == 'study' || $category == 'other')) {
+  $add_to_database = false;
+  $failure_loc = 8;
+ }
+ if (gettype($user_id) != 'integer' || $user_id == 0 || $user_id == -1) {
+  $add_to_database = false;
+  $failure_loc = 9;
  }
  if (gettype($loc) != "string" || strlen($loc) <= 0 || strlen($loc) > 80) {
   $add_to_database = false;
@@ -74,15 +92,18 @@
   $add_to_database = false;
   $failure_loc = 7;
  } 
+
+ /*** Add to Database Here ***/
  if ($add_to_database) {
   mysql_select_db("khoshino_mysql", $con);
-  $query = "INSERT INTO events (name, location, category, start_time, duration, private, description) VALUES('". mysqL_real_escape_string($title) ."', '". mysql_real_escape_string($loc) ."', '". mysql_real_escape_string($category) ."', '". $start_time ."', '". $duration ."', '". $isPrivate ."','". mysql_real_escape_string($desc) ."')";
+  $query = "INSERT INTO events (name, creator_fbid, location, category, start_time, duration, private, description) VALUES('". mysqL_real_escape_string($title) ."', '". $user_id ."', '". mysql_real_escape_string($loc) ."', '". mysql_real_escape_string($category) ."', '". $start_time ."', '". $duration ."', '". $isPrivate ."','". mysql_real_escape_string($desc) ."')";
   //$success = mysql_query("INSERT INTO events (name, location, category, start_time, duration, private) VALUES ('" . mysql_real_escape_string($title) . "','" . mysql_real_escape_string($loc) . "','" . mysql_real_escape_string($category) . "','" . $start_time ."','" . $duration . "','" . $isPrivate . "')"); 
   $success = mysql_query($query);
   if (!$success)
    $failure_reason = mysql_error($success);
  }
 
+ /*** Close connection with Database ***/
  mysql_close($con);
     
 ?>
@@ -138,6 +159,8 @@ sort of script that populates the event name, url, and wall url, yeah?
 		 echo "publicness: " . $public . "<br/>";
 		 echo "description: " . $desc . "<br/>";
 		 echo "current time: " . date('Y-m-d H:i:s') . "<br/>";
+		 echo "category: " . $category . "<br/>";
+		 echo "user_id: " . gettype($user_id) . "<br/>";
 		 if ($add_to_database)
 		  echo "database input was successful!<br/>";
 		 else
