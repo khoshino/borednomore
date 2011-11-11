@@ -20,7 +20,7 @@
 	
 	<div data-role="content" id = "createEventContent">
 		<p> Required fields are marked with an '*' </p>
-		<form id = "createEventForm" action = "../mine/myEvents.php" method="POST">
+		<form id = "createEventForm" action = "../mine/myEvents.php" method="POST" data-ajax = "false">
 		*Title: <input type="text" id="eventTitle" name="eventTitle" required="required" /><br />
 		*Location: <input type="text" id="eventLocation" name="location" required="required" /><br />
 		*Type: <?php echo $_POST["type"]; ?><input type="hidden" id="eventType" name="eventType" value="<?echo $_POST["type"]; ?>"/><br /><br />

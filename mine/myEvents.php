@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <?php
- include "../utility.php";
+ include "../import/utility.php";
  /*** Initialize connection with Database here ***/
  $con = mysql_connect("mysql.cs147.org", "khoshino", "JXDBsbH9");
  $success = false;
+ $success_myevents = false;
  $failure_reason = "";
+ $failure_reason_myevents = "";
  if (!$con)
  {
   die('Could not connect: ' . mysql_error());
@@ -13,7 +15,6 @@
  /*** Initialize all the column variables here ***/
  $e_id  = 0; // This gets retrieved after mysql_query
  $title = $_POST["eventTitle"];
- $fbid  = 5525335; // temporary facebook id. I don't know who this is.
  $loc   = $_POST["location"];
  $category = $_POST["eventType"];
  $hour  = intval($_POST["select-hour"]);
@@ -88,11 +89,6 @@
   $add_to_database = false;
   $failure_loc = 6;
  }
- if (gettype($fbid) != "integer" || $fbid < 0)
- {
-  $add_to_database = false;
-  $failure_loc = 7;
- } 
 
  /*** Add to Database Here ***/
  if ($add_to_database) {
@@ -110,86 +106,52 @@
 
  }
 
+ /*** Get User-Related Events from Database Here ***/
+ $fbtoken = get_fbtoken($appid, $appsecret);
+ if ($fbtoken != null) {
+  mysql_select_db("khoshino_mysql", $con);
+  $query = "SELECT events.*, participants.fbid FROM events, participants WHERE participants.fbid='".$fbtoken['user_id']."' AND participants.e_id = events.e_id ORDER BY events.start_time ASC";
+  $success_myevents = mysql_query($query); 
+  if (!$success_myevents) 
+   $failure_reason_myevents =mysql_error($success_myevents);
+ }
+ 
  /*** Close connection with Database ***/
  mysql_close($con);
     
 ?>
 <html>
 <head><title>MyEvents</title>
-	<!--scripts to use JQuery Mobile-->
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0rc2/jquery.mobile-1.0rc2.min.css" />
-	<script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
-	<script src="http://code.jquery.com/mobile/1.0rc2/jquery.mobile-1.0rc2.min.js"></script> 
+ <!--scripts to use JQuery Mobile-->
+ <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0rc2/jquery.mobile-1.0rc2.min.css" />
+ <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+ <script src="http://code.jquery.com/mobile/1.0rc2/jquery.mobile-1.0rc2.min.js"></script> 
 </head>
-<!--
-So the events should be populated based on what you have joined, so some 
-sort of script that populates the event name, url, and wall url, yeah?
-
-    /*
-	function checkForm()
-	{
-	  var eventTitle = $("#eventTitle").val();
-	  var eventName  = $("#eventLocation").val();
-	  var checked    = $('input:radio[name=radio]:checked').val();
-	  var isPublic   = $("#radio-public").val();
-	  var isPrivate  = $("#radio-private").val();
-	  var eventDesc  = $("#eventDescription").val();
-	  var startHour  = parseInt($("#select-hour").val());
-	  var startMin   = parseInt($("#select-min").val());
-	  var startAMPM  = parseInt($("#select-amPm").val()); // PM == 12, AM == 0
-	  var duration   = parseInt($("#select-hour-dur").val());
-	  var durationmin= parseInt($("#select-min-dur").val());
-	}
-	function insertDatabase()
-	{
-	}
-	function handleSubmit()
-	{
-	   checkForm();
-	}
-    */
--->
 <body>
 <div data-role = "page" id = "myEvents" data-title = "myEvents"> 
-	<div data-role = "header">
-		<h1 class = "pageTitleText">My Events</h1>
-		<!-- Navigation Buttons-- Change these links to link to different back pages or add links to new pages-->
-		<a href = "../index.php">Back</a>
-		<a href = "../index.php" >Home</a>
-	</div>
-	<div data-role = "content" id = "myEventsContent">
-		<?php 
-		 echo "title: " . $title . "<br/>";
-		 echo "location: " . $loc  . "<br/>";
-		 echo "hour, min: " . ($hour + $ampm) . ", " . $min . "<br/>";
-		 echo "duration: " . $hour . " hours and " . $min . " minutes<br/>";
-		 echo "publicness: " . $public . "<br/>";
-		 echo "description: " . $desc . "<br/>";
-		 echo "current time: " . date('Y-m-d H:i:s') . "<br/>";
-		 echo "category: " . $category . "<br/>";
-		 echo "user_id: " . gettype($user_id) . "<br/>";
-		 if ($add_to_database)
-		  echo "database input was successful!<br/>";
-		 else
-		  echo "database input failed because: " . $failure_loc . "<br/>";
-		 echo "event_id: " . $e_id . "<br/>";
-		 if (!$success)
-		  echo "failure reason: " . $failure_reason . "<br/>";
-		?>
-		<form method="link" action="../index.php">
-		<input type="submit" value="Home"></form>
-		<ul>
-		<li><a href="???">Event #1</a>'s <a href="???">Wall</a></li>
-		<li><a href="???">Event #2</a>'s <a href="???">Wall</a></li>
-		<li><a href="???">Event #3</a>'s <a href="???">Wall</a></li>
-		<li><a href="???">Event #4</a>'s <a href="???">Wall</a></li>
-		<li><a href="???">Event #5</a>'s <a href="???">Wall</a></li>
-		<li><a href="???">Event #6</a>'s <a href="???">Wall</a></li>
-		</ul>
+ <div data-role = "header">
+  <h1 class = "pageTitleText">My Events</h1>
+  <!-- Navigation Button Change these links to link to different back pages or add links to new pages-->
+  <a href = "../index.php">Back</a>
+  <a href = "../index.php" >Home</a>
+ </div>
+ <div data-role = "content" id = "myEventsContent">
+  <?php 
+   if ($add_to_database)
+    ;//echo "database input was successful!<br/>";
+   //if (!$success)
+   // echo "failure reason: " . $failure_reason . "<br/>";
+   if ($success_myevents) {
+    while ($row = mysql_fetch_array($success_myevents)) {
+     echo "name: " . $row['name'] . " location:" .$row['location']. " starts: " . $row['start_time']. " duration: " . $row['duration'] . "<br/>";
+    }
+   } else {
+    ;//echo "failure reason for my_events: " . $failure_reason_myevents . "<br/>";
+   }
+  ?>
 
-		<a href="../index.php">Back to Main</a>
-	</div>
-	</div data-role = "footer"> footer...</div>
+ </div>
+ <div data-role = "footer"> footer...</div>
 </div>
 
 </body>
