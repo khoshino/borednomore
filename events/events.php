@@ -139,7 +139,7 @@ mysql_close($con);
 			<li> "event2"
 			<li> "event3"
 			</ul>
-			<div id = "eventPages">'; 
+			<div id = "eventPages">' . 
 			
 			/*still inside the "search events page..." maybe causing problems
 				echo "in eventPages DIv<br/>\n";
@@ -154,12 +154,13 @@ mysql_close($con);
 				//echo $pagesArray;
 				//print_r($pagesArray)
 				
-			</div>
+			'</div>
 		</div>
 	</div>
 	
 	<div data-role = "footer">footer...</div>
 </div>
+';
 echo "outside searchEvents page <br/>\n";
 				for($i = 0; $i < $numRows; $i++){
 					
