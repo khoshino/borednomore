@@ -36,7 +36,6 @@
  $desc  = $_POST["eventDescription"];
  $cur_date = date("Y-m-d");
  $start_time = -1;
- $tempval = get_userdata(1723404399);
  $fbtoken = get_fbtoken($appid, $appsecret);
  $user_id = 0;
  if ($fbtoken != null) {
@@ -176,7 +175,6 @@ sort of script that populates the event name, url, and wall url, yeah?
 		 echo "event_id: " . $e_id . "<br/>";
 		 if (!$success)
 		  echo "failure reason: " . $failure_reason . "<br/>";
-		 echo "tempval: " . $tempval['name'] . "<br/>";
 		?>
 		<form method="link" action="../index.php">
 		<input type="submit" value="Home"></form>
