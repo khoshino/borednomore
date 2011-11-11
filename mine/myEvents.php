@@ -9,8 +9,9 @@
  {
   die('Could not connect: ' . mysql_error());
  }
- // Here in this mess of code, we validate the form server-side 
+
  /*** Initialize all the column variables here ***/
+ $e_id  = 0; // This gets retrieved after mysql_query
  $title = $_POST["eventTitle"];
  $fbid  = 5525335; // temporary facebook id. I don't know who this is.
  $loc   = $_POST["location"];
@@ -97,11 +98,15 @@
  if ($add_to_database) {
   mysql_select_db("khoshino_mysql", $con);
   $query = "INSERT INTO events (name, creator_fbid, location, category, start_time, duration, private, description) VALUES('". mysqL_real_escape_string($title) ."', '". $user_id ."', '". mysql_real_escape_string($loc) ."', '". mysql_real_escape_string($category) ."', '". $start_time ."', '". $duration ."', '". $isPrivate ."','". mysql_real_escape_string($desc) ."')";
-  //$success = mysql_query("INSERT INTO events (name, location, category, start_time, duration, private) VALUES ('" . mysql_real_escape_string($title) . "','" . mysql_real_escape_string($loc) . "','" . mysql_real_escape_string($category) . "','" . $start_time ."','" . $duration . "','" . $isPrivate . "')"); 
+  $success = mysql_query($query);
+  $e_id = mysql_insert_id();
+
+  if (!$success)
+   $failure_reason = mysql_error($success);
+  $query = "INSERT INTO participants (e_id, fbid, creator) VALUES('". $e_id ."', '". $user_id ."', '1')";
   $success = mysql_query($query);
   if (!$success)
    $failure_reason = mysql_error($success);
-  //$query = "INSERT INTO participants (e_id, fbid, creator) VALUES('" . 
 
  }
 
@@ -167,7 +172,9 @@ sort of script that populates the event name, url, and wall url, yeah?
 		  echo "database input was successful!<br/>";
 		 else
 		  echo "database input failed because: " . $failure_loc . "<br/>";
-		 echo "success result: " . $success;
+		 echo "event_id: " . $e_id . "<br/>";
+		 if (!$success)
+		  echo "failure reason: " . $failure_reason . "<br/>";
 		?>
 		<form method="link" action="../index.php">
 		<input type="submit" value="Home"></form>
