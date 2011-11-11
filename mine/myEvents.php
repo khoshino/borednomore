@@ -4,7 +4,9 @@
  /*** Initialize connection with Database here ***/
  $con = mysql_connect("mysql.cs147.org", "khoshino", "JXDBsbH9");
  $success = false;
+ $success_myevents = false;
  $failure_reason = "";
+ $failure_reason_myevents = "";
  if (!$con)
  {
   die('Could not connect: ' . mysql_error());
@@ -104,6 +106,16 @@
 
  }
 
+ /*** Get User-Related Events from Database Here ***/
+ $fbtoken = get_fbtoken($appid, $appsecret);
+ if ($fbtoken != null) {
+  mysql_select_db("khoshino_mysql", $con);
+  $query = "SELECT events.*, participants.fbid FROM events, participants WHERE participants.fbid='".$fbtoken['user_id']."' AND participants.e_id = events.e_id ORDER BY events.start_time ASC";
+  $success_myevents = mysql_query($query); 
+  if (!$success_myevents) 
+   $failure_reason_myevents =mysql_error($success_myevents);
+ }
+ 
  /*** Close connection with Database ***/
  mysql_close($con);
     
@@ -125,22 +137,17 @@
  </div>
  <div data-role = "content" id = "myEventsContent">
   <?php 
-   echo "title: " . $title . "<br/>";
-   echo "location: " . $loc  . "<br/>";
-   echo "hour, min: " . ($hour + $ampm) . ", " . $min . "<br/>";
-   echo "duration: " . $hour . " hours and " . $min . " minutes<br/>";
-   echo "publicness: " . $public . "<br/>";
-   echo "description: " . $desc . "<br/>";
-   echo "current time: " . date('Y-m-d H:i:s') . "<br/>";
-   echo "category: " . $category . "<br/>";
-   echo "user_id: " . gettype($user_id) . "<br/>";
    if ($add_to_database)
-    echo "database input was successful!<br/>";
-   else
-    echo "database input failed because: " . $failure_loc . "<br/>";
-   echo "event_id: " . $e_id . "<br/>";
-   if (!$success)
-    echo "failure reason: " . $failure_reason . "<br/>";
+    ;//echo "database input was successful!<br/>";
+   //if (!$success)
+   // echo "failure reason: " . $failure_reason . "<br/>";
+   if ($success_myevents) {
+    while ($row = mysql_fetch_array($success_myevents)) {
+     echo "name: " . $row['name'] . " location:" .$row['location']. " starts: " . $row['start_time']. " duration: " . $row['duration'] . "<br/>";
+    }
+   } else {
+    ;//echo "failure reason for my_events: " . $failure_reason_myevents . "<br/>";
+   }
   ?>
 
  </div>
