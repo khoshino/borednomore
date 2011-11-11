@@ -60,17 +60,17 @@ mysql_close($con);
 		</button>
 		-->
 		<form action="searchListings.php" method="post" data-ajax="false">
-			<button name="searchOption" value="category"   type = "submit" target="chooseSearchCategory.php ">
+			<button name="searchOption" value="category"   type = "submit" target="chooseSearchCategory.php">
 				<img src="http://www.garrykelly.ie/wp-content/uploads/2010/05/20061006213300Sports_icon.png	" alt="Category " />
 				Category
 			</button>
 			
-			<button onclick = "window.location.href='searchListings.php'" value="location" name="searchOption" type = "submit">
+			<button name="searchOption" target="searchListings.php" value="location"  type = "submit">
 				<img src="http://www.garrykelly.ie/wp-content/uploads/2010/05/20061006213300Sports_icon.png	" alt="Location " />
 				Location
 			</button>
 			
-			<button onclick = "window.location.href='searchListings.php'" value="time" name="searchOption" type = "submit">
+			<button name="searchOption" target="searchListings.php"value="time" type = "submit">
 				<img src="http://www.garrykelly.ie/wp-content/uploads/2010/05/20061006213300Sports_icon.png	" alt="Time" />
 				Time
 			</button>
