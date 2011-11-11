@@ -97,7 +97,7 @@ mysql_close($con);
 			echo '<a href = "#'. $pgId . '"> ' . $name . '</a><br/>';
 			
 			/*$eventPage is a string holding all the html need to display an event for this page*/
-//***************BEGIN CODE FOR EVENT PAGE (for a single event)***************************************
+//***************BEGIN CODE FOR EVENT PAGE (for a single event)****************************************
 			$eventPage = 
 			' <div data-role = "page" id = "'. $pgId . '" data-title = "' . $pgTitle . '">
 					<div data-role = "header">
