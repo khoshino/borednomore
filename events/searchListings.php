@@ -9,13 +9,16 @@ if (!$con)
 mysql_select_db("khoshino_mysql", $con);
 	$queryType = $_POST["searchType"];
 	$category = $_POST["category"];
-	if($queryType == $("category")){
+	$typeCat = "category";
+	$typeLoc = "location";
+	$typeTime = "time";
+	if($queryType == $typeCat){
 	  $query = "SELECT * FROM `events` WHERE `category` = '". $category . "' ORDER BY `name` ASC";
 	}
-	if($queryType == $("location")){
+	if($queryType == $typeLoc){
 	  $query = "SELECT * FROM `events` ORDER BY `location` ASC";
 	}
-	if($queryType == $("time")){
+	if($queryType == $typeTime){
 	  $query = "SELECT * FROM `events` ORDER BY `time` ASC";
 	}
 	
