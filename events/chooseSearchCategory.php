@@ -12,7 +12,7 @@
 	<div data-role = "header">
 		<h1 class = "pageTitleText"><b> Select a Type of Event </b></h1>
 		<!-- Navigation Buttons- Change these links to link to different back pages or add links to new pages-->
-		<a href = "/searchListings.php">Back</a>
+		<a href = "/searchListings.php" rel = "external" >Back</a>
 		<a href = "../index.php" >Home</a>
 	</div>
 

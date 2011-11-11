@@ -77,7 +77,7 @@ mysql_close($con);
 			$duration = (int)($eventArray['duration']/60) . 'hr ' . ($dmin % 60) . 'min'; //TODO: convert this to human readable format ie. _hr_min
 			
 			
-			echo '<a href = "searchListings.php#'. $pgId . '"> ' . $name . '</a><br/>';
+			echo '<a href = "searchListings.php#'. $pgId . '"  rel = "external" > ' . $name . '</a><br/>';
 			
 			/*$eventPage is a string holding all the html need to display an event for this page*/
 //***************BEGIN CREATING CODE FOR EVENT PAGE (for a single event)****************************************
