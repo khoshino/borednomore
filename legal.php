@@ -11,9 +11,14 @@
 	</head>
 	<body>
 		<div data-role="page" id="main">
-			<div data-role="header"><a href="index.php" data-role="button">Home</a><h1>Legal</h1></div>
+			<div data-role="header">
+				<h1 class = "pageTitleClass">Legal</h1>
+				<!-- Navigation Buttons- Change these links to link to different back pages or add links to new pages -->
+				<a href = "index.php">Back</a>
+				<a href = "index.php" >Home</a>
+			</div>
 			<div data-role="content">
-				<p><a href="legal.php#privpol">Privacy Policy</a> & <a href="legal.php#tos">Terms of Service<a></p>
+				<p><a href="legal.php#privpol">Privacy Policy</a> & <a href="legal.php#tos" >Terms of Service<a></p>
 			</div>
 			<div data-role="footer"><h4>Random Footer is Random</h4></div>
 		</div>
@@ -22,8 +27,8 @@
 		<!-- Start Privacy Policy -->
 		<div data-role="page" id="privpol" data-title="Privacy Policy">
 			<div data-role="header">
-				<a href="legal.php#main" data-role="button">Back</a>
-				<h1>Privacy Policy</h1>
+				<h1 class="pageTitleClass">Privacy Policy</h1>
+				<a href="legal.php" data-role="button" >Back</a>
 				<a href="index.php" data-role="button">Home</a>
 			</div>
 			<div data-role="content">
@@ -73,8 +78,8 @@
 		<!-- Start Terms of Service -->
 		<div data-role="page" id="tos" data-title="Terms of Service">
 			<div data-role="header">
-				<a href="legal.php#main" data-role="button">Back</a>
-				<h1>Terms of Service</h1>
+				<h1 class="pageTitleClass">Terms of Service</h1>
+				<a href="legal.php#main" data-role="button" >Back</a>
 				<a href="index.php" data-role="button">Home</a>
 			</div>
 			<div data-role="content">

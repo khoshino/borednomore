@@ -45,7 +45,7 @@ function handleStatusChange(response) {
 	<div data-role="header">
 		<h1 class = "pageTitleClass">Bored No More</h1>
 		<!-- Navigation Buttons- Change these links to link to different back pages or add links to new pages -->
-		<a href = "./create/create_event_type.php">Back</a>
+		<a href = "index.php">Back</a>
 		<a href = "index.php" >Home</a>
 	</div>
 	<div data-role = "content" id = "homeIndexContent"> 				
@@ -78,7 +78,7 @@ function handleStatusChange(response) {
 		<form method="link" action="events/events.php">
 		<input type="submit" value="View Events"></form>
 	</div>	
-	<div data-role= "footer"><a href="/legal.php">Legal</a> Footer...</div>
+	<div data-role= "footer"><a href="/legal.php" rel="external">Legal</a> Footer...</div>
 	
 </div>
 
