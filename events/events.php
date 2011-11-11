@@ -11,15 +11,6 @@ mysql_select_db("khoshino_mysql", $con);
 	
  $result = mysql_query($query, $con);
  
- $title = $_POST["eventTitle"];
- $fbid  = 5525335; // temporary facebook id. I don't know who this is.
- $loc   = $_POST["location"];
- $category = "games";
- $hour  = intval($_POST["select-hour"]);
- $min   = intval($_POST["select-min"]);
- $ampm  = intval($_POST["select-amPm"]);
- $starthour = -1;
-	
 
 mysql_close($con);
 
