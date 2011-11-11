@@ -101,6 +101,8 @@
   $success = mysql_query($query);
   if (!$success)
    $failure_reason = mysql_error($success);
+  //$query = "INSERT INTO participants (e_id, fbid, creator) VALUES('" . 
+
  }
 
  /*** Close connection with Database ***/
@@ -165,6 +167,7 @@ sort of script that populates the event name, url, and wall url, yeah?
 		  echo "database input was successful!<br/>";
 		 else
 		  echo "database input failed because: " . $failure_loc . "<br/>";
+		 echo "success result: " . $success;
 		?>
 		<form method="link" action="../index.php">
 		<input type="submit" value="Home"></form>
