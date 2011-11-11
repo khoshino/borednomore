@@ -150,7 +150,7 @@ mysql_close($con);
 					echo '\n\n<br/>';
 					
 				}
-				*//
+				*/
 				//echo $pagesArray;
 				//print_r($pagesArray)
 				
