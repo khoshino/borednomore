@@ -15,14 +15,13 @@ mysql_select_db("khoshino_mysql", $con);
 	$typeTime = "time";
 	$query = "";
 	echo "querytype is: " . $queryType;
-	if($queryType == $typeCat ){
-	  $query = "SELECT * FROM `events` WHERE `category` = '". $category . "' ORDER BY `name` ASC";
-	}
+	
 	if($queryType == $typeLoc){
 	  $query = "SELECT * FROM `events` ORDER BY `location` ASC";
-	}
-	if($queryType == $typeTime){
+	}elseif($queryType == $typeTime){
 	  $query = "SELECT * FROM `events` ORDER BY `time` ASC";
+	}else{  // if the type is category, then query is coming from the "chooseSearchCategory.php" and there is no queryType option.
+		$query = "SELECT * FROM `events` WHERE `category` = '". $category . "' ORDER BY `name` ASC";
 	}
 	
 	//$query = "SELECT * FROM `events` WHERE `category` = '". $category . "' ORDER BY `name` ASC";
