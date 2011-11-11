@@ -12,7 +12,7 @@
 	<div data-role = "header">
 		<h1 class = "pageTitleText"><b> Select a Type of Event </b></h1>
 		<!-- Navigation Buttons- Change these links to link to different back pages or add links to new pages-->
-		<a href = "/events.php">Back</a>
+		<a href = "/searchListings.php">Back</a>
 		<a href = "../index.php" >Home</a>
 	</div>
 
@@ -20,12 +20,12 @@
 		
 		
 		<form action="searchListings.php" method="post">
-		<button name="type" value="food" type="submit" target="searchListings.php">Let's Eat</button>
-		<button name="type" value="sport" type="submit" target="searchListings.php">Let's Play a Sport</button>
-		<button name="type" value="game" type="submit" target="searchListings.php">Let's Play a Game</button>
-		<button name="type" value="watch" type="submit" target="searchListings.php">Let's Watch Something</button>
-		<button name="type" value="study" type="submit" target="searchListings.php">Let's Study</button>
-		<button name="type" value="other" type="submit" target="searchListings.php">Let's Do Something Else</button>
+		<button name="category" value="food" type="submit" target="searchListings.php">Let's Eat</button>
+		<button name="category" value="sport" type="submit" target="searchListings.php">Let's Play a Sport</button>
+		<button name="category" value="game" type="submit" target="searchListings.php">Let's Play a Game</button>
+		<button name="category" value="watch" type="submit" target="searchListings.php">Let's Watch Something</button>
+		<button name="category" value="study" type="submit" target="searchListings.php">Let's Study</button>
+		<button name="category" value="other" type="submit" target="searchListings.php">Let's Do Something Else</button>
 		
 		</form>
 		
