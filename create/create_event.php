@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-
+<?php
+ include '../utility.php';
+?>
 <html>
 <head><title>CreateEventsPage</title>
 	<!--scripts to use JQuery Mobile-->
@@ -30,7 +32,7 @@
 		<form id = "createEventForm" action = "../mine/myEvents.php" method="POST">
 		*Title: <input type="text" id="eventTitle" name="eventTitle" required="required" /><br />
 		*Location: <input type="text" id="eventLocation" name="location" required="required" /><br />
-		*Type: <?php echo $_POST["type"]; ?><br /><br />
+		*Type: <?php echo $_POST["type"]; ?><input type="hidden" id="eventType" name="eventType" value="<?echo $_POST["type"]; ?>"/><br /><br />
 		
 		
 		<div data-role = "fieldcontain" data-type = "horizontal">
