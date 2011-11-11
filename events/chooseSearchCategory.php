@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><title>EventCategorySelectionPage</title>
-	<!--scripts to use JQuery Mobile-->
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0rc2/jquery.mobile-1.0rc2.min.css" />
-	<script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
-	<script src="http://code.jquery.com/mobile/1.0rc2/jquery.mobile-1.0rc2.min.js"></script> 
+	<?php include("../import/header.php");?>
 </head>
 
 <body>

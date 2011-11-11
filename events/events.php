@@ -18,16 +18,7 @@ mysql_close($con);
 
 <html>
 <head><title>SearchEventsPage</title>
-	<!--scripts to use JQuery Mobile-->
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0rc2/jquery.mobile-1.0rc2.min.css" />
-	<script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
-	<script src="http://code.jquery.com/mobile/1.0rc2/jquery.mobile-1.0rc2.min.js"></script> 
-	<script>
-		/*function CreateEventPage(eventArray){
-			$($eventPages).append("testing javascript function");
-			alert("entered javascript EcreateEventPage funciton!");
-		}*/
-	</script>
+	<?php include("../import/header.php");?>
 </head>
 <body>
 
