@@ -87,7 +87,7 @@ mysql_close($con);
 			$name  = $eventArray['name'];
 			$pgId = "event" . $eventArray['e_id'];
 			$pgTitle = $pgId . "_" . $name;
-			echo '<a href = "#'. $pgId . '> ' . $name . '</a><br/>';
+			echo '<a href = "#'. $pgId . '"> ' . $name . '</a><br/>';
 			
 			/*$eventPage is a string holding all the html need to display an event for this page*/
 //***************BEGIN CODE FOR EVENT PAGE (for a single event)***************************************
