@@ -44,18 +44,18 @@ mysql_close($con);
 		</form>
 		-->
 		
-		<button onclick = "window.location.href='chooseSearchCategory.php'" value="category" type = "submit">
+		<button onclick = "window.location.href='chooseSearchCategory.php'" value="category"  name="category" type = "submit" >
 			<img src="http://www.garrykelly.ie/wp-content/uploads/2010/05/20061006213300Sports_icon.png	" alt="Category " />
 			Category
 		</button>
 		
-		<button onclick = " window.location.href='eventsbytime.php'">
-			<img src="http://www.garrykelly.ie/wp-content/uploads/2010/05/20061006213300Sports_icon.png	" alt="Location " value="category" type = "submit"/>
+		<button onclick = "window.location.href='searchListings.php'" value="location" name="category" type = "submit">
+			<img src="http://www.garrykelly.ie/wp-content/uploads/2010/05/20061006213300Sports_icon.png	" alt="Location " />
 			Location
 		</button>
 		
-		<button onclick = " window.location.href='eventsbytime.php'">
-			<img src="http://www.garrykelly.ie/wp-content/uploads/2010/05/20061006213300Sports_icon.png	" alt="Time" value="category" type = "submit"/>
+		<button onclick = " window.location.href='eventsbytime.php'" value="time" name="category" type = "submit">
+			<img src="http://www.garrykelly.ie/wp-content/uploads/2010/05/20061006213300Sports_icon.png	" alt="Time" />
 			Time
 		</button>
 		</br>
