@@ -107,11 +107,11 @@ mysql_close($con);
 						<a href = "../index.php" >Home</a>
 					</div>
 					<div data-role = "content" id = "' . $pgId . 'Content"> 
-						Title: ' . $name . '  Category: ' . $eventArray['category'] . '
-						Start: ' . $startTime . ' 	Duration: '. $duration .'						
-						Location: ' . $eventArray['location'] . '						
-						Creator: ' . $eventArray['creator_fbid'] .'
-						Details: ' . $eventArray['description'] . ' 
+						<p><h2>Title: </h2> ' . $name . '  <h3>Category:</h3> ' . $eventArray['category'] . '</p>
+						<p><h2>Start:</h2> ' . $startTime . ' 	<h2>Duration: </h2>'. $duration .'</p>						
+						<p><h3>Location:</h3> ' . $eventArray['location'] . '</p>						
+						<p><h3>Creator: </h3>' . $eventArray['creator_fbid'] .'</p>
+						<p><h3>Details: </h3>' . $eventArray['description'] . '</p> 
 					</div>
 					<div data-role = "footer" >footer...</div>
 					</div>';
