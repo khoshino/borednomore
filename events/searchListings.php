@@ -61,6 +61,7 @@ mysql_close($con);
 		<?php
 		
 		echo 'sql is:' . $query. '<br/>';
+		echo 'searchOption is:' . $queryType';
 		echo "category is: " . $category ."<br/>";
 		echo 'result is:' . $result . '<br/>';
 		$numRows =  mysql_num_rows($result);
