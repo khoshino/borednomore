@@ -10,7 +10,7 @@ mysql_select_db("khoshino_mysql", $con);
 	$queryType = "location";
 	$category = $_POST["category"];
 	$query = "SELECT * FROM `events` WHERE `category` = '". $category . "' ORDER BY `name` ASC";
-	echo "category is: " . $category ."<br/>";
+	
  $result = mysql_query($query, $con);
  
 
@@ -56,6 +56,7 @@ mysql_close($con);
 		<?php
 		
 		echo 'sql is:' . $query. '<br/>';
+		echo "category is: " . $category ."<br/>";
 		echo 'result is:' . $result . '<br/>';
 		$numRows =  mysql_num_rows($result);
 		echo 'numRows:' . $numRows . '<br/>';
@@ -79,13 +80,13 @@ mysql_close($con);
 			echo '<a href = "searchListings.php#'. $pgId . '"> ' . $name . '</a><br/>';
 			
 			/*$eventPage is a string holding all the html need to display an event for this page*/
-//***************BEGIN CODE FOR EVENT PAGE (for a single event)****************************************
+//***************BEGIN CREATING CODE FOR EVENT PAGE (for a single event)****************************************
 			$eventPage = 
 			' <div data-role = "page" id = "'. $pgId . '" data-title = "' . $pgTitle . '">
 					<div data-role = "header">
 						<h1 class = "pageTitleText">' . $name .' Event</h1>
 						<!-- Navigation Buttons-- Change these links to link to different back pages or add links to new pages-->
-						<a href = "#searchEventsContent">Back</a>
+						<a href = "searchListings.php#searchEventsContent">Back</a>
 						<a href = "../index.php" >Home</a>
 					</div>
 					<div data-role = "content" id = "' . $pgId . 'Content"> 
@@ -97,9 +98,10 @@ mysql_close($con);
 					</div>
 					<div data-role = "footer" >footer...</div>
 					</div>';
-//***************End CODE FOR EVENT PAGE (for a single event)****************************************
+
 			$pagesArray[$i] =$eventPage;
 			$newPagesHtml .= $eventPage;
+//***************End Creating CODE FOR EVENT PAGE (for a single event)****************************************
 			/*
 			echo 'eventPage:' . $eventPage . '<br/>';
 			echo 'eventArray["name"]:' . $eventArray['name'];
