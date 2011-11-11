@@ -42,7 +42,7 @@ mysql_close($con);
 		<button name="searchType" value="time" type="submit" target="searchListings.php" data-ajax="false">View By Time</button>
 		
 		</form>
-		-->
+		
 		
 		<button onclick = "window.location.href='chooseSearchCategory.php'" value="category"  name="searchOption" type = "submit" >
 			<img src="http://www.garrykelly.ie/wp-content/uploads/2010/05/20061006213300Sports_icon.png	" alt="Category " />
@@ -54,10 +54,27 @@ mysql_close($con);
 			Location
 		</button>
 		
-		<button onclick = " window.location.href='eventsbytime.php'" value="time" name="searchOption" type = "submit">
+		<button onclick = "window.location.href='searchListings.php'" value="time" name="searchOption" type = "submit">
 			<img src="http://www.garrykelly.ie/wp-content/uploads/2010/05/20061006213300Sports_icon.png	" alt="Time" />
 			Time
 		</button>
+		-->
+		<form action="searchListings.php" method="post" data-ajax="false">
+			<button name="searchOption" value="category"   type = "submit" target="searchListings.php ">
+				<img src="http://www.garrykelly.ie/wp-content/uploads/2010/05/20061006213300Sports_icon.png	" alt="Category " />
+				Category
+			</button>
+			
+			<button onclick = "window.location.href='searchListings.php'" value="location" name="searchOption" type = "submit">
+				<img src="http://www.garrykelly.ie/wp-content/uploads/2010/05/20061006213300Sports_icon.png	" alt="Location " />
+				Location
+			</button>
+			
+			<button onclick = "window.location.href='searchListings.php'" value="time" name="searchOption" type = "submit">
+				<img src="http://www.garrykelly.ie/wp-content/uploads/2010/05/20061006213300Sports_icon.png	" alt="Time" />
+				Time
+			</button>
+		</form>
 		</br>
 			
 		</div>	
