@@ -13,6 +13,7 @@ mysql_select_db("khoshino_mysql", $con);
 	$typeCat = "category";
 	$typeLoc = "location";
 	$typeTime = "time";
+	$query = "";
 	echo "querytype is: " . $queryType;
 	if($queryType == $typeCat ){
 	  $query = "SELECT * FROM `events` WHERE `category` = '". $category . "' ORDER BY `name` ASC";
@@ -61,7 +62,7 @@ mysql_close($con);
 		<?php
 		
 		echo 'sql is:' . $query. '<br/>';
-		echo 'searchOption is:' . $queryType;
+		echo 'searchOption is:' . $queryType .'<br/>';
 		echo "category is: " . $category ."<br/>";
 		echo 'result is:' . $result . '<br/>';
 		$numRows =  mysql_num_rows($result);
