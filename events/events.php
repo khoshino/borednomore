@@ -53,6 +53,7 @@ mysql_close($con);
 		<div id="menu" >
 		
 		<h1 class = "pageTitleText"><b> Search Menu</b> </h1>
+		<p>Search by: </p>
 		<button onclick = "window.location.href='eventsbytime.php'">
 			<img src="http://www.garrykelly.ie/wp-content/uploads/2010/05/20061006213300Sports_icon.png	" alt="Category" />
 			Category
@@ -75,9 +76,10 @@ mysql_close($con);
 		echo 'sql is:' . $query. '<br/>';
 		echo 'result is:' . $result . '<br/>';
 		$numRows =  mysql_num_rows($result);
-		echo 'numRows:' . $numRows;
+		echo 'numRows:' . $numRows . '<br/>';
 		$newPagesHtml = '';
 		$test2 = '';
+		
 		for( $i = 0; $i < $numRows; $i++){
 			$eventArray = mysql_fetch_array($result);
 			//print_r($eventArray);
@@ -87,6 +89,11 @@ mysql_close($con);
 			$name  = $eventArray['name'];
 			$pgId = "event" . $eventArray['e_id'];
 			$pgTitle = $pgId . "_" . $name;
+			$startTime = $eventArray['start_time']; //TODO: convert this to human readable format
+			$dmin = $eventArray['duration'];
+			$duration = ($eventArray['duration']/60) . 'hr ' . ($dmin % 60) . 'min'; //TODO: convert this to human readable format ie. _hr_min
+			
+			
 			echo '<a href = "#'. $pgId . '"> ' . $name . '</a><br/>';
 			
 			/*$eventPage is a string holding all the html need to display an event for this page*/
@@ -100,15 +107,15 @@ mysql_close($con);
 						<a href = "../index.php" >Home</a>
 					</div>
 					<div data-role = "content" id = "' . $pgId . 'Content"> 
-						Content GOES HERE. 
+						Title: ' . $name . '  Category: ' . $eventArray['category'] . '
+						Start: ' . $startTime . ' 	Duration: '. $duration .'						
+						Location: ' . $eventArray['location'] . '						
+						Creator: ' . $eventArray['creator_fbid'] .'
+						Details: ' . $eventArray['description'] . ' 
 					</div>
 					<div data-role = "footer" >footer...</div>
 					</div>';
 			$pagesArray[$i] =$eventPage;
-			
-			
-			
-			
 			$newPagesHtml .= $eventPage;
 			/*
 			echo 'eventPage:' . $eventPage . '<br/>';
