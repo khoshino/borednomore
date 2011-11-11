@@ -23,10 +23,10 @@ mysql_close($con);
 	<script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.0rc2/jquery.mobile-1.0rc2.min.js"></script> 
 	<script>
-		function CreateEventPage(eventArray){
+		/*function CreateEventPage(eventArray){
 			$($eventPages).append("testing javascript function");
 			alert("entered javascript EcreateEventPage funciton!");
-		}
+		}*/
 	</script>
 </head>
 <body>
@@ -75,8 +75,8 @@ mysql_close($con);
 				$eventArray = mysql_fetch_array($result);
 				//print_r($eventArray);
 			
-				#$test = "test";
-				#$test2 .= $test;
+				//$test = "test";
+				//$test2 .= $test;
 				$name  = $eventArray['name'];
 				$pgId = "event" . $eventArray['e_id'];
 				$pgTitle = $pgId . "_" . $name;
@@ -85,7 +85,7 @@ mysql_close($con);
 				$duration = (int)($eventArray['duration']/60) . 'hr ' . ($dmin % 60) . 'min'; //TODO: convert this to human readable format ie. _hr_min
 			
 			
-				echo '<a href = "events.php#'. $pgId . '"> ' . $name . '</a><br/>';
+				echo '<a href = "#'. $pgId . '"> ' . $name . '</a><br/>';
 			
 				/*$eventPage is a string holding all the html need to display an event for this page*/
 				//***************BEGIN CODE FOR EVENT PAGE (for a single event)****************************************

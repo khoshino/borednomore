@@ -19,13 +19,13 @@
 	<div data-role = "content" id = "categorySelectionPageContent">
 		
 		
-		<form action="searchListings.php" method="post">
-		<button name="category" value="food" type="submit" target="searchListings.php " rel = "external">Let's Eat</button>
-		<button name="category" value="sport" type="submit" target="searchListings.php" rel = "external">Let's Play a Sport</button>
-		<button name="category" value="games" type="submit" target="searchListings.php" rel = "external">Let's Play a Game</button>
-		<button name="category" value="watch" type="submit" target="searchListings.php" rel = "external">Let's Watch Something</button>
-		<button name="category" value="study" type="submit" target="searchListings.php" rel = "external">Let's Study</button>
-		<button name="category" value="other" type="submit" target="searchListings.php" rel = "external">Let's Do Something Else</button>
+		<form action="searchListings.php" method="post" data-ajax="false">
+		<button name="category" value="food" type="submit" target="searchListings.php " data-ajax="false">Let's Eat</button>
+		<button name="category" value="sport" type="submit" target="searchListings.php" data-ajax="false">Let's Play a Sport</button>
+		<button name="category" value="games" type="submit" target="searchListings.php" data-ajax="false">Let's Play a Game</button>
+		<button name="category" value="watch" type="submit" target="searchListings.php" data-ajax="false">Let's Watch Something</button>
+		<button name="category" value="study" type="submit" target="searchListings.php" data-ajax="false">Let's Study</button>
+		<button name="category" value="other" type="submit" target="searchListings.php" data-ajax="false">Let's Do Something Else</button>
 		
 		</form>
 		
