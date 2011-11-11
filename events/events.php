@@ -80,7 +80,7 @@ mysql_close($con);
 		$test2 = '';
 		for( $i = 0; $i < $numRows; $i++){
 			$eventArray = mysql_fetch_array($result);
-			print_r($eventArray);
+			//print_r($eventArray);
 			
 			#$test = "test";
 			#$test2 .= $test;
@@ -120,6 +120,7 @@ mysql_close($con);
 		  echo "<br/>";
 		  */
 		}
+//***************End CODE FOR EVENT PAGE (for a single event)***************************************
 		//echo 'newPagesHtml:' . $newPagesHtml;
 		//echo $test2;
 		/*
@@ -139,37 +140,20 @@ mysql_close($con);
 			<li> "event2"
 			<li> "event3"
 			</ul>
-			<div id = "eventPages">' . 
-			
-			/*still inside the "search events page..." maybe causing problems
-				echo "in eventPages DIv<br/>";
-				for($i = 0; $i < $numRows; $i++){
-					
-		
-					echo $pagesArray[$i];
-					echo '<br/>';
-					
-				}
-				*/
-				//echo $pagesArray;
-				//print_r($pagesArray)
-				
-			'</div>
+			<div id = "eventPages">
+			</div>
 		</div>
 	</div>
 	
 	<div data-role = "footer">footer...</div>
 </div>
 ';
-echo "outside searchEvents page <br/>";
-				for($i = 0; $i < $numRows; $i++){
-					
-		
-					echo $pagesArray[$i];
-					echo '<br/>';
-					
-				}
-
+//ECHO OUT code for event pages
+echo "outside searchEvents page <br/>";  
+	for($i = 0; $i < $numRows; $i++){
+		echo $pagesArray[$i];
+		echo '<br/>';
+	}
 ?>
 </body>
 </html>
