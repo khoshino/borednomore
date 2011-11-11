@@ -7,7 +7,7 @@ if (!$con)
         die('Could not connect:' . mysql_error());
     }
 mysql_select_db("khoshino_mysql", $con);
-	$query = "SELECT * FROM `events` WHERE `category` = 'games' ORDER BY `name` ASC";
+$query = "SELECT * FROM `events` WHERE `category` = 'games' ORDER BY `name` ASC";
 	
  $result = mysql_query($query, $con);
  
@@ -44,18 +44,18 @@ mysql_close($con);
 		</form>
 		-->
 		
-		<button onclick = "window.location.href='chooseSearchCategory.php'">
-			<img src="http://www.garrykelly.ie/wp-content/uploads/2010/05/20061006213300Sports_icon.png	" alt="Category" />
+		<button onclick = "window.location.href='chooseSearchCategory.php'" value="category" type = "submit">
+			<img src="http://www.garrykelly.ie/wp-content/uploads/2010/05/20061006213300Sports_icon.png	" alt="Category " />
 			Category
 		</button>
 		
 		<button onclick = " window.location.href='eventsbytime.php'">
-			<img src="http://www.garrykelly.ie/wp-content/uploads/2010/05/20061006213300Sports_icon.png	" alt="Location" />
+			<img src="http://www.garrykelly.ie/wp-content/uploads/2010/05/20061006213300Sports_icon.png	" alt="Location " value="category" type = "submit"/>
 			Location
 		</button>
 		
 		<button onclick = " window.location.href='eventsbytime.php'">
-			<img src="http://www.garrykelly.ie/wp-content/uploads/2010/05/20061006213300Sports_icon.png	" alt="Time" />
+			<img src="http://www.garrykelly.ie/wp-content/uploads/2010/05/20061006213300Sports_icon.png	" alt="Time" value="category" type = "submit"/>
 			Time
 		</button>
 		</br>
