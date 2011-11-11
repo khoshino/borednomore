@@ -92,16 +92,16 @@ mysql_close($con);
 			/*$eventPage is a string holding all the html need to display an event for this page*/
 //***************BEGIN CODE FOR EVENT PAGE (for a single event)***************************************
 			$eventPage = 
-			' <div data-role = "page" id = "'. $pgId . '" data-title = "' . $pgTitle . '">\n
-					<div data-role = "header">\n
-						<h1 class = "pageTitleText">' . $name .' Event</h1>\n
-						<!-- Navigation Buttons-- Change these links to link to different back pages or add links to new pages-->\n
-						<a href = "#searchEventsContent">Back</a>\n
-						<a href = "../index.php" >Home</a>\n
-					</div>\n
-					<div data-role = "content" id = "' . $pgId . 'Content">\n 
-						Content GOES HERE. \n
-					</div>\n
+			' <div data-role = "page" id = "'. $pgId . '" data-title = "' . $pgTitle . '">
+					<div data-role = "header">
+						<h1 class = "pageTitleText">' . $name .' Event</h1>
+						<!-- Navigation Buttons-- Change these links to link to different back pages or add links to new pages-->
+						<a href = "#searchEventsContent">Back</a>
+						<a href = "../index.php" >Home</a>
+					</div>
+					<div data-role = "content" id = "' . $pgId . 'Content"> 
+						Content GOES HERE. 
+					</div>
 					<div data-role = "footer" >footer...</div>
 					</div>';
 			$pagesArray[$i] =$eventPage;
@@ -142,12 +142,12 @@ mysql_close($con);
 			<div id = "eventPages">' . 
 			
 			/*still inside the "search events page..." maybe causing problems
-				echo "in eventPages DIv<br/>\n";
+				echo "in eventPages DIv<br/>";
 				for($i = 0; $i < $numRows; $i++){
 					
 		
 					echo $pagesArray[$i];
-					echo '\n\n<br/>';
+					echo '<br/>';
 					
 				}
 				*/
@@ -161,12 +161,12 @@ mysql_close($con);
 	<div data-role = "footer">footer...</div>
 </div>
 ';
-echo "outside searchEvents page <br/>\n";
+echo "outside searchEvents page <br/>";
 				for($i = 0; $i < $numRows; $i++){
 					
 		
 					echo $pagesArray[$i];
-					echo '\n\n<br/>';
+					echo '<br/>';
 					
 				}
 
