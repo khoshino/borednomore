@@ -12,6 +12,7 @@ mysql_select_db("khoshino_mysql", $con);
 	$typeCat = "category";
 	$typeLoc = "location";
 	$typeTime = "time";
+	echo "querytype is: " . $queryType;
 	if($queryType == $typeCat){
 	  $query = "SELECT * FROM `events` WHERE `category` = '". $category . "' ORDER BY `name` ASC";
 	}
