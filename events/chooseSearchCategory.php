@@ -22,7 +22,7 @@
 		<form action="searchListings.php" method="post">
 		<button name="category" value="food" type="submit" target="searchListings.php">Let's Eat</button>
 		<button name="category" value="sport" type="submit" target="searchListings.php">Let's Play a Sport</button>
-		<button name="category" value="game" type="submit" target="searchListings.php">Let's Play a Game</button>
+		<button name="category" value="games" type="submit" target="searchListings.php">Let's Play a Game</button>
 		<button name="category" value="watch" type="submit" target="searchListings.php">Let's Watch Something</button>
 		<button name="category" value="study" type="submit" target="searchListings.php">Let's Study</button>
 		<button name="category" value="other" type="submit" target="searchListings.php">Let's Do Something Else</button>
