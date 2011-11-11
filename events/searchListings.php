@@ -20,7 +20,7 @@ mysql_select_db("khoshino_mysql", $con);
 	  $query = "SELECT * FROM `events` ORDER BY `location` ASC";
 	}elseif($queryType == $typeTime){
 	  $query = "SELECT * FROM `events` ORDER BY `time` ASC";
-	}else{  // if the type is category, then query is coming from the "chooseSearchCategory.php" and there is no queryType option.
+	}else{  // if the type is category,  then query is coming from the "chooseSearchCategory.php" and there is no queryType option .
 		$query = "SELECT * FROM `events` WHERE `category` = '". $category . "' ORDER BY `name` ASC";
 	}
 	
