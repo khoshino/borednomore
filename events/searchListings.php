@@ -10,17 +10,10 @@ mysql_select_db("khoshino_mysql", $con);
 	$queryType = "location";
 	$category = $_POST["category"];
 	$query = "SELECT * FROM `events` WHERE `category` = '". $category . "' ORDER BY `name` ASC";
-	echo "category is: " . $category .";
+	echo "category is: " . $category ."<br/>";
  $result = mysql_query($query, $con);
  
- $title = $_POST["eventTitle"];
- $fbid  = 5525335; // temporary facebook id. I don't know who this is.
- $loc   = $_POST["location"];
- 
- $hour  = intval($_POST["select-hour"]);
- $min   = intval($_POST["select-min"]);
- $ampm  = intval($_POST["select-amPm"]);
- $starthour = -1;
+
 	
 
 mysql_close($con);
@@ -104,6 +97,7 @@ mysql_close($con);
 					</div>
 					<div data-role = "footer" >footer...</div>
 					</div>';
+//***************End CODE FOR EVENT PAGE (for a single event)****************************************
 			$pagesArray[$i] =$eventPage;
 			$newPagesHtml .= $eventPage;
 			/*
