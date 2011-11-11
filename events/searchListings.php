@@ -9,7 +9,7 @@ if (!$con)
 mysql_select_db("khoshino_mysql", $con);
 	$queryType = $_POST["searchType"];
 	$category = $_POST["category"];
-	/*
+	///*
 	$typeCat = "category";
 	$typeLoc = "location";
 	$typeTime = "time";
@@ -23,7 +23,7 @@ mysql_select_db("khoshino_mysql", $con);
 	if($queryType == $typeTime){
 	  $query = "SELECT * FROM `events` ORDER BY `time` ASC";
 	}
-	*/
+	//*/
 	$query = "SELECT * FROM `events` WHERE `category` = '". $category . "' ORDER BY `name` ASC";
 	
 	
