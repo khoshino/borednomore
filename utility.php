@@ -86,4 +86,18 @@ function get_friendlist($access_token, $user_id) {
  return $friendlist;
 }
 
+/* get_userdata
+ * gets the user's data in an array where:
+ * 'id' => string of the user's id
+ * 'name' => full name of the user
+ * 'first_name' => first name of user
+ * 'last_name' => last name of user
+ */
+function get_userdata($user_id) {
+ $jsonresult = file_get_contents("https://graph.facebook.com/" . $user_id);
+ $data = json_decode($jsonresult, true);
+ return $data;
+
+}
+
 ?>

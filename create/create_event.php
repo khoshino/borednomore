@@ -21,9 +21,6 @@
 		<!-- Navigation Buttons- Change these links to link to different back pages or add links to new pages-->
 		<a href = "./create_event_type.php">Back</a>
 		<a href = "../index.php" >Home</a>
-		
-		<a href = "#nextPage" >to "next" test pageCustom </a>		
-		<a href = "../events/events.php" >to Events</a>
 		<br/>
 	</div> 
 	
@@ -131,8 +128,11 @@
 		</div>
 		<!--Description:<input type="textarea" name="description" value="Write a description of your event here!" size="30" onfocus="value=''"><br />-->
 		Description: <br />
+		<!--
 		<textarea id = "eventDescription" name = "eventDescription" rows="4" cols="60"  placeholder="A description of your awesome event!"> 
-		</textarea><br/>	
+		</textarea><br/>
+		-->
+		<textarea id="eventDescription" name="eventDescription" placeholder="A description of your awesome event!"></textarea><br/>
 		<input type = "submit" value ="Create Event!" ><br /> <!--onClick="handleSubmit()"-->
 		</form>
 	</div> 

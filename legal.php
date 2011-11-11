@@ -22,7 +22,7 @@
 		<!-- Start Privacy Policy -->
 		<div data-role="page" id="privpol" data-title="Privacy Policy">
 			<div data-role="header">
-				<a href="#main" data-role="button">Back</a>
+				<a href="legal.php#main" data-role="button">Back</a>
 				<h1>Privacy Policy</h1>
 				<a href="index.php" data-role="button">Home</a>
 			</div>
@@ -73,7 +73,7 @@
 		<!-- Start Terms of Service -->
 		<div data-role="page" id="tos" data-title="Terms of Service">
 			<div data-role="header">
-				<a href="#main" data-role="button">Back</a>
+				<a href="legal.php#main" data-role="button">Back</a>
 				<h1>Terms of Service</h1>
 				<a href="index.php" data-role="button">Home</a>
 			</div>
