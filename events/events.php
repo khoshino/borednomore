@@ -91,7 +91,7 @@ mysql_close($con);
 			$pgTitle = $pgId . "_" . $name;
 			$startTime = $eventArray['start_time']; //TODO: convert this to human readable format
 			$dmin = $eventArray['duration'];
-			$duration = ($eventArray['duration']/60) . 'hr ' . ($dmin % 60) . 'min'; //TODO: convert this to human readable format ie. _hr_min
+			$duration = int($eventArray['duration']/60) . 'hr ' . ($dmin % 60) . 'min'; //TODO: convert this to human readable format ie. _hr_min
 			
 			
 			echo '<a href = "#'. $pgId . '"> ' . $name . '</a><br/>';
@@ -107,11 +107,11 @@ mysql_close($con);
 						<a href = "../index.php" >Home</a>
 					</div>
 					<div data-role = "content" id = "' . $pgId . 'Content"> 
-						<p><h2>Title: </h2> ' . $name . '  <h3>Category:</h3> ' . $eventArray['category'] . '</p>
-						<p><h2>Start:</h2> ' . $startTime . ' 	<h2>Duration: </h2>'. $duration .'</p>						
-						<p><h3>Location:</h3> ' . $eventArray['location'] . '</p>						
-						<p><h3>Creator: </h3>' . $eventArray['creator_fbid'] .'</p>
-						<p><h3>Details: </h3>' . $eventArray['description'] . '</p> 
+						<p><strong>Title: </strong> ' . $name . '  <strong>Category:</strong> ' . $eventArray['category'] . '</p>
+						<p><strong>Start:</strong> ' . $startTime . ' 	<strong>Duration: </strong>'. $duration .'</p>						
+						<p><strong>Location:</strong> ' . $eventArray['location'] . '</p>						
+						<p><strong>Creator: </strong>' . $eventArray['creator_fbid'] .'</p>
+						<p><strong>Details: </strong>' . $eventArray['description'] . '</p> 
 					</div>
 					<div data-role = "footer" >footer...</div>
 					</div>';
