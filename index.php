@@ -1,59 +1,6 @@
 <!DOCTYPE html>
 <?php
-/* get_facebook_cookie
- * authenticates user's cookie server-side. Code from:
- * developers.facebook.com/docs/guides/web
-*/
-function get_facebook_cookie($app_id, $app_secret) {
-  $args = array();
-  parse_str(trim($_COOKIE['fbs_' . $app_id], '\\"'), $args);
-  ksort($args);
-  $payload = '';
-  foreach ($args as $key => $value) {
-    if ($key != 'sig') {
-      $payload .= $key . '=' . $value;
-    }
-  }
-  if (md5($payload . $app_secret) != $args['sig']) {
-    return null;
-  }
-  return $args;
-}
-function parse_signed_request($signed_request, $secret) {
-  list($encoded_sig, $payload) = explode('.', $signed_request, 2); 
-
-  // decode the data
-  $sig = base64_url_decode($encoded_sig);
-  $data = json_decode(base64_url_decode($payload), true);
-
-  if (strtoupper($data['algorithm']) !== 'HMAC-SHA256') {
-    error_log('Unknown algorithm. Expected HMAC-SHA256');
-    return null;
-  }
-
-  // check sig
-  $expected_sig = hash_hmac('sha256', $payload, $secret, $raw = true);
-  if ($sig !== $expected_sig) {
-    error_log('Bad Signed JSON signature!');
-    return null;
-  }
-
-  return $data;
-}
-
-function base64_url_decode($input) {
-  return base64_decode(strtr($input, '-_', '+/'));
-}
-
-$appid     = 240585475995480;
-$appsecret = "1107e44f761f958af687e126f9428ed3";
-
-function get_friendlist($access_token, $user_id) {
- $jsonresult = file_get_contents("https://graph.facebook.com/" . $user_id . "/friends?access_token=" . $access_token);
- parse_str($jsonresult, $data);
- 
-}
-
+ include 'utility.php';
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US"> 
 <head><title>Bored no More</title>
@@ -104,23 +51,12 @@ function handleStatusChange(response) {
 	<div data-role = "content" id = "homeIndexContent"> 				
 		<h3>Let's Do Something!</h3>
 <?php
- $signed_request = parse_signed_request($_COOKIE['fbsr_' . $appid], $appsecret);
- // This code checks that the facebook cookie can be accessed. It also generates
- // the access token for facebook.
- if ($signed_request != null) {
-  foreach ($signed_request as $key => $value) {
-   echo $key . ": " . $value . "<br/>";
-  }
-  $access_token = file_get_contents("https://graph.facebook.com/oauth/access_token?client_id=" . $appid . "&redirect_uri=&client_secret=" . $appsecret . "&code=" . $signed_request['code']);
-  parse_str($access_token, $at_response);
-  $access_token = $at_response['access_token'];
-  $expires = $at_response['expires'] + time();
-  echo "access token: " . $access_token . '<br/>';
-  echo "expires at: " . $expires . '<br/>';
- } else {
-  echo "fail";
+ $tokendata  = get_fbtoken($appid, $appsecret);
+ $friendlist = get_friendlist($tokendata['access_token'], $tokendata['user_id']);
+ foreach ($friendlist as $friend) {
+  ;//echo "friend: " . $friend ."<br/>";
  }
- 
+
 ?>
 <div id="login">
   <p><button onClick="loginUser();">Login</button></p>
