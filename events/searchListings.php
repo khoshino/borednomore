@@ -7,9 +7,17 @@ if (!$con)
         die('Could not connect:' . mysql_error());
     }
 mysql_select_db("khoshino_mysql", $con);
-	$queryType = "location";
+	$queryType = $_POST["searchType"];
 	$category = $_POST["category"];
-	$query = "SELECT * FROM `events` WHERE `category` = '". $category . "' ORDER BY `name` ASC";
+	if($queryType == $("category"){
+	  $query = "SELECT * FROM `events` WHERE `category` = '". $category . "' ORDER BY `name` ASC";
+	}
+	if($queryType == $("location"){
+	  $query = "SELECT * FROM `events` ORDER BY `location` ASC";
+	}
+	if($queryType == $("time"){
+	  $query = "SELECT * FROM `events` ORDER BY `time` ASC";
+	}
 	
  $result = mysql_query($query, $con);
 	

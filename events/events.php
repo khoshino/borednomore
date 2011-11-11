@@ -42,9 +42,15 @@ mysql_close($con);
 	
 	<div data-role = "content" id = "searchEventsContent">
 		<div id="menu" >
-		
 		<h1 class = "pageTitleText"><b> Search Menu</b> </h1>
 		<p>Search by: </p>
+		<form action="searchListings.php" method="post" data-ajax="false">
+		<button name="searchType" value="Category" type="submit" target="searchListings.php " data-ajax="false">View By Category</button>
+		<button name="searchType" value="Location" type="submit" target="searchListings.php" data-ajax="false">View By Location</button>
+		<button name="searchType" value="Time" type="submit" target="searchListings.php" data-ajax="false">View By Time</button>
+		
+		</form>
+		
 		<button onclick = "window.location.href='chooseSearchCategory.php'">
 			<img src="http://www.garrykelly.ie/wp-content/uploads/2010/05/20061006213300Sports_icon.png	" alt="Category" />
 			Category
