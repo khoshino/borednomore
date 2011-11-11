@@ -12,7 +12,7 @@
 <div data-role="page" id = "createEvent" data-title="createEvent"> 
 	<div data-role="header">
 		<h1 class = "pageTitleText"><b> Create an Event </b></h1>
-		<!-- Navigation Buttons- Change these links to link to different back pages or add links to new pages-->
+		<!-- Navigation Buttons- Change these links to link to different back pages or add links to new pages -->
 		<a href = "./create_event_type.php">Back</a>
 		<a href = "../index.php" >Home</a>
 		<br/>
