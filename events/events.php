@@ -80,7 +80,7 @@ mysql_close($con);
 		$test2 = '';
 		for( $i = 0; $i < $numRows; $i++){
 			$eventArray = mysql_fetch_array($result);
-			//print_r($eventArray);
+			print_r($eventArray);
 			
 			#$test = "test";
 			#$test2 .= $test;
@@ -104,7 +104,6 @@ mysql_close($con);
 					</div>
 					<div data-role = "footer" >footer...</div>
 					</div>';
-//***************END CODE FOR EVENT PAGE (for a single event)***************************************
 			$pagesArray[$i] =$eventPage;
 			
 			
