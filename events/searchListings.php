@@ -7,14 +7,14 @@ if (!$con)
         die('Could not connect:' . mysql_error());
     }
 mysql_select_db("khoshino_mysql", $con);
-	$queryType = $_POST["searchType"];
+	$queryType = $_POST["searchOption"];
 	$category = $_POST["category"];
-	/*
+	
 	$typeCat = "category";
 	$typeLoc = "location";
 	$typeTime = "time";
 	echo "querytype is: " . $queryType;
-	if($queryType == $typeCat){
+	if($queryType == $typeCat ){
 	  $query = "SELECT * FROM `events` WHERE `category` = '". $category . "' ORDER BY `name` ASC";
 	}
 	if($queryType == $typeLoc){
@@ -23,8 +23,8 @@ mysql_select_db("khoshino_mysql", $con);
 	if($queryType == $typeTime){
 	  $query = "SELECT * FROM `events` ORDER BY `time` ASC";
 	}
-	*/
-	$query = "SELECT * FROM `events` WHERE `category` = '". $category . "' ORDER BY `name` ASC";
+	
+	//$query = "SELECT * FROM `events` WHERE `category` = '". $category . "' ORDER BY `name` ASC";
 	
 	
  $result = mysql_query($query, $con);
