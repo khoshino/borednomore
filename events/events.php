@@ -87,6 +87,8 @@ mysql_close($con);
 			$name  = $eventArray['name'];
 			$pgId = "event" . $eventArray['e_id'];
 			$pgTitle = $pgId . "_" . $name;
+			echo '<a href = "#'. $pgId . '> ' . $name . '</a><br/>'
+			
 			/*$eventPage is a string holding all the html need to display an event for this page*/
 //***************BEGIN CODE FOR EVENT PAGE (for a single event)***************************************
 			$eventPage = 
@@ -94,7 +96,7 @@ mysql_close($con);
 					<div data-role = "header">\n
 						<h1 class = "pageTitleText">' . $name .' Event</h1>\n
 						<!-- Navigation Buttons-- Change these links to link to different back pages or add links to new pages-->\n
-						<a href = "../index.php">Back</a>\n
+						<a href = "#searchEventsContent">Back</a>\n
 						<a href = "../index.php" >Home</a>\n
 					</div>\n
 					<div data-role = "content" id = "' . $pgId . 'Content">\n 
