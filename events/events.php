@@ -156,8 +156,10 @@ mysql_close($con);
 </div>
 ';
 //ECHO OUT code for event pages
-echo "outside searchEvents page <br/>";  
 echo "num rows: ". $numRows;
+
+echo "changed yet? still outside searchEvents page <br/>";  
+
 	for($i = 0; $i < $numRows; $i++){
 		echo $pagesArray[$i];
 		echo 'TESTING this should echo something!<br/>';
