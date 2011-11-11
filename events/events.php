@@ -44,7 +44,7 @@ mysql_close($con);
 <div data-role = "page" id = "searchEvents" data-title = "searchEvents">
 	<div data-role = "header">
 		<h1 class = "pageTitleText"> Search Events </h1>
-		<!-- Navigation Buttons- Change these links to link to different back pages or add links to new pages-->
+		<!-- Navigation Buttons- Change these links to link to different back pages or add links to new   pages-->
 		<a href = "../index.php">Back</a>
 		<a href = "../index.php" >Home</a>
 	</div>
