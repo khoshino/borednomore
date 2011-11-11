@@ -159,7 +159,7 @@ mysql_close($con);
 echo "outside searchEvents page <br/>";  
 	for($i = 0; $i < $numRows; $i++){
 		echo $pagesArray[$i];
-		echo '<br/>';
+		echo 'TESTING this should echo something!<br/>';
 	}
 ?>
 </body>
