@@ -15,8 +15,8 @@ function redirectToCreate( category){
 	<div data-role = "header">
 		<h1 class = "pageTitleText"><b> Select a Type of Event </b></h1>
 		<!-- Navigation Buttons- Change these links to link to different back pages or add links to new pages-->
-		<a href = "../index.php">Back</a>
-		<a href = "../index.php" >Home</a>
+		<a href = "../index.php" data-icon="back" data-direction="reverse">Back</a>
+		<a href = "../index.php" data-icon="home" data-ajax="false">Home</a>
 	</div>
 
 	<div data-role = "content" id = "categorySelectionPageContent">

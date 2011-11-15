@@ -14,8 +14,8 @@
 			<div data-role="header">
 				<h1 class = "pageTitleClass">Legal</h1>
 				<!-- Navigation Buttons- Change these links to link to different back pages or add links to new pages -->
-				<a href = "index.php" data-icon="back">Back</a>
-				<a href = "index.php" data-icon="home">Home</a>
+				<a href = "index.php" data-icon="back" data-direction="reverse">Back</a>
+				<a href = "index.php" data-icon="home" data-ajax="false">Home</a>
 			</div>
 			<div data-role="content">
 				<p><a href="legal.php#privpol">Privacy Policy</a> & <a href="legal.php#tos" >Terms of Service<a></p>
@@ -28,8 +28,8 @@
 		<div data-role="page" id="privpol" data-title="Privacy Policy">
 			<div data-role="header">
 				<h1 class="pageTitleClass">Privacy Policy</h1>
-				<a href="legal.php" data-role="button" data-icon="back">Back</a>
-				<a href="index.php" data-role="button" data-icon="home">Home</a>
+				<a href="legal.php" data-role="button" data-icon="back" data-direction="reverse">Back</a>
+				<a href="index.php" data-role="button" data-icon="home" data-ajax="false">Home</a>
 			</div>
 			<div data-role="content">
 				<p>
@@ -79,8 +79,8 @@
 		<div data-role="page" id="tos" data-title="Terms of Service">
 			<div data-role="header">
 				<h1 class="pageTitleClass">Terms of Service</h1>
-				<a href="legal.php#main" data-role="button" data-icon="back">Back</a>
-				<a href="index.php" data-role="button" data-icon="home">Home</a>
+				<a href="legal.php#main" data-role="button" data-icon="back" data-direction="reverse">Back</a>
+				<a href="index.php" data-role="button" data-icon="home" data-ajax="false">Home</a>
 			</div>
 			<div data-role="content">
 				<h2>Web Site Terms and Conditions of Use</h2>

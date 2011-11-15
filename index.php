@@ -44,14 +44,14 @@ function handleStatusChange(response) {
 }
 </script>
 
-<!-- data-role = "page" is a Jquery model that keeps events in a page. 
+<!-- data-role = "page" is a Jquery model that keeps events in a page.
 	This allows auto formatting of headers and footers-->
 <div data-role="page" id = "homeIndex" data-title="homeIndex"> 
 	<div data-role="header">
 		<h1 class = "pageTitleClass">Bored No More</h1>
 		<!-- Navigation Buttons- Change these links to link to different back pages or add links to new pages -->
-		<a href = "index.php" data-icon="back">Back</a>
-		<a href = "index.php" data-icon="home">Home</a>
+		<a href = "index.php" data-icon="back" data-direction="reverse" data-ajax="false">Back</a>
+		<a href = "index.php" data-icon="home" data-ajax="false">Home</a>
 	</div>
 	<div data-role = "content" id = "homeIndexContent"> 				
 		<h3>Let's Do Something!</h3>
