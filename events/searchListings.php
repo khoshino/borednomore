@@ -79,15 +79,11 @@ mysql_close($con);
 			$pgTitle = $pgId . "_" . $name;
 			$startTime = $eventArray['start_time']; //TODO: convert this to human readable format
 			$dmin = $eventArray['duration'];
-			$duration = (int)($eventArray['duration']/60) . 'hr ' . ($dmin % 60) . 'min'; //TODO: convert this to human readable format ie. _hr_min
+			$duration = ((int)$eventArray['duration']/60) . 'hr ' . ($dmin % 60) . 'min'; //TODO: convert this to human readable format ie. _hr_min
+			$eventButton = '<a href = "#'. $pgId . '"  > ' . $name . '</a><br/>';
 			
+			echo $eventButton;
 			
-			echo '<a href = "#'. $pgId . '"  > ' . $name . '</a><br/>';
-			$content = '<p><strong>Title: </strong> ' . $name . '  <strong>Category:</strong> ' . $eventArray['category'] . '</p>
-						<p><strong>Start:</strong> ' . $startTime . ' 	<strong>Duration: </strong>'. $duration .'</p>						
-						<p><strong>Location:</strong> ' . $eventArray['location'] . '</p>						
-						<p><strong>Creator: </strong>' . $eventArray['creator_fbid'] .'</p>
-						<p><strong>Details: </strong>' . $eventArray['description'] . '</p> ';
 			$eventPage = 
 			' <div data-role = "page" id = "'. $pgId . '" data-title = "' . $pgTitle . '" data-url="'.$pgId.'">
 					<div data-role = "header">
@@ -97,7 +93,11 @@ mysql_close($con);
 						<a href = "../index.php" >Home</a>
 					</div>
 					<div data-role = "content" id = "' . $pgId . 'Content"> 
-						'. $content . '
+						<p><strong>Title: </strong> ' . $name . '  <strong>Category:</strong> ' . $eventArray['category'] . '</p>
+						<p><strong>Start:</strong> ' . $startTime . ' 	<strong>Duration: </strong>'. $duration .'</p>						
+						<p><strong>Location:</strong> ' . $eventArray['location'] . '</p>						
+						<p><strong>Creator: </strong>' . $eventArray['creator_fbid'] .'</p>
+						<p><strong>Details: </strong>' . $eventArray['description'] . '</p> 
 					</div>
 					<div data-role = "footer" >footer...</div>
 					</div>';
