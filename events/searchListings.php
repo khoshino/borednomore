@@ -80,7 +80,7 @@ mysql_close($con);
 			$startTime = $eventArray['start_time']; //TODO: convert this to human readable format
 			$dmin = $eventArray['duration'];
 			$duration = ((int)$eventArray['duration']/60) . 'hr ' . ($dmin % 60) . 'min'; //TODO: convert this to human readable format ie. _hr_min
-			$eventButton = '<a href = "#'. $pgId . '"  data-role="button" data-icon="arrow-r" > ' . $name . '</a><br/>';
+			$eventButton = '<a href = "#'. $pgId . '"  data-role="button" data-icon="arrow-r" data-iconpos="right"> ' . $name . '</a><br/>';
 			
 			echo $eventButton;
 			
