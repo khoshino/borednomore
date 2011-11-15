@@ -68,21 +68,12 @@ mysql_close($con);
 		<div id = "searchResults">
 		<?php
 		
-		echo 'sql is:' . $query. '<br/>';
-		echo 'searchOption is:' . $queryType .'<br/>';
-		echo "category is: " . $category ."<br/>";
-		echo 'result is:' . $result . '<br/>';
+		
 		$numRows =  mysql_num_rows($result);
-		echo 'numRows:' . $numRows . '<br/>';
 		$newPagesHtml = '';
-		$test2 = '';
 		
 		for( $i = 0; $i < $numRows; $i++){
 			$eventArray = mysql_fetch_array($result);
-			//print_r($eventArray);
-			
-			//$test = "test";
-			//$test2 .= $test;
 			$name  = $eventArray['name'];
 			$pgId = "event" . $eventArray['e_id'];
 			$pgTitle = $pgId . "_" . $name;
@@ -113,9 +104,7 @@ mysql_close($con);
 
 			$pagesArray[$i] =$eventPage;
 			$newPagesHtml .= $eventPage;
-
-		}
-		
+		}		
 		?>
 		</div>
 	</div>
