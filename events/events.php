@@ -59,10 +59,16 @@ mysql_close($con);
 			Time
 		</button>
 		-->
-		<form action="searchListings.php" method="post" data-ajax="false">
+		<form action = "chooseSearchCategory.php" method = "post" data-ajax = "false">
 			<button name="searchOption" value="category"   type = "submit" target="chooseSearchCategory.php">
 				<img src="http://www.garrykelly.ie/wp-content/uploads/2010/05/20061006213300Sports_icon.png	" alt="Category " />
 				Category
+			</button>
+		</form>
+		<form action="searchListings.php" method="post" data-ajax="false">
+			<button name="searchOption" value="category"   type = "submit" target="chooseSearchCategory.php">
+				<img src="http://www.garrykelly.ie/wp-content/uploads/2010/05/20061006213300Sports_icon.png	" alt="Category " />
+				seprateformCategory
 			</button>
 			
 			<button name="searchOption" target="searchListings.php" value="location"  type = "submit">
