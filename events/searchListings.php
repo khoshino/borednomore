@@ -83,7 +83,11 @@ mysql_close($con);
 			
 			
 			echo '<a href = "#'. $pgId . '"  > ' . $name . '</a><br/>';
-			
+			$content = '<p><strong>Title: </strong> ' . $name . '  <strong>Category:</strong> ' . $eventArray['category'] . '</p>
+						<p><strong>Start:</strong> ' . $startTime . ' 	<strong>Duration: </strong>'. $duration .'</p>						
+						<p><strong>Location:</strong> ' . $eventArray['location'] . '</p>						
+						<p><strong>Creator: </strong>' . $eventArray['creator_fbid'] .'</p>
+						<p><strong>Details: </strong>' . $eventArray['description'] . '</p> ';
 			$eventPage = 
 			' <div data-role = "page" id = "'. $pgId . '" data-title = "' . $pgTitle . '" data-url="'.$pgId.'">
 					<div data-role = "header">
@@ -93,11 +97,7 @@ mysql_close($con);
 						<a href = "../index.php" >Home</a>
 					</div>
 					<div data-role = "content" id = "' . $pgId . 'Content"> 
-						<p><strong>Title: </strong> ' . $name . '  <strong>Category:</strong> ' . $eventArray['category'] . '</p>
-						<p><strong>Start:</strong> ' . $startTime . ' 	<strong>Duration: </strong>'. $duration .'</p>						
-						<p><strong>Location:</strong> ' . $eventArray['location'] . '</p>						
-						<p><strong>Creator: </strong>' . $eventArray['creator_fbid'] .'</p>
-						<p><strong>Details: </strong>' . $eventArray['description'] . '</p> 
+						'. content . '
 					</div>
 					<div data-role = "footer" >footer...</div>
 					</div>';
