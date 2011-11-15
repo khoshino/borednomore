@@ -8,7 +8,6 @@
 </head>
 
 <body>
-
 <div data-role="page" id = "createEvent" data-title="createEvent"> 
 	<div data-role="header">
 		<h1 class = "pageTitleText"><b> Create an Event </b></h1>
@@ -20,7 +19,7 @@
 	
 	<div data-role="content" id = "createEventContent">
 		<p> Required fields are marked with an '*' </p>
-		<form id = "createEventForm" action = "../mine/myEvents.php" method="POST" data-ajax = "false">
+		<form id = "createEventForm" action = "../mine/myEvents.php" method="POST" data-ajax = "false" name = "createEventForm">
 		*Title: <input type="text" id="eventTitle" name="eventTitle" required="required" /><br />
 		*Location: <input type="text" id="eventLocation" name="location" required="required" /><br />
 		*Type: <?php echo $_POST["type"]; ?><input type="hidden" id="eventType" name="eventType" value="<?echo $_POST["type"]; ?>"/><br /><br />
@@ -120,19 +119,18 @@
 			
 			</fieldset>
 		</div>
-		<!--Description:<input type="textarea" name="description" value="Write a description of your event here!" size="30" onfocus="value=''"><br />-->
 		Description: <br />
-		<!--
-		<textarea id = "eventDescription" name = "eventDescription" rows="4" cols="60"  placeholder="A description of your awesome event!"> 
-		</textarea><br/>
-		-->
 		<textarea id="eventDescription" name="eventDescription" placeholder="A description of your awesome event!"></textarea><br/>
-		<input type = "submit" value ="Create Event!" ><br /> <!--onClick="handleSubmit()"-->
+		<a onClick="handleSubmit();" data-role = 'button'>Create Event!</a><br /> <!--onClick="handleSubmit()"-->
+		<script>
+			function handleSubmit() {
+				if (confirm("Is the above information correct?")) {document.getElementById('createEventForm').submit();}
+			}
+		</script>
 		</form>
 	</div> 
 	<div data-role="footer">footer...</div> 
 </div> 
-
 <div data-role = "page" id = "nextPage" data-title = "nextPage">
 	<div data-role = "header">
 		<h1 class = "pageTitleText"><b>Next page </b></h1>
