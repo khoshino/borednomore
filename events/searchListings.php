@@ -62,14 +62,14 @@ mysql_close($con);
 	<div data-role = "content" id = "searchEventsContent">
 		<div id="menu" >
 		
-		<h3 class = "pageTitleText"><b> Listing Search Results by <?php echo $queryType ?> ...</b> </h3>
+		<!--<h3 class = "pageTitleText"><b> Listing Search Results by <?php echo $queryType ?> ...</b> </h3>-->
 		
 		</br>
 			
 		</div>	
 		<div id = "searchResults">
-		<ul data-role="listview" data-theme="a" data-dividertheme="a"> <!--starts listing all the events returned from the search-->
-			<li data-role="list-divider"></li>
+		<ul data-role="listview" data-theme="a" data-dividertheme="d"> <!--starts listing all the events returned from the search-->
+			<li data-role="list-divider">Listing Search Results by <?php echo $queryType ?> ...</li>
 			
 		<?php
 		$numRows =  mysql_num_rows($result);
