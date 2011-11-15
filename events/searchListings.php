@@ -81,7 +81,10 @@ mysql_close($con);
 			$startTime = $eventArray['start_time']; //TODO: convert this to human readable format
 			$dmin = $eventArray['duration'];
 			$duration = (int)($eventArray['duration']/60) . 'hr ' . ($dmin % 60) . 'min'; //TODO: convert this to human readable format ie. _hr_min
-			
+			$prevPage = "#searchEventsCategory";
+			if ($queryType = $typeCat){ //if searching by "category" change the previous page to be the category selection page
+				$prevPage = "chooseSearchCategory.php";
+			}
 			
 			echo '<a href = "#'. $pgId . '"  > ' . $name . '</a><br/>';
 			
@@ -90,7 +93,7 @@ mysql_close($con);
 					<div data-role = "header">
 						<h1 class = "pageTitleText">' . $name .' Event</h1>
 						
-						<a href = "#searchEventsCategory">Back</a>
+						<a href = "'. $prevPage .">Back</a>
 						<a href = "../index.php" >Home</a>
 					</div>
 					<div data-role = "content" id = "' . $pgId . 'Content"> 
