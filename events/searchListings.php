@@ -93,7 +93,7 @@ mysql_close($con);
 					<div data-role = "header">
 						<h1 class = "pageTitleText">' . $name .' Event</h1>
 						
-						<a href = "'. $prevPage .">Back</a>
+						<a href = "'. $prevPage .'">Back</a>
 						<a href = "../index.php" >Home</a>
 					</div>
 					<div data-role = "content" id = "' . $pgId . 'Content"> 
