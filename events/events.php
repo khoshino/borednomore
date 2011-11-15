@@ -33,7 +33,6 @@ mysql_close($con);
 	
 	<div data-role = "content" id = "searchEventsContent">
 		<div id="menu" >
-		<h1 class = "pageTitleText"><b> Search Menu</b> </h1>
 		<h2>Search by: </h2>
 		<!--we need a seperate form to submit to chooseSearchCategory page when searching by category -->
 		<form action = "chooseSearchCategory.php" method = "post" data-ajax = "false"> 

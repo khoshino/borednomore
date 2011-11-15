@@ -80,7 +80,7 @@ mysql_close($con);
 			$pgTitle = $pgId . "_" . $name;
 			$startTime = $eventArray['start_time']; //TODO:convert this to human readable format 
 			$dmin = $eventArray['duration'];
-			$duration = floor($eventArray['duration']/60) . 'hr ' . ($dmin % 60) . 'min'; //TODO: convert this to human readable format ie. _hr_min
+			$duration = floor($eventArray['duration']/60) . 'hr ' . ($dmin % 60) . 'min'; 
 			$location = $eventArray['location'];
 			
 			$eventButton = '<li><a href = "#'. $pgId . '"> ' . $name . '</a><br/></li>';
