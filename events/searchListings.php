@@ -109,7 +109,7 @@ mysql_close($con);
 		</div>
 	</div>
 	
-	<div data-role = "footer">footer...<!-- <?php //echo $newPagesHtml; ?> --></div>
+	<div data-role = "footer">footer...<!-- <?php // echo $newPagesHtml; ?> --></div>
 </div>
 
 <?php 
