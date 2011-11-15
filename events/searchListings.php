@@ -69,7 +69,7 @@ mysql_close($con);
 		</div>	
 		<div id = "searchResults">
 		<ul data-role="listview"> <!--starts listing all the events returned from the search-->
-			
+			<li data-role="list-divider"></li>
 			
 		<?php
 		$numRows =  mysql_num_rows($result);
