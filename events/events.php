@@ -79,7 +79,7 @@ mysql_close($con);
 			</button>
 		</form>
 		</br>
-			
+			<!--
 		</div>	
 		<div id = "searchResults">
 		<?php
@@ -88,14 +88,9 @@ mysql_close($con);
 			$numRows =  mysql_num_rows($result);
 			echo 'numRows:' . $numRows . '<br/>';
 			$newPagesHtml = '';
-			$test2 = '';
 		
 			for( $i = 0; $i < $numRows; $i++){
 				$eventArray = mysql_fetch_array($result);
-				//print_r($eventArray);
-			
-				//$test = "test";
-				//$test2 .= $test;
 				$name  = $eventArray['name'];
 				$pgId = "event" . $eventArray['e_id'];
 				$pgTitle = $pgId . "_" . $name;
@@ -175,6 +170,7 @@ mysql_close($con);
 				echo 'TESTING this should echo something!<br/>';
 			}
 		?>
+		-->
 </body>
 </html>
 
