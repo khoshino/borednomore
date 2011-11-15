@@ -50,8 +50,8 @@ function handleStatusChange(response) {
 	<div data-role="header">
 		<h1 class = "pageTitleClass">Bored No More</h1>
 		<!-- Navigation Buttons- Change these links to link to different back pages or add links to new pages -->
-		<a href = "index.php">Back</a>
-		<a href = "index.php" >Home</a>
+		<a href = "index.php" data-icon="home">Back</a>
+		<a href = "index.php" data-icon="home">Home</a>
 	</div>
 	<div data-role = "content" id = "homeIndexContent"> 				
 		<h3>Let's Do Something!</h3>
