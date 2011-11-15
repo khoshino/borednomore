@@ -68,7 +68,7 @@ mysql_close($con);
 			
 		</div>	
 		<div id = "searchResults">
-		<ul data-role="listview"> <!--starts listing all the events returned from the search-->
+		<ul data-role="listview" data-theme="a" data-dividertheme="a"> <!--starts listing all the events returned from the search-->
 			<li data-role="list-divider"></li>
 			
 		<?php
