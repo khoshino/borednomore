@@ -48,7 +48,7 @@ mysql_close($con);
 		<!-- Navigation Buttons Change these links to link to different back pages or add links to new pages-->
 		<?php
 		$prevPage = "./events.php"; //previous page defaults to the search option page
-		if ($queryType == $typeCat){ //if searching by "category" change the previous page to be the category selection page
+		if ($queryType == $typeCat){ //if searching by "category" change the previous page to be the category selection page 
 			$prevPage = "./chooseSearchCategory.php";
 		}
 		?>
