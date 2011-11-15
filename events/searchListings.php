@@ -46,8 +46,15 @@ mysql_close($con);
 	<div data-role = "header">
 		<h1 class = "pageTitleText"> Search Events </h1>
 		<!-- Navigation Buttons Change these links to link to different back pages or add links to new pages-->
-		<a href = "./events.php">Back</a>
+		<?php
+		$prevPage = "./events.php"; //previous page defaults to the search option page
+		if ($queryType == $typeCat){ //if searching by "category" change the previous page to be the category selection page
+			$prevPage = "./chooseSearchCategory.php";
+		}
+		?>
+		<a href = "<?php echo $prevPage ?>">Back</a>
 		<a href = "../index.php" >Home</a>
+		
 	</div>
 	
 	<div data-role = "content" id = "searchEventsContent">
@@ -82,10 +89,7 @@ mysql_close($con);
 			$startTime = $eventArray['start_time']; //TODO: convert this to human readable format
 			$dmin = $eventArray['duration'];
 			$duration = (int)($eventArray['duration']/60) . 'hr ' . ($dmin % 60) . 'min'; //TODO: convert this to human readable format ie. _hr_min
-			$prevPage = "#searchEventsCategory";
-			if ($queryType == $typeCat){ //if searching by "category" change the previous page to be the category selection page
-				$prevPage = "chooseSearchCategory.php";
-			}
+			
 			
 			echo '<a href = "#'. $pgId . '"  > ' . $name . '</a><br/>';
 			
@@ -94,7 +98,7 @@ mysql_close($con);
 					<div data-role = "header">
 						<h1 class = "pageTitleText">' . $name .' Event</h1>
 						
-						<a href = "'. $prevPage .'">Back</a>
+						<a href = "#searchEventsCategory">Back</a>
 						<a href = "../index.php" >Home</a>
 					</div>
 					<div data-role = "content" id = "' . $pgId . 'Content"> 
