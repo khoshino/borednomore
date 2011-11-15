@@ -7,6 +7,7 @@
  $success_myevents = false;
  $failure_reason = "";
  $failure_reason_myevents = "";
+ $myevents = array();
  if (!$con)
  {
   die('Could not connect: ' . mysql_error());
@@ -113,7 +114,10 @@
   $query = "SELECT events.*, participants.fbid FROM events, participants WHERE participants.fbid='".$fbtoken['user_id']."' AND participants.e_id = events.e_id ORDER BY events.start_time ASC";
   $success_myevents = mysql_query($query); 
   if (!$success_myevents) 
-   $failure_reason_myevents =mysql_error($success_myevents);
+   $failure_reason_myevents = mysql_error($success_myevents);
+   while ($row = mysql_fetch_array($success_myevents)) {
+    $myevents[] = $row;
+   }
  }
  
  /*** Close connection with Database ***/
@@ -142,8 +146,8 @@
    //if (!$success)
    // echo "failure reason: " . $failure_reason . "<br/>";
    if ($success_myevents) {
-    while ($row = mysql_fetch_array($success_myevents)) {
-     echo "name: " . $row['name'] . " location:" .$row['location']. " starts: " . $row['start_time']. " duration: " . $row['duration'] . "<br/>";
+    foreach ($myevents as $event) {
+     echo "<a href = '#"
     }
    } else {
     ;//echo "failure reason for my_events: " . $failure_reason_myevents . "<br/>";
@@ -153,7 +157,15 @@
  </div>
  <div data-role = "footer"> footer...</div>
 </div>
-
+<?php
+ if ($success_myevents) {
+  while ($row = mysql_fetch_array($success_myevents)) {
+   echo "name: " . $row['name'] . " location:" .$row['location']. " starts: " . $row['start_time']. " duration: " . $row['duration'] . "<br/>";
+  }
+ } else {
+  ;//echo "failure reason for my_events: " . $failure_reason_myevents . "<br/>";
+ }
+?>
 </body>
 
 </html>
