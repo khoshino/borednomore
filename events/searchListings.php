@@ -18,9 +18,9 @@ mysql_select_db("khoshino_mysql", $con);
 	echo "querytype is: " . $queryType;
 	
 	if($queryType == $typeLoc){
-	  $query = "SELECT * FROM `events` ORDER BY `location` ASC";
+	  $query = "SELECT * FROM `events` ORDER BY `location` ASC"; //sort alphebetically by location
 	}elseif($queryType == $typeTime){
-	  $query = "SELECT * FROM `events` ORDER BY `time` ASC";
+	  $query = "SELECT * FROM `events` ORDER BY `start_time` DESC"; //sort by starting time, most recent first
 	}else{  // if the type is category,  then query is coming from the "chooseSearchCategory.php" and there is no queryType option .
 		$query = "SELECT * FROM `events` WHERE `category` = '". $category . "' ORDER BY `name` ASC";
 	}

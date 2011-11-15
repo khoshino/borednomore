@@ -59,7 +59,7 @@ mysql_close($con);
 			Time
 		</button>
 		-->
-		<!--we need a seperate form to submit to chooseSearchCategory page for searching by category -->
+		<!--we need a seperate form to submit to chooseSearchCategory page when searching by category -->
 		<form action = "chooseSearchCategory.php" method = "post" data-ajax = "false"> 
 			<button name="searchOption" value="category"   type = "submit" target="chooseSearchCategory.php">
 				<img src="http://www.garrykelly.ie/wp-content/uploads/2010/05/20061006213300Sports_icon.png	" alt="Category " />
