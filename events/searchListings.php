@@ -82,7 +82,7 @@ mysql_close($con);
 			$dmin = $eventArray['duration'];
 			$duration = (int)($eventArray['duration']/60) . 'hr ' . ($dmin % 60) . 'min'; //TODO: convert this to human readable format ie. _hr_min
 			$prevPage = "#searchEventsCategory";
-			if ($queryType = $typeCat){ //if searching by "category" change the previous page to be the category selection page
+			if ($queryType == $typeCat){ //if searching by "category" change the previous page to be the category selection page
 				$prevPage = "chooseSearchCategory.php";
 			}
 			
