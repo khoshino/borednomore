@@ -10,12 +10,12 @@ mysql_select_db("khoshino_mysql", $con);
 	$queryType = $_POST["searchOption"];
 	$category = $_POST["category"];
 	if($queryType == ""){ 		  //note that the query type is the empty string if the user selects type "category" because the form 
-		$queryType = "Category"; //redirects to the chooseSearchCategory which will NOT post a "searchOption" value.
+		$queryType = "category"; //redirects to the chooseSearchCategory which will NOT post a "searchOption" value.
 	}
 	
-	$typeCat = "Category";
-	$typeLoc = "Location";
-	$typeTime = "Time";
+	$typeCat = "category";
+	$typeLoc = "location";
+	$typeTime = "time";
 	$query = "";
 	echo "querytype is: " . $queryType;
 	
@@ -67,7 +67,7 @@ mysql_close($con);
 		</div>	
 		<div id = "searchResults">
 		<ul data-role="listview" data-theme="d" data-dividertheme="a"> <!--starts listing all the events returned from the search-->
-			<li data-role="list-divider"><h3>Listing Search Results by <?php echo $queryType . ' '. ucfirst($category)?>...</h3></li>
+			<li data-role="list-divider"><h3>Listing search results by <?php echo ucfirst($queryType) . ' '. ucfirst($category)?>...</h3></li>
 			
 		<?php
 		$numRows =  mysql_num_rows($result);
