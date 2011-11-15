@@ -27,8 +27,8 @@ mysql_close($con);
 	<div data-role = "header">
 		<h1 class = "pageTitleText"> Search Events </h1>
 		<!-- Navigation Buttons- Change these links to link to different back pages or add links to new   pages-->
-		<a href = "../index.php">Back</a>
-		<a href = "../index.php" >Home</a>
+		<a href = "../index.php" data-icon="back">Back</a>
+		<a href = "../index.php" data-icon="home">Home</a>
 	</div>
 	
 	<div data-role = "content" id = "searchEventsContent">

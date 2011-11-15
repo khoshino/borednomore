@@ -9,8 +9,8 @@
 	<div data-role = "header">
 		<h1 class = "pageTitleText"><b> Select a Type of Event </b></h1>
 		<!-- Navigation Buttons- Change these links to link to different back pages or add links to new pages-->
-		<a href = "./events.php" data-ajax = "false" >Back</a>
-		<a href = "../index.php" >Home</a>
+		<a href = "./events.php" data-ajax = "false" data-icon="back">Back</a>
+		<a href = "../index.php" data-icon="home">Home</a>
 	</div>
 
 	<div data-role = "content" id = "categorySelectionPageContent">

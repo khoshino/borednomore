@@ -54,8 +54,8 @@ mysql_close($con);
 			$prevPage = "./chooseSearchCategory.php";
 		}
 		?>
-		<a href = "<?php echo $prevPage ?>">Back</a>
-		<a href = "../index.php" >Home</a>
+		<a href = "<?php echo $prevPage ?>" data-icon="back">Back</a>
+		<a href = "../index.php"  data-icon="home">Home</a>
 		
 	</div>
 	
