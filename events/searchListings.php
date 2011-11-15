@@ -9,9 +9,11 @@ if (!$con)
 mysql_select_db("khoshino_mysql", $con);
 	$queryType = $_POST["searchOption"];
 	$category = $_POST["category"];
+	if($queryType == ""){ 		  //note that the query type is the empty string if the user selects type "category" because the form 
+		$queryType = "category"; //redirects to the chooseSearchCategory which will NOT post a "searchOption" value.
+	}
 	
-	$typeCat = ""; //note that typeCat is the empty string because if the user selects type "category" the form will NOT submit a queryType for
-					//it since the site redirects them to the chooseSearchCategory page.
+	$typeCat = "category";
 	$typeLoc = "location";
 	$typeTime = "time";
 	$query = "";
@@ -60,15 +62,16 @@ mysql_close($con);
 	<div data-role = "content" id = "searchEventsContent">
 		<div id="menu" >
 		
-		<h1 class = "pageTitleText"><b> Search Results</b> </h1>
+		<h1 class = "pageTitleText"><b> Searching by <?php echo $queryType ?> ...</b> </h1>
 		
 		</br>
 			
 		</div>	
 		<div id = "searchResults">
+		<ul data-role="listview"> <!--starts listing all the events returned from the search-->
+			<li data-role="list-divider">Search Results</li>
+			
 		<?php
-		
-		
 		$numRows =  mysql_num_rows($result);
 		$newPagesHtml = '';
 		
@@ -80,7 +83,8 @@ mysql_close($con);
 			$startTime = $eventArray['start_time']; //TODO: convert this to human readable format
 			$dmin = $eventArray['duration'];
 			$duration = ((int)$eventArray['duration']/60) . 'hr ' . ($dmin % 60) . 'min'; //TODO: convert this to human readable format ie. _hr_min
-			$eventButton = '<a href = "#'. $pgId . '"  data-role="button" data-icon="arrow-r" data-iconpos="right"> ' . $name . '</a><br/>';
+			$eventButton = '<li><a href = "#'. $pgId . '"> ' . $name . '</a><br/></li>';
+			//$eventButton = '<li><a href = "#'. $pgId . '"  data-role="button" data-icon="arrow-r" data-iconpos="right"> ' . $name . '</a><br/></li>';
 			
 			echo $eventButton;
 			
@@ -106,6 +110,7 @@ mysql_close($con);
 			$newPagesHtml .= $eventPage;
 		}		
 		?>
+		</ul> <!--closes the unordered list of all the events -->
 		</div>
 	</div>
 	
