@@ -97,7 +97,7 @@ mysql_close($con);
 						<a href = "../index.php" >Home</a>
 					</div>
 					<div data-role = "content" id = "' . $pgId . 'Content"> 
-						'. content . '
+						'. $content . '
 					</div>
 					<div data-role = "footer" >footer...</div>
 					</div>';
