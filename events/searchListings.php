@@ -25,7 +25,7 @@ mysql_select_db("khoshino_mysql", $con);
 		$query = "SELECT * FROM `events` WHERE `category` = '". $category . "' ORDER BY `name` ASC";
 	}
 	
-	//$query = "SELECT * FROM `events` WHERE `category` = '". $category . "' ORDER BY `name` ASC";
+	//$query = "SELECT * FROM `events` WHERE `category` = '". $category . "' ORDER BY `name`  ASC";
 	
 	
  $result = mysql_query($query, $con);
