@@ -10,7 +10,8 @@ mysql_select_db("khoshino_mysql", $con);
 	$queryType = $_POST["searchOption"];
 	$category = $_POST["category"];
 	
-	$typeCat = "category";
+	$typeCat = ""; //note that typeCat is the empty string because if the user selects type "category" the form will NOT submit a queryType for
+					//it since the site redirects them to the chooseSearchCategory page.
 	$typeLoc = "location";
 	$typeTime = "time";
 	$query = "";
