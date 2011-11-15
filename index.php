@@ -44,7 +44,7 @@ function handleStatusChange(response) {
 }
 </script>
 
-<!-- data-role = "page" is a Jquery model that keeps events in a page.
+<!-- data-role = "page" is a Jquery model that keeps events in a page. 
 	This allows auto formatting of headers and footers-->
 <div data-role="page" id = "homeIndex" data-title="homeIndex"> 
 	<div data-role="header">

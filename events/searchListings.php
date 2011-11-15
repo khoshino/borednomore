@@ -78,7 +78,7 @@ mysql_close($con);
 			$name  = $eventArray['name'];
 			$pgId = "event" . $eventArray['e_id'];
 			$pgTitle = $pgId . "_" . $name;
-			$startTime = $eventArray['start_time']; //TODO: convert this to human readable format 
+			$startTime = $eventArray['start_time']; //TODO:convert this to human readable format 
 			$dmin = $eventArray['duration'];
 			$duration = floor($eventArray['duration']/60) . 'hr ' . ($dmin % 60) . 'min'; //TODO: convert this to human readable format ie. _hr_min
 			$location = $eventArray['location'];
