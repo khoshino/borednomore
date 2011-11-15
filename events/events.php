@@ -34,31 +34,7 @@ mysql_close($con);
 	<div data-role = "content" id = "searchEventsContent">
 		<div id="menu" >
 		<h1 class = "pageTitleText"><b> Search Menu</b> </h1>
-		<p>Search by: </p>
-		<!-- trying to send which type of request it was ie, catfinish this later...
-		<form action="searchListings.php" method="post" data-ajax="false">
-		<button name="searchType" value="category" type="submit" target="searchListings.php " data-ajax="false">View By Category</button>
-		<button name="searchType" value="location" type="submit" target="searchListings.php" data-ajax="false">View By Location</button>
-		<button name="searchType" value="time" type="submit" target="searchListings.php" data-ajax="false">View By Time</button>
-		
-		</form>
-		
-		
-		<button onclick = "window.location.href='chooseSearchCategory.php'" value="category"  name="searchOption" type = "submit" >
-			<img src="http://www.garrykelly.ie/wp-content/uploads/2010/05/20061006213300Sports_icon.png	" alt="Category " />
-			Category
-		</button>
-		
-		<button onclick = "window.location.href='searchListings.php'" value="location" name="searchOption" type = "submit">
-			<img src="http://www.garrykelly.ie/wp-content/uploads/2010/05/20061006213300Sports_icon.png	" alt="Location " />
-			Location
-		</button>
-		
-		<button onclick = "window.location.href='searchListings.php'" value="time" name="searchOption" type = "submit">
-			<img src="http://www.garrykelly.ie/wp-content/uploads/2010/05/20061006213300Sports_icon.png	" alt="Time" />
-			Time
-		</button>
-		-->
+		<h2>Search by: </h2>
 		<!--we need a seperate form to submit to chooseSearchCategory page when searching by category -->
 		<form action = "chooseSearchCategory.php" method = "post" data-ajax = "false"> 
 			<button name="searchOption" value="category"   type = "submit" target="chooseSearchCategory.php">

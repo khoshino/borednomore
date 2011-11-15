@@ -80,9 +80,17 @@ mysql_close($con);
 			$pgTitle = $pgId . "_" . $name;
 			$startTime = $eventArray['start_time']; //TODO: convert this to human readable format 
 			$dmin = $eventArray['duration'];
-			$duration = ((int)$eventArray['duration']/60) . 'hr ' . ($dmin % 60) . 'min'; //TODO: convert this to human readable format ie. _hr_min
+			$duration = floor($eventArray['duration']/60) . 'hr ' . ($dmin % 60) . 'min'; //TODO: convert this to human readable format ie. _hr_min
+			$location = $eventArray['location'];
+			
 			$eventButton = '<li><a href = "#'. $pgId . '"> ' . $name . '</a><br/></li>';
-			//$eventButton = '<li><a href = "#'. $pgId . '"  data-role="button" data-icon="arrow-r" data-iconpos="right"> ' . $name . '</a><br/></li>';
+			if($queryType == $typeTime){
+				$eventButton = '<li><a href = "#'. $pgId . '"> ' . $startTime . "	" . $name . '</a><br/></li>';
+			}
+			if($queryType == $typeLoc){
+				$eventButton = '<li><a href = "#'. $pgId . '"> ' . $location . "	" . $name . '</a><br/></li>';
+			}
+			
 			
 			echo $eventButton;
 			
