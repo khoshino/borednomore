@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <?php
  include './import/utility.php';
+ include_once './import/php-sdk/src/facebook.php';
+ $config = array();
+ $config['appId']  = strval($appid);
+ $config['secret'] = $appsecret;
+ $config['fileupload'] = false;
+ $facebook = new Facebook($config);
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US"> 
 <head><title>Bored no More</title>
@@ -35,7 +41,7 @@ function handleStatusChange(response) {
    if (response.authResponse) {
      console.log(response);
    }
- }
+}
 </script>
 
 <!-- data-role = "page" is a Jquery model that keeps events in a page.
@@ -51,23 +57,32 @@ function handleStatusChange(response) {
 		<h3>Let's Do Something!</h3>
 <?php
  $tokendata  = get_fbtoken($appid, $appsecret);
- $friendlist = get_friendlist($tokendata['access_token'], $tokendata['user_id']);
- foreach ($friendlist as $friend) {
-  ;//echo "friend: " . $friend ."<br/>";
- }
+ $friendlist = ($tokendata) ? get_friendlist($tokendata['access_token'], $tokendata['user_id']) : null;
 
 ?>
 <div id="login">
-  <p><button onClick="loginUser();">Login</button></p>
+  <p><a onClick="loginUser();" id="loginbutton" data-role='button'>Login</a></p>
 </div>
 <div id="logout">
-  <p><button  onClick="FB.logout();">Logout</button></p>
+  <p><a onClick="logoutUser();" id="logoutbutton" data-role='button'>Logout</a></p>
 </div>
 
 <script>
   function loginUser() {
-    FB.login(function(response) { }, {scope:'read_friendlists'});     
-    }
+    FB.login(function(response) {window.location.reload();}, {scope:'read_friendlists'});     
+    //window.location.reload();
+  }
+  function logoutUser() {
+    FB.logout(function(response) {window.location.reload();});
+  }
+window.setTimeout(function() {
+ FB.getLoginStatus(function(response) {
+  if (response.authResponse) {
+   $('#loginbutton').addClass('ui-disabled');
+  } else {
+   $('#logoutbutton').addClass('ui-disabled');
+  }
+ })}, 500);
 </script>
 <!--<div class="fb-login-button" data-perms="read_friendlists" data-show-faces="false" data-width="200" data-max-rows="1"></div>-->
 		<form method="link" action="create/create_event_type.php">
@@ -85,8 +100,9 @@ function handleStatusChange(response) {
 
 </html>
 <style>
-  body.connected #login { display: none; }
+/*body.connected #login { display: none; }
   body.connected #logout { display: block; }
   body.not_connected #login { display: block; }
-      body.not_connected #logout { display: none; }
+  body.not_connected #logout { display: none; }
+ */
 </style>
