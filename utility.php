@@ -100,4 +100,16 @@ function get_userdata($user_id) {
 
 }
 
+function alphanumeric($str) {
+ return preg_replace('/^0-9a-zA-Z/', '', $str);
+}
+
+function get_hours($duration) {
+ return $duration / 60;
+}
+
+function get_minutes($duration) {
+ return $duration % 60;
+}
+
 ?>
