@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php
  include '../import/utility.php';
+ $user_data = get_fbtoken($appid, $appsecret);
 ?>
 <html>
 <head><title>CreateEventsPage</title>
@@ -8,6 +9,7 @@
 </head>
 
 <body>
+<?php if (!$user_data) echo getFBJS($appid); ?>
 <div data-role="page" id = "createEvent" data-title="createEvent"> 
 	<div data-role="header">
 		<h1 class = "pageTitleText"><b> Create an Event </b></h1>
@@ -123,9 +125,30 @@
 		<textarea id="eventDescription" name="eventDescription" placeholder="A description of your awesome event!"></textarea><br/>
 		<a onClick="handleSubmit();" data-role = 'button'>Create Event!</a><br /> <!--onClick="handleSubmit()"-->
 		<script>
-			function handleSubmit() {
-				if (confirm("Is the above information correct?")) {document.getElementById('createEventForm').submit();}
-			}
+   function handleSubmit() {
+    if (confirm("Is the above information correct?")) {
+<?php
+ if (!$user_data) {
+  $login_str = <<<LOGIN
+   FB.login(function(response) {
+    if (response.authResponse) {
+LOGIN;
+  echo $login_str;
+ }
+?>
+     document.getElementById('createEventForm').submit();
+<?php
+ if (!$user_data) {
+  $login_str2 = <<<LOGIN2
+    } else {
+    window.location = 'borednomore.cs147.org';
+   }}, {scope: 'read_friendlists'});
+LOGIN2;
+  echo $login_str2;
+ }
+?>
+    }
+   }
 		</script>
 		</form>
 	</div> 

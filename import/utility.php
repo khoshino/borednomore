@@ -73,7 +73,7 @@ function get_fbtoken($appid, $appsecret) {
 }
 
 /* get_friendlist
- * gets the list of user's friends. List is an array of facebook_user_ids, which are really big ints. 
+ * gets the list of user's friends. List is an array of facebook_user_ids, which are really big str of ints. 
  */
 function get_friendlist($access_token, $user_id) {
  $jsonresult = file_get_contents("https://graph.facebook.com/" . $user_id . "/friends?access_token=" . $access_token);
@@ -116,6 +116,99 @@ function get_minutes($duration) {
  return $duration % 60;
 }
 
+function create_eventPage($row, $backid, $joinable, $leaveable, $loggedin) {
+ $pgID = "event" . $row['e_id'];
+ $pgIDContent = $pgID . "Content";
+ $pgTitle = $pgID . "_" . trimharmful($row['name']);
+ $dmin = $row['duration'];
+ $duration = floor($dmin / 60) . 'hr' . ($dmin % 60) . 'min';
+ $location = ($loggedin) ? $row['location'] : "Log in to get Location Info";
+ $startTime = $row['start_time'];
+ $name = $row['name'];
+ $join_button = "";
+ $leave_button = "";
+ $creator = get_userdata($row['creator_fbid']);
+ $creator_name = ($loggedin) ? $creator['name'] : "Log in to see Creator";
+ $loginstr = '';
+ $loginstr2 = '';
+ if (!$loggedin) {
+  $loginstr = <<<LOGIN1
+   FB.login(function(response) {
+    if (response.authResponse) {
+LOGIN1;
+  $loginstr2 = <<<LOGIN2
+    } else {
+    window.location = "borednomore.cs147.org";
+   }}, {scope: "read_friendlists"});
+LOGIN2;
+ }
+ if ($joinable) {
+  $join_button = <<<JOINBUTTON
+ <form id = "join$row[e_id]" action = "../mine/myEvents.php" method="POST" data-ajax = "false" name = "join$row[e_id]">
+  <input type="hidden" name="join" value="1"/>
+  <input type="hidden" name="eventid" value="$row[e_id]"/>
+  <a onClick='if (confirm("Are you sure you want to join this event?")) {
+   $loginstr
+   document.getElementById("join$row[e_id]").submit();
+   $loginstr2
+  }' data-role = 'button'>Join Event</a>
+ </form>
 
+JOINBUTTON;
+ }
+ if ($leaveable) {
+  $leave_button = <<<LEAVEBUTTON
+ <form id = "leave$row[e_id]" action = "./myEvents.php" method="POST" data-ajax = "false" name = "leave$row[e_id]">
+  <input type="hidden" name="leave" value="1"/>
+  <input type="hidden" name="eventid" value="$row[e_id]"/>
+  <a onClick='if (confirm("Are you sure you want to leave this event?")) {
+  document.getElementById("leave$row[e_id]").submit();
+  }' data-role = 'button'>Leave Event</a>
+ </form>
+LEAVEBUTTON;
+ }
+ $returnstr = <<<EVENTPAGE
+ <div data-role = "page" id = "$pgID" data-title = "$pgTitle" data-url="$pgID">
+  <div data-role="header">
+   <h1 class = "pageTitleText">$name Event</h1>
+   <a href = "#$backid">Back</a>
+   <a href = "../index.php" data-ajax="false">Home</a>
+  </div>
+  <div data-role="content" id="$pgIDContent">
+   <p><strong>Title: </strong> $name		<strong>Category: </strong>$duration</p>
+   <p><strong>Location: </strong>$location</p>
+   <p><strong>Creator: </strong>$creator_name</p>
+   <p><strong>Details: </strong>$row[description]</p>
+   <br/>
+   <br/>
+   $join_button
+   $leave_button
+  </div>
+  <div data-role="footer">. . .</div>
+ </div>
+EVENTPAGE;
+ return $returnstr;
+}
+
+function getFBJS($appid) {
+ $returnstr = <<<FBJS
+ <div id="fb-root"></div>
+ <script>
+  (function() {
+   var e = document.createElement("script"); e.async = true;
+   e.src = document.location.protocol + "//connect.facebook.net/en_US/all.js";
+   document.getElementById('fb-root').appendChild(e);
+  }());
+  window.fbAsyncInit = function() {
+   FB.init({ appId: '$appid',
+   status: true,
+   cookie: true,
+   xfbml: true,
+   oauth: true});
+  };
+ </script>
+FBJS;
+ return $returnstr;
+}
 
 ?>

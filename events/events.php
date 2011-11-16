@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <?
+include ("../import/utility.php");
+$user_token = get_fbtoken($appid, $appsecret);
+$user_fbid = ($user_token)? $user_token['user_id'] : 0;
 $con = mysql_connect("mysql.cs147.org", "khoshino", "JXDBsbH9");
 $success = false;
 if (!$con)
@@ -52,6 +55,7 @@ mysql_close($con);
 				<img src="http://www.garrykelly.ie/wp-content/uploads/2010/05/20061006213300Sports_icon.png	" alt="Time" />
 				Time
 			</button>
+			<input type="hidden" name="fbid" value="<?php echo $user_fbid;?>"/>
 		</form>
 		</br>
 </body>

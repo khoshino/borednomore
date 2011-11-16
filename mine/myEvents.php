@@ -7,10 +7,60 @@
  $success_myevents = false;
  $failure_reason = "";
  $failure_reason_myevents = "";
+ $fbtoken = get_fbtoken($appid, $appsecret);
+ $loggedin = ($fbtoken) ? true : false;
  $myevents = array();
  if (!$con)
  {
   die('Could not connect: ' . mysql_error());
+ }
+
+ /*** Deal with Join Event Request ***/
+ if ($_POST["join"] == 1) {
+  $eventid = $_POST["eventid"];
+  if ($loggedin) {
+   mysql_select_db("khoshino_mysql", $con);
+   $query = "SELECT COUNT(e_id) FROM participants WHERE fbid='" . $fbtoken['user_id'] . "' AND e_id='" . $eventid . "';";
+   $result = mysql_query($query) or die(mysql_error());
+   $exists = 0;
+   while ($row = mysql_fetch_array($result)) {
+    $exists = $row['COUNT(e_id)'];
+    break;
+   }
+   if (!$exists) {
+    $query = "INSERT INTO participants (e_id, fbid, creator) VALUES (" . $eventid . ", " . $fbtoken['user_id'] . ", 0);";
+    $result = mysql_query($query) or die(mysql_error());
+   }
+  }
+ }
+
+ /*** Deal with Leave Event Request ***/
+ if ($_POST["leave"] == 1) {
+  $eventid = $_POST["eventid"];
+  if ($loggedin) {
+   mysql_select_db("khoshino_mysql", $con);
+   $query = "SELECT * FROM participants WHERE fbid='" . $fbtoken['user_id'] . "' AND e_id='" . $eventid . "';";
+   $result = mysql_query($query) or die(mysql_error());
+   $rowExists = false;
+   $isCreator = false;
+   while ($row = mysql_fetch_array($result)) {
+    if (!$rowExists)
+     $rowExists = true;
+    if ($row['creator'] == "1")
+     $isCreator = true;
+   }
+   if ($rowExists) {
+    $query = "DELETE FROM participants WHERE e_id='" . $eventid . "'";
+    if (!$isCreator)
+     $query .= " AND fbid='" . $fbtoken['user_id'] . "'";
+    $query .= ";";
+    $result = mysql_query($query) or die(mysql_error());
+    if ($isCreator) {
+     $query = "DELETE FROM events WHERE e_id='" . $eventid . "';";
+     $result = mysql_query($query) or die(mysql_error());
+    }
+   }
+  }
  }
 
  /*** Initialize all the column variables here ***/
@@ -139,7 +189,7 @@
  <div data-role = "header">
   <h1 class = "pageTitleText">My Events</h1>
   <!-- Navigation Button Change these links to link to different back pages or add links to new pages-->
-  <a href = "../index.php"data-icon="back" data-direction="reverse">Back</a>
+  <a href = "../index.php"data-icon="back" data-direction="reverse" data-ajax="false">Back</a>
   <a href = "../index.php" data-icon="home" data-ajax="false">Home</a>
  </div>
  <div data-role = "content" id = "myEventsContent">
@@ -150,7 +200,7 @@
    // echo "failure reason: " . $failure_reason . "<br/>";
    if ($success_myevents) {
     foreach ($myevents as $event) {
-     echo "<a href = '#event_" . $event['e_id'] . "' data-role='button' data-icon='arrow-r' data-iconpos='right'>" . alphanumeric($event['name']) . " </a>"; 
+     echo "<a href = '#event" . $event['e_id'] . "' data-role='button' data-icon='arrow-r' data-iconpos='right'>" . alphanumeric($event['name']) . " </a>"; 
     }
    } else {
     ;//echo "failure reason for my_events: " . $failure_reason_myevents . "<br/>";
@@ -172,24 +222,7 @@
    $minutes   = get_minutes($row['duration']);
    $minutesstr= (!$minutes) ? '' : 'and ' . $minutes . ' minutes';
    $privatestr= ($private) ? 'Private Event' : 'Public Event';
-   $multipages .= <<<MULTI
-<div data-role = "page" id = "event_$row[e_id]" data-title = "$name_safe">
- <div data-role = "header">
-  <h1 class = "pageTitleText">$name_safe</h1>
-  <a href = "#myEvents" data-direction = "reverse">Back</a>
-  <a href = "../index.php">Home</a>
- </div>
- <div data-role = "content">
-  <strong>$name_safe</strong>
-  From $row[start_time] for $hours $hourstr $minutesstr<br/> 
-  At $loc_safe<br/>
-  $privatestr<br/>
-  <br/>
-  $desc_safe
- </div>
- <div data-role = "footer"></div> 
-</div>
-MULTI;
+   $multipages .= create_eventPage($row, "myEvents", false, true, $loggedin);
   }
   echo $multipages;
  } else {

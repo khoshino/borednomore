@@ -7,6 +7,7 @@
  $config['secret'] = $appsecret;
  $config['fileupload'] = false;
  $facebook = new Facebook($config);
+ $notloggedin = ($_POST['warn']) ? $_POST['warn'] : 0;
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US"> 
 <head><title>Bored no More</title>
@@ -57,8 +58,6 @@ function handleStatusChange(response) {
 		<h3>Let's Do Something!</h3>
 <?php
  $tokendata  = get_fbtoken($appid, $appsecret);
- $friendlist = ($tokendata) ? get_friendlist($tokendata['access_token'], $tokendata['user_id']) : null;
-
 ?>
 <div id="login">
   <p><a onClick="loginUser();" id="loginbutton" data-role='button'>Login</a></p>
@@ -69,7 +68,7 @@ function handleStatusChange(response) {
 
 <script>
   function loginUser() {
-    FB.login(function(response) {window.location.reload();}, {scope:'read_friendlists'});     
+    FB.login(function(response) {window.location.reload();}, {scope:'read_friendlists'});
     //window.location.reload();
   }
   function logoutUser() {

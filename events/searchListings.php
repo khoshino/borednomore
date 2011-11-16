@@ -1,5 +1,27 @@
 <!DOCTYPE html>
 <?
+include '../import/utility.php';
+$user_data = get_fbtoken($appid, $appsecret);
+$loggedin = ($user_data) ? true : false;
+$user_fbid = ($user_data) ? $user_data['user_id'] : 0;
+$friendlist = ($user_data) ? get_friendlist($user_data['access_token'], $user_data['user_id']) : array();
+$query_start  = " WHERE ";
+$query_append = " AND (";
+$query_clause = "private='0' ";
+if (count($friendlist)) {
+ $query_clause .= "OR (creator_fbid IN (";
+ $first = 1;
+ foreach ($friendlist as $friend) {
+  if (!$first)
+   $query_clause .= ", ";
+  else
+   $first = 0;
+  $query_clause .= $friend;
+ }
+ $query_clause .= ")) ";
+}
+$query_appendend = ") ";
+
 $con = mysql_connect("mysql.cs147.org", "khoshino", "JXDBsbH9");
 $success = false;
 if (!$con)
@@ -20,17 +42,17 @@ mysql_select_db("khoshino_mysql", $con);
 	echo "querytype is: " . $queryType;
 	
 	if($queryType == $typeLoc){
-	  $query = "SELECT * FROM `events` ORDER BY `location` ASC"; //sort alphebetically by location
+	  $query = "SELECT * FROM `events` " . $query_start .  $query_clause . " ORDER BY `location` ASC"; //sort alphebetically by location
 	}elseif($queryType == $typeTime){
-	  $query = "SELECT * FROM `events` ORDER BY `start_time` DESC"; //sort by starting time, most recent first
+	  $query = "SELECT * FROM `events` " . $query_start . $query_clause . " ORDER BY `start_time` DESC"; //sort by starting time, most recent first
 	}else{  // if the type is category,  then query is coming from the "chooseSearchCategory.php" and there is no queryType option .
-		$query = "SELECT * FROM `events` WHERE `category` = '". $category . "' ORDER BY `name` ASC";
+		$query = "SELECT * FROM `events` WHERE `category` = '". $category . "' " . $query_append . $query_clause . $query_appendend . "ORDER BY `name` ASC";
 	}
 	
 	//$query = "SELECT * FROM `events` WHERE `category` = '". $category . "' ORDER BY `name`  ASC";
 	
 	
- $result = mysql_query($query, $con);
+ $result = mysql_query($query, $con) or die (mysql_error());
 	
 
 mysql_close($con);
@@ -42,7 +64,7 @@ mysql_close($con);
 	<?php include("../import/header.php");?>
 </head>
 <body>
-
+<?php if (!$loggedin) echo getFBJS($appid);?>
 
 <div data-role = "page" id = "searchEventsCategory" data-title = "searchEvents">
 	<div data-role = "header">
@@ -94,23 +116,7 @@ mysql_close($con);
 			
 			echo $eventButton;
 			
-			$eventPage = 
-			' <div data-role = "page" id = "'. $pgId . '" data-title = "' . $pgTitle . '" data-url="'.$pgId.'">
-					<div data-role = "header">
-						<h1 class = "pageTitleText">' . $name .' Event</h1>
-						
-						<a href = "#searchEventsCategory">Back</a>
-						<a href = "../index.php" >Home</a>
-					</div>
-					<div data-role = "content" id = "' . $pgId . 'Content"> 
-						<p><strong>Title: </strong> ' . $name . '  		<strong>Category:</strong> 	' . $eventArray['category'] . '</p>
-						<p><strong>Start:</strong> ' . $startTime . ' 		<strong>Duration: </strong>'. $duration .'</p>						
-						<p><strong>Location:</strong> ' . $eventArray['location'] . '</p>						
-						<p><strong>Creator: </strong>' . $eventArray['creator_fbid'] .'</p>
-						<p><strong>Details: </strong>' . $eventArray['description'] . '</p> 
-					</div>
-					<div data-role = "footer" >footer...</div>
-					</div>';
+			$eventPage = create_eventPage($eventArray, "searchEventsCategory", true, false, $loggedin); 
 
 			$pagesArray[$i] =$eventPage;
 			$newPagesHtml .= $eventPage;
