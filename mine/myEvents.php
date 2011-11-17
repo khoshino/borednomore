@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php
+ //ini_set('display_errors', 0); // for display. NOT FOR DEBUGGING
  include "../import/utility.php";
  /*** Initialize connection with Database here ***/
  $con = mysql_connect("mysql.cs147.org", "khoshino", "JXDBsbH9");
@@ -30,6 +31,8 @@
    if (!$exists) {
     $query = "INSERT INTO participants (e_id, fbid, creator) VALUES (" . $eventid . ", " . $fbtoken['user_id'] . ", 0);";
     $result = mysql_query($query) or die(mysql_error());
+    $query = "UPDATE events SET num_participants = (num_participants + 1) WHERE e_id = '" . $eventid . "'";
+    $result = mysql_query($query) or die(mysql_error());
    }
   }
  }
@@ -57,6 +60,9 @@
     $result = mysql_query($query) or die(mysql_error());
     if ($isCreator) {
      $query = "DELETE FROM events WHERE e_id='" . $eventid . "';";
+     $result = mysql_query($query) or die(mysql_error());
+    } else {
+     $query = "UPDATE events SET num_participants = (num_participants - 1) WHERE e_id ='" . $eventid . "'";
      $result = mysql_query($query) or die(mysql_error());
     }
    }
@@ -161,8 +167,8 @@
  $fbtoken = get_fbtoken($appid, $appsecret);
  if ($fbtoken != null) {
   mysql_select_db("khoshino_mysql", $con);
-  $query = "SELECT events.*, participants.fbid FROM events, participants WHERE participants.fbid='".$fbtoken['user_id']."' AND participants.e_id = events.e_id ORDER BY events.start_time ASC";
-  $success_myevents = mysql_query($query); 
+  $query = "SELECT * FROM events INNER JOIN participants ON events.e_id=participants.e_id WHERE participants.fbid='".$fbtoken['user_id']."' ORDER BY events.start_time ASC";
+  $success_myevents = mysql_query($query) or die (mysql_error());
   if (!$success_myevents) 
    $failure_reason_myevents = mysql_error($success_myevents);
    while ($row = mysql_fetch_array($success_myevents)) {

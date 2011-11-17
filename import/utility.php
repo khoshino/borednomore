@@ -62,7 +62,11 @@ function get_fbtoken($appid, $appsecret) {
  // This code checks that the facebook cookie can be accessed. It also generates
  // the access token for facebook.
  if ($signed_request != null) {
-  $access_token = file_get_contents("https://graph.facebook.com/oauth/access_token?client_id=" . $appid . "&redirect_uri=&client_secret=" . $appsecret . "&code=" . $signed_request['code']);
+  try {
+   $access_token = file_get_contents("https://graph.facebook.com/oauth/access_token?client_id=" . $appid . "&redirect_uri=&client_secret=" . $appsecret . "&code=" . $signed_request['code']);
+  } catch (Exception $e) {
+   return null;
+  }
   parse_str($access_token, $at_response);
   $signed_request['access_token'] = $at_response['access_token'];
   $signed_request['expires'] = $at_response['expires'] + time();
@@ -124,7 +128,9 @@ function create_eventPage($row, $backid, $joinable, $leaveable, $loggedin) {
  $duration = floor($dmin / 60) . 'hr' . ($dmin % 60) . 'min';
  $location = ($loggedin) ? $row['location'] : "Log in to get Location Info";
  $startTime = $row['start_time'];
+ $category = $row['category'];
  $name = $row['name'];
+ $num_participants = ($row['num_participants']) ? $row['num_participants'] : 1;
  $join_button = "";
  $leave_button = "";
  $creator = get_userdata($row['creator_fbid']);
@@ -175,9 +181,12 @@ LEAVEBUTTON;
    <a href = "../index.php" data-ajax="false">Home</a>
   </div>
   <div data-role="content" id="$pgIDContent">
-   <p><strong>Title: </strong> $name		<strong>Category: </strong>$duration</p>
+   <p><strong>Title: </strong> $name</p>
+   <p><strong>Category: </strong>$category</p>
+   <p><strong>Starts: </strong>$startTime <strong>for</strong> $duration</p>
    <p><strong>Location: </strong>$location</p>
    <p><strong>Creator: </strong>$creator_name</p>
+   <p><strong>Number of Participants: </strong>$num_participants</p>
    <p><strong>Details: </strong>$row[description]</p>
    <br/>
    <br/>

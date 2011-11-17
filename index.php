@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php
+ ini_set('display_errors', 0); // for display. NOT FOR DEBUGGING
  include './import/utility.php';
  include_once './import/php-sdk/src/facebook.php';
  $config = array();
@@ -8,6 +9,8 @@
  $config['fileupload'] = false;
  $facebook = new Facebook($config);
  $notloggedin = ($_POST['warn']) ? $_POST['warn'] : 0;
+ $tokendata  = get_fbtoken($appid, $appsecret);
+ $loggedin = ($tokendata) ? true : false;
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US"> 
 <head><title>Bored no More</title>
@@ -56,14 +59,11 @@ function handleStatusChange(response) {
 	</div>
 	<div data-role = "content" id = "homeIndexContent"> 				
 		<h3>Let's Do Something!</h3>
-<?php
- $tokendata  = get_fbtoken($appid, $appsecret);
-?>
 <div id="login">
-  <p><a onClick="loginUser();" id="loginbutton" data-role='button'>Login</a></p>
+  <p><input id="loginbutton" type='button' value="Login" <?php if ($loggedin) echo "disabled";?>/></p>
 </div>
 <div id="logout">
-  <p><a onClick="logoutUser();" id="logoutbutton" data-role='button'>Logout</a></p>
+  <p><input id="logoutbutton" type='button' value="Logout" <?php if (!$loggedin) echo "disabled";?>/></p>
 </div>
 
 <script>
@@ -74,14 +74,16 @@ function handleStatusChange(response) {
   function logoutUser() {
     FB.logout(function(response) {window.location.reload();});
   }
-window.setTimeout(function() {
+/*window.setTimeout(function() {
  FB.getLoginStatus(function(response) {
   if (response.authResponse) {
    $('#loginbutton').addClass('ui-disabled');
   } else {
    $('#logoutbutton').addClass('ui-disabled');
   }
- })}, 500);
+ })}, 500);*/
+  $('#loginbutton').click(loginUser);
+  $('#logoutbutton').click(logoutUser);
 </script>
 <!--<div class="fb-login-button" data-perms="read_friendlists" data-show-faces="false" data-width="200" data-max-rows="1"></div>-->
 		<form method="link" action="create/create_event_type.php">
