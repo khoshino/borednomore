@@ -91,9 +91,13 @@ function handleStatusChange(response) {
 		<form method="link" action="mine/myEvents.php" data-ajax="false">
 		<input type="submit" value="My Events"></form>
 		<form method="link" action="events/events.php">
-		<input type="submit" value="View Events"></form>
+		<input type="submit" value="View Events old"></form>
+		<button name="searchOption" target="searchListings.php" value="time" type = "submit">
+				<img src="http://www.garrykelly.ie/wp-content/uploads/2010/05/20061006213300Sports_icon.png	" alt="Time" />
+				View Events
+			</button>
 	</div>	
-	<div data-role= "footer"><a href="/legal.php" rel="external">Legal</a> Footer...</div>
+	<div data-role= "footer"><a href="legal.php" rel="external">Legal</a> Footer...</div>
 	
 </div>
 
