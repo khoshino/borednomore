@@ -264,14 +264,14 @@ function create_eventWall($detailsRow, $wallResults, $loggedin) {
   </div>
   <div data-role="content" id="$pgIDContent">
   <p><strong>Title: </strong> $name</p>
+  
+
+  <p><strong>Posts: </strong> <br/>	 
+		$postsHtml </p>
   <form id = "postCommentForm" action = "wallPostCheck.php" method="POST" data-ajax = "false" name = "wallPostForm">
-	<textarea id="eventDescription" name="postMessage" placeholder="type a message here!"></textarea><br/>
+	<textarea id="wallPostMessage" name="wallPostMessage" placeholder="type a message here!"></textarea><br/>
     <a onClick="handleSubmit();" data-role = 'button'>Post!</a><br />
   </form>
-
-   <p><strong>Posts: </strong> <br/>	 
-		$postsHtml </p>
-	
    <br/>
    <br/>
 	 <a href = "#$backid" data-direction="reverse">Back to Event Details</a>
