@@ -215,12 +215,30 @@ EVENTPAGE;
  return $returnstr;
 }
 
-function create_eventWall($row, $wallResults, $loggedin) {
- $pgID = "event" . $row['e_id'] . "Wall";
- $name = ucwords($row['name']);
+function create_eventWall($detailsRow, $wallResults, $loggedin) {
+ $pgID = "event" . $detailsRow['e_id'] . "Wall";
+ $name = ucwords($detailsRow['name']);
  $pgIDContent = $pgID . "Content";
  $pgTitle = $pgID . "_" . trimharmful($row['name']);
- $backid = "event" . $row['e_id'];// the page id of the corresponding event page
+ $backid = "event" . $detailsRow['e_id'];// the page id of the corresponding event page
+ 
+ 
+ $numRows =  mysql_num_rows($wallResults);
+ $postsHtml = '';
+		
+	for( $i = 0; $i < $numRows; $i++){
+		$post = mysql_fetch_array($wallResults);
+		$wallPostId = $post['wallpost_id'];
+		$userName = get_userdata($post['fbid']);
+		$message = $post['message'];
+		$creator = $post['creator'];
+		$time = date("g:i A", $post['time']);
+		$date = date("M j, Y", $post['time']);
+		
+		$postStr = $message . " posted by " . $userName . " at " . $time .
+			" on " . $date . "<br/>";
+		$postsHtml .= $postStr;
+	}
  /*
  $wallpostId = $row['wallpost_id'];
  $userName = get_userdata($row['fbid'];
@@ -243,6 +261,7 @@ function create_eventWall($row, $wallResults, $loggedin) {
   </div>
   <div data-role="content" id="$pgIDContent">
    <p><strong>Title: </strong> $name</p>
+   <p><strong>Posts: </strong> $postsHtml </p>
 	
    <br/>
    <br/>
