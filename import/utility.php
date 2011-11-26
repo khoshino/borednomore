@@ -268,6 +268,7 @@ function create_eventWall($detailsRow, $wallResults, $loggedin) {
 
   <p><strong>Posts: </strong> <br/>	 
 		$postsHtml </p>
+  <br/><br/>
   <form id = "postCommentForm" action = "wallPostCheck.php" method="POST" data-ajax = "false" name = "wallPostForm">
 	<textarea id="wallPostMessage" name="wallPostMessage" placeholder="type a message here!"></textarea><br/>
     <a onClick="handleSubmit();" data-role = 'button'>Post!</a><br />
