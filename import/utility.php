@@ -271,7 +271,8 @@ function create_eventWall($detailsRow, $wallResults, $loggedin) {
   <br/><br/>
   <form id = "postCommentForm" action = "wallPostCheck.php" method="POST" data-ajax = "false" name = "wallPostForm">
 	<textarea id="wallPostMessage" name="wallPostMessage" placeholder="type a message here!"></textarea><br/>
-    <a onClick="handleSubmit();" data-role = 'button'>Post!</a><br />
+   <a data-role = 'submit'>PostNoHandle!</a><br />
+   <a onClick="handleSubmit();" data-role = 'button'>Post!</a><br />
 	<script>
 	  function handleSubmit() {
 		if (confirm("Are you sure you want to post your comment?")) {
