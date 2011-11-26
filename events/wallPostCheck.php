@@ -27,28 +27,6 @@ echo $message;
 	   }}, {scope: 'read_friendlists'});
 	}
    }
-<?php
- if (!$user_data) {
-  $login_str = <<<LOGIN
-   FB.login(function(response) {
-    if (response.authResponse) {
-LOGIN;
-  echo $login_str;
- }
-?>
-     document.getElementById('createEventForm').submit();
-<?php
- if (!$user_data) {
-  $login_str2 = <<<LOGIN2
-    } else {
-    window.location = 'borednomore.cs147.org';
-   }}, {scope: 'read_friendlists'});
-LOGIN2;
-  echo $login_str2;
- }
-?>
-    }
-   }
 		</script>
 </body>
 </html>
