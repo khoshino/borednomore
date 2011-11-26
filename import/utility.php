@@ -237,7 +237,7 @@ function create_eventWall($row, $wallResults, $loggedin) {
  $returnstr = <<<EVENTWALL
  <div data-role = "page" id = "$pgID" data-title = "$pgTitle" data-url="$pgID">
   <div data-role="header">
-   <h1 class = "pageTitleText">$name Event</h1>
+   <h1 class = "pageTitleText">$name Wall</h1>
    <a href = "#$backid" data-direction="reverse">Back</a>
    <a href = "../index.php" data-ajax="false">Home</a>
   </div>
@@ -246,7 +246,7 @@ function create_eventWall($row, $wallResults, $loggedin) {
 	
    <br/>
    <br/>
-	 <a href = "#$backid">View Event Details</a>
+	 <a href = "#$backid" data-direction="reverse">Back to Event Details</a>
   </div>
   <div data-role="footer"></div>
  </div>
