@@ -67,7 +67,7 @@ mysql_close($con);
 <?php if (!$loggedin) echo getFBJS($appid);?>
 
 <div data-role = "page" id = "searchEventsCategory" data-title = "searchEvents">
-	<div data-role = "header" data-add-back-btn = "true" data-back-btn-text = "BackAuto" >
+	<div data-role = "header" >
 		<h1 class = "pageTitleText"> Search Events </h1>
 		<!-- Navigation Buttons Change these links to link to different back pages or add links to new pages-->
 		<?php
@@ -80,9 +80,29 @@ mysql_close($con);
 		<a href = "../index.php"  data-icon="home" data-ajax="false" >Home</a>
 		<div data-role="navbar">
 			<ul>
-				<li><a href="#" data-icon="grid">Summary</a></li>
-				<li><a href="#" data-icon="star" class="ui-btn-active">Favs</a></li>
-				<li><a href="#" data-icon="gear">Setup</a></li>
+				<li>
+					<form action = "searchListings.php" method = "post" data-ajax = "false"> 
+					<button name="searchOption" target="searchListings.php" value="time" type = "submit">
+						<img src="http://www.garrykelly.ie/wp-content/uploads/2010/05/20061006213300Sports_icon.png	" alt="Time" />
+						Time
+					</button>
+					</form>
+			</li>
+				<li>
+					<form action = "searchListings.php" method = "post" data-ajax = "false"> 
+						<button name="searchOption" target="searchListings.php" value="time" type = "submit" data-icon="star">
+							Location
+						</button>
+					</form>
+				</li>
+				<li>
+					<form action = "chooseSearchCategory.php" method = "post" data-ajax = "false" data-icon="gear"> 
+						<button name="searchOption" value="category"   type = "submit" target="chooseSearchCategory.php">
+							<img src="http://www.garrykelly.ie/wp-content/uploads/2010/05/20061006213300Sports_icon.png	" alt="Category " />
+							Category
+						</button>
+					</form>
+				</li>
 			</ul>
 
 		</div><!-- /navbar -->
