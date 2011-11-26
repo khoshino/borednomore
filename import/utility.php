@@ -252,7 +252,7 @@ function create_eventWall($detailsRow, $wallResults, $loggedin) {
  
 
  //$time = date("g:i A", $row['time']) ;
- //$date = date("M j, Y", $row['time']);
+ //  $date = date("M j, Y", $row['time']);
  
  
  $returnstr = <<<EVENTWALL
