@@ -232,12 +232,13 @@ function create_eventWall($detailsRow, $wallResults, $loggedin) {
 		$userName = ($loggedin) ? get_userdata($post['fbid']) : "Anonymous";
 		$message = $post['message'];
 		$creator = $post['creator'];
-		$time = date("g:i A", $post['time']);
-		$date = date("M j, Y", $post['time']);
+		$uglyTime = strtotime($row['start_time']);
+		$time = date("g:i A", $uglyTime);
+		$date = date("M j, Y", $uglyTime);
 		
 		$postStr = $message . " <sub> posted by " . $userName . " at " . $time .
 			" on " . $date;
-		if(!$loggedin) $postStr .= "(Log in to view names)";
+		if(!$loggedin) $postStr .= " (Log in to view names)";
 		$postStr .=  "</sub><br/>";
 		$postsHtml .= $postStr;
 	}

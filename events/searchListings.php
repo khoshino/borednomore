@@ -131,7 +131,10 @@ mysql_select_db("khoshino_mysql", $con);
 			$name  = $eventArray['name'];
 			$pgId = "event" . $eventArray['e_id'];
 			$pgTitle = $pgId . "_" . $name;
-			$startTime = $eventArray['start_time']; //TODO:convert this to human readable format 
+			//$startTime = $eventArray['start_time']; //TODO:convert this to human readable format
+			$start = strtotime($eventArray['start_time']);
+			$startTime = date("g:i A", $start);
+			$startDate = date("M j, Y", $start);
 			$dmin = $eventArray['duration'];
 			$duration = floor($eventArray['duration']/60) . 'hr ' . ($dmin % 60) . 'min'; 
 			$location = $eventArray['location'];
