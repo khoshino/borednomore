@@ -149,6 +149,7 @@ function create_eventPage($row, $backid, $joinable, $leaveable, $loggedin) {
  $creator_name = ($loggedin) ? $creator['name'] : "Log in to see Creator";
  $loginstr = '';
  $loginstr2 = '';
+ $eventWall = $pgID .  "Wall";
  if (!$loggedin) {
   $loginstr = <<<LOGIN1
    FB.login(function(response) {
@@ -202,6 +203,8 @@ LEAVEBUTTON;
    <p><strong>Number of Participants: </strong>$num_participants</p>
    <p><strong>Details: </strong>$row[description]</p>
    <br/>
+   <a href = "#$eventWall">View Wall Posts</a>
+   <br/>
    <br/>
    $join_button
    $leave_button
@@ -243,7 +246,7 @@ function create_eventWall($row, $wallResults, $loggedin) {
 	
    <br/>
    <br/>
-  
+	 <a href = "#$backid">View Event Details</a>
   </div>
   <div data-role="footer"></div>
  </div>

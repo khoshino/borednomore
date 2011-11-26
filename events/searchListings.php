@@ -151,7 +151,7 @@ mysql_select_db("khoshino_mysql", $con);
 			//creating event wall
 			$wallQuery = "SELECT * FROM `wallposts` " . "WHERE e_id=". $eventArray['e_id']. " ORDER BY `time` DESC";
 			$wallResults = mysql_query($wallQuery, $con) or die (mysql_error());
-			echo "before calling eventwall!";
+			
 			$eventWall = create_eventWall($eventArray, $wallResults, $loggedin);
 			
 			$pagesArray[$i] =$eventPage;
