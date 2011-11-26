@@ -55,7 +55,8 @@ mysql_select_db("khoshino_mysql", $con);
  $result = mysql_query($query, $con) or die (mysql_error());
 	
 
-mysql_close($con);
+//mysql_close($con); 
+//since we need to query the data base for the wallposts for each event, close later
 
 ?>
 
@@ -119,6 +120,9 @@ mysql_close($con);
 			<li data-role="list-divider"><h3>Listing search results by <?php echo ucfirst($queryType) . ' '. ucfirst($category)?>...</h3></li>
 			
 		<?php
+		//need to query all the wall posts for each event
+		
+		
 		$numRows =  mysql_num_rows($result);
 		$newPagesHtml = '';
 		
@@ -141,16 +145,18 @@ mysql_close($con);
 			}
 			
 			
-			echo $eventButton;
-			
+			echo $eventButton;			
 			$eventPage = create_eventPage($eventArray, "searchEventsCategory", true, false, $loggedin);
-			//need all the wall posts for each event
+			
+			//creating event wall
 			$wallQuery = "SELECT * FROM `wallposts` " . "WHERE e_id=". $eventArray['e_id']. " ORDER BY `time` DESC";
 			$wallResults = mysql_query($wallQuery, $con) or die (mysql_error());
 			$eventWall = create_eventWall($eventArray, $wallResults, $loggedin);
+			
 			$pagesArray[$i] =$eventPage;
 			$newPagesHtml .= $eventPage . $eventWall;
-		}		
+		}	
+			mysql_close($con);//closes the connection to the database
 		?>
 		</ul> <!--closes the unordered list of all the events -->
 		</div>
