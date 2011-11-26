@@ -67,7 +67,7 @@ mysql_close($con);
 <?php if (!$loggedin) echo getFBJS($appid);?>
 
 <div data-role = "page" id = "searchEventsCategory" data-title = "searchEvents">
-	<div data-role = "header">
+	<div data-role = "header" data-add-back-btn = "true" data-back-btn-text = "BackAuto" >
 		<h1 class = "pageTitleText"> Search Events </h1>
 		<!-- Navigation Buttons Change these links to link to different back pages or add links to new pages-->
 		<?php
@@ -77,8 +77,15 @@ mysql_close($con);
 		}
 		?>
 		<a href = "<?php echo $prevPage ?>" data-icon="back" data-direction="reverse">Back</a>
-		<a href = "../index.php"  data-icon="home" data-ajax="false">Home</a>
-		
+		<a href = "../index.php"  data-icon="home" data-ajax="false" >Home</a>
+		<div data-role="navbar">
+			<ul>
+				<li><a href="#" data-icon="grid">Summary</a></li>
+				<li><a href="#" data-icon="star" class="ui-btn-active">Favs</a></li>
+				<li><a href="#" data-icon="gear">Setup</a></li>
+			</ul>
+
+		</div><!-- /navbar -->
 	</div>
 	
 	<div data-role = "content" id = "searchEventsContent">
