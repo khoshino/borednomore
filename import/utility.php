@@ -235,10 +235,10 @@ function create_eventWall($detailsRow, $wallResults, $loggedin) {
 		$time = date("g:i A", $post['time']);
 		$date = date("M j, Y", $post['time']);
 		
-		$postStr = $message . " posted by " . $userName . " at " . $time .
+		$postStr = $message . " <sub> posted by " . $userName . " at " . $time .
 			" on " . $date;
 		if(!$loggedin) $postStr .= "(Log in to view names)";
-		$postStr .=  "<br/>";
+		$postStr .=  "</sub><br/>";
 		$postsHtml .= $postStr;
 	}
  /*
@@ -263,7 +263,7 @@ function create_eventWall($detailsRow, $wallResults, $loggedin) {
   </div>
   <div data-role="content" id="$pgIDContent">
    <p><strong>Title: </strong> $name</p>
-   <p><strong>Posts: </strong> <br/> 
+   <p><strong>Posts: </strong> <br/>	 
 		$postsHtml </p>
 	
    <br/>
