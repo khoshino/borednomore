@@ -251,6 +251,7 @@ function create_eventWall($row, $wallResults, $loggedin) {
   <div data-role="footer"></div>
  </div>
 EVENTWALL;
+return $returnstr;
 }
 
 

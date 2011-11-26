@@ -155,7 +155,8 @@ mysql_select_db("khoshino_mysql", $con);
 			$eventWall = create_eventWall($eventArray, $wallResults, $loggedin);
 			
 			$pagesArray[$i] =$eventPage;
-			$newPagesHtml .= $eventPage . $eventWall;
+			$newPagesHtml .= $eventPage;
+			$newPagesHtml.= $eventWall;
 		}	
 			mysql_close($con);//closes the connection to the database
 		?>
