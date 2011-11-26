@@ -11,5 +11,6 @@ echo $message;
 <body>
 	<p><?php echo $message ?></p>
 	<p> Should see post above this </p>
+	<a href ="../index.php"  data-icon="home" data-ajax="false" >
 </body>
 </html>

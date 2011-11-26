@@ -273,6 +273,7 @@ function create_eventWall($detailsRow, $wallResults, $loggedin) {
 	<textarea id="wallPostMessage" name="wallPostMessage" placeholder="type a message here!"></textarea><br/>
     <a onClick="handleSubmit();" data-role = 'button'>Post!</a><br />
   </form>
+  <a href ="wallPostCheck.php"  data-icon="home" data-ajax="false" >
    <br/>
    <br/>
 	 <a href = "#$backid" data-direction="reverse">Back to Event Details</a>
