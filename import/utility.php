@@ -236,7 +236,7 @@ function create_eventWall($detailsRow, $wallResults, $loggedin) {
 		$time = date("g:i A", $uglyTime);
 		$date = date("M j, Y", $uglyTime);
 		
-		$postStr = $message . " <sub> posted by " . $userName . " at " . $time .
+		$postStr =  $message . " <sub> posted by " . $userName . " at " . $time .
 			" on " . $date;
 		if(!$loggedin) $postStr .= " (Log in to view names)";
 		$postStr .=  "</sub><br/>";
@@ -263,7 +263,12 @@ function create_eventWall($detailsRow, $wallResults, $loggedin) {
    <a href = "../index.php" data-ajax="false">Home</a>
   </div>
   <div data-role="content" id="$pgIDContent">
-   <p><strong>Title: </strong> $name</p>
+  <p><strong>Title: </strong> $name</p>
+  <form id = "postCommentForm" action = "wallPostCheck.php" method="POST" data-ajax = "false" name = "wallPostForm">
+	<textarea id="eventDescription" name="postMessage" placeholder="type a message here!"></textarea><br/>
+    <a onClick="handleSubmit();" data-role = 'button'>Post!</a><br />
+  </form>
+
    <p><strong>Posts: </strong> <br/>	 
 		$postsHtml </p>
 	
