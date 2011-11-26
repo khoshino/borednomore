@@ -190,7 +190,7 @@ LEAVEBUTTON;
  <div data-role = "page" id = "$pgID" data-title = "$pgTitle" data-url="$pgID">
   <div data-role="header">
    <h1 class = "pageTitleText">$name Event</h1>
-   <a href = "#$backid">Back</a>
+   <a href = "#$backid" data-direction="reverse">Back</a>
    <a href = "../index.php" data-ajax="false">Home</a>
   </div>
   <div data-role="content" id="$pgIDContent">
@@ -238,7 +238,7 @@ function create_eventWall($row, $wallResults, $loggedin) {
  <div data-role = "page" id = "$pgID" data-title = "$pgTitle" data-url="$pgID">
   <div data-role="header">
    <h1 class = "pageTitleText">$name Event</h1>
-   <a href = "#$backid">Back</a>
+   <a href = "#$backid" data-direction="reverse">Back</a>
    <a href = "../index.php" data-ajax="false">Home</a>
   </div>
   <div data-role="content" id="$pgIDContent">
