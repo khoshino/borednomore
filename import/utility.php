@@ -229,16 +229,16 @@ function create_eventWall($detailsRow, $wallResults, $loggedin) {
 	for( $i = 0; $i < $numRows; $i++){
 		$post = mysql_fetch_array($wallResults);
 		$wallPostId = $post['wallpost_id'];
-		$userName = ($loggedin) ? get_userdata($post['fbid']) : "Anyonomous ";
+		$userName = ($loggedin) ? get_userdata($post['fbid']) : "Anonymous";
 		$message = $post['message'];
 		$creator = $post['creator'];
 		$time = date("g:i A", $post['time']);
 		$date = date("M j, Y", $post['time']);
 		
 		$postStr = $message . " posted by " . $userName . " at " . $time .
-			" on " . $date . "<br/>";
+			" on " . $date;
 		if(!$loggedin) $postStr .= "(Log in to view names)";
-		
+		$postStr .=  "<br/>";
 		$postsHtml .= $postStr;
 	}
  /*
@@ -263,7 +263,8 @@ function create_eventWall($detailsRow, $wallResults, $loggedin) {
   </div>
   <div data-role="content" id="$pgIDContent">
    <p><strong>Title: </strong> $name</p>
-   <p><strong>Posts: </strong> $postsHtml </p>
+   <p><strong>Posts: </strong> <br/> 
+		$postsHtml </p>
 	
    <br/>
    <br/>
