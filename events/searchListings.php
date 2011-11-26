@@ -141,10 +141,10 @@ mysql_select_db("khoshino_mysql", $con);
 			
 			$eventButton = '<li><a href = "#'. $pgId . '"> ' . $name . '</a><br/></li>';
 			if($queryType == $typeTime){
-				$eventButton = '<li><a href = "#'. $pgId . '"> ' . $startTime . "	" . $name . '</a><br/></li>';
+				$eventButton = '<li><a href = "#'. $pgId . '"> ' . $startTime . "		-" . $name . '</a><br/></li>';
 			}
 			if($queryType == $typeLoc){
-				$eventButton = '<li><a href = "#'. $pgId . '"> ' . $location . "	" . $name . '</a><br/></li>';
+				$eventButton = '<li><a href = "#'. $pgId . '"> ' . $location . "	-" . $name . '</a><br/></li>';
 			}
 			
 			
