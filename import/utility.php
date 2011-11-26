@@ -132,7 +132,7 @@ function create_eventPage($row, $backid, $joinable, $leaveable, $loggedin) {
  $pgIDContent = $pgID . "Content";
  $pgTitle = $pgID . "_" . trimharmful($row['name']);
  $dmin = $row['duration'];
- $duration = floor($dmin / 60) . 'hr' . ($dmin % 60) . 'min';
+ $duration = floor($dmin / 60) . 'hr  ' . ($dmin % 60) . 'min';
  $location = ($loggedin) ? $row['location'] : "Log in to get Location Info";
  $start = strtotime($row['start_time']);
  $startTime = date("g:i A", $start);
@@ -140,8 +140,8 @@ function create_eventPage($row, $backid, $joinable, $leaveable, $loggedin) {
  $end = $start + $dmin * 60;
  $endTime = date("g:i A", $end);
  $endDate = date("M j, Y", $end);
- $category = $row['category'];
- $name = $row['name'];
+ $category = ucwords($row['category']);
+ $name = ucwords($row['name']);
  $num_participants = ($row['num_participants']) ? $row['num_participants'] : 1;
  $join_button = "";
  $leave_button = "";
@@ -206,11 +206,50 @@ LEAVEBUTTON;
    $join_button
    $leave_button
   </div>
-  <div data-role="footer">. . .</div>
+  <div data-role="footer"></div>
  </div>
 EVENTPAGE;
  return $returnstr;
 }
+
+function create_eventWall($row, $wallResults, $loggedin) {
+ $pgID = "event" . $row['e_id'] . "Wall";
+ $name = ucwords($row['name']);
+ $pgIDContent = $pgID . "Content";
+ $pgTitle = $pgID . "_" . trimharmful($row['name']);
+ $backid = "event" . $row['e_id'];// the page id of the corresponding event page
+ /*
+ $wallpostId = $row['wallpost_id'];
+ $userName = get_userdata($row['fbid'];
+ $message = row['message'];
+ $creator = row['creator'];
+ */
+
+ 
+
+ //$time = date("g:i A", $row['time']) ;
+ //$date = date("M j, Y", $row['time']);
+ 
+ 
+ $returnstr = <<<EVENTWALL
+ <div data-role = "page" id = "$pgID" data-title = "$pgTitle" data-url="$pgID">
+  <div data-role="header">
+   <h1 class = "pageTitleText">$name Event</h1>
+   <a href = "#$backid">Back</a>
+   <a href = "../index.php" data-ajax="false">Home</a>
+  </div>
+  <div data-role="content" id="$pgIDContent">
+   <p><strong>Title: </strong> $name</p>
+	
+   <br/>
+   <br/>
+  
+  </div>
+  <div data-role="footer"></div>
+ </div>
+EVENTWALL;
+}
+
 
 function getFBJS($appid) {
  $returnstr = <<<FBJS

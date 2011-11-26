@@ -143,10 +143,13 @@ mysql_close($con);
 			
 			echo $eventButton;
 			
-			$eventPage = create_eventPage($eventArray, "searchEventsCategory", true, false, $loggedin); 
-
+			$eventPage = create_eventPage($eventArray, "searchEventsCategory", true, false, $loggedin);
+			//need all the wall posts for each event
+			$wallQuery = "SELECT * FROM `wallposts` " . "WHERE e_id=". $eventArray['e_id']. " ORDER BY `time` DESC";
+			$wallResults = mysql_query($query, $con) or die (mysql_error());
+			$eventWall = create_eventWall($eventArray, $wallResults, $loggedin);
 			$pagesArray[$i] =$eventPage;
-			$newPagesHtml .= $eventPage;
+			$newPagesHtml .= $eventPage . $eventWall;
 		}		
 		?>
 		</ul> <!--closes the unordered list of all the events -->
