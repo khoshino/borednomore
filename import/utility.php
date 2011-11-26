@@ -120,6 +120,13 @@ function get_minutes($duration) {
  return $duration % 60;
 }
 
+function to_minutes($hours, $minutes) {
+ return $minutes + $hours * 60;
+}
+function calc_end_time($startTimeStr, $duration) {
+ return strtotime($startTimeStr, $duration * 60);
+}
+
 function create_eventPage($row, $backid, $joinable, $leaveable, $loggedin) {
  $pgID = "event" . $row['e_id'];
  $pgIDContent = $pgID . "Content";
@@ -127,7 +134,12 @@ function create_eventPage($row, $backid, $joinable, $leaveable, $loggedin) {
  $dmin = $row['duration'];
  $duration = floor($dmin / 60) . 'hr' . ($dmin % 60) . 'min';
  $location = ($loggedin) ? $row['location'] : "Log in to get Location Info";
- $startTime = $row['start_time'];
+ $start = strtotime($row['start_time']);
+ $startTime = date("g:i A", $start);
+ $startDate = date("M j, Y", $start);
+ $end = $start + $dmin * 60;
+ $endTime = date("g:i A", $end);
+ $endDate = date("M j, Y", $end);
  $category = $row['category'];
  $name = $row['name'];
  $num_participants = ($row['num_participants']) ? $row['num_participants'] : 1;
@@ -183,7 +195,8 @@ LEAVEBUTTON;
   <div data-role="content" id="$pgIDContent">
    <p><strong>Title: </strong> $name</p>
    <p><strong>Category: </strong>$category</p>
-   <p><strong>Starts: </strong>$startTime <strong>for</strong> $duration</p>
+   <p><strong>Starts: </strong>$startTime $startDate<strong> Ends: </strong> $endTime $endDate</p>
+   <p><strong>Duration: </strong>$duration</p>
    <p><strong>Location: </strong>$location</p>
    <p><strong>Creator: </strong>$creator_name</p>
    <p><strong>Number of Participants: </strong>$num_participants</p>
