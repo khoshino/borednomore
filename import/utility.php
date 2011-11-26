@@ -272,6 +272,32 @@ function create_eventWall($detailsRow, $wallResults, $loggedin) {
   <form id = "postCommentForm" action = "wallPostCheck.php" method="POST" data-ajax = "false" name = "wallPostForm">
 	<textarea id="wallPostMessage" name="wallPostMessage" placeholder="type a message here!"></textarea><br/>
     <a onClick="handleSubmit();" data-role = 'button'>Post!</a><br />
+	<script>
+	  function handleSubmit() {
+		if (confirm("Are you sure you want to post your comment?")) {
+			<?php
+			 if (!$user_data) {
+			  $login_str = <<<LOGIN
+			   FB.login(function(response) {
+				if (response.authResponse) {
+			LOGIN;
+			  echo $login_str;
+			 }
+			?>
+				 document.getElementById('createEventForm').submit();
+			<?php
+			 if (!$user_data) {
+			  $login_str2 = <<<LOGIN2
+				} else {
+				window.location = 'borednomore.cs147.org';
+			   }}, {scope: 'read_friendlists'});
+			LOGIN2;
+			  echo $login_str2;
+		      }
+		  ?>
+			}
+		}
+   </script>
   </form>
   <a href ="wallPostCheck.php"  data-icon="home" data-ajax="false" >check posts </a>
    <br/>
