@@ -90,7 +90,7 @@ mysql_close($con);
 			</li>
 				<li>
 					<form action = "searchListings.php" method = "post" data-ajax = "false"> 
-						<button name="searchOption" target="searchListings.php" value="time" type = "submit" data-icon="star">
+						<button name="searchOption" target="searchListings.php" value="location" type = "submit" data-icon="star">
 							Location
 						</button>
 					</form>
