@@ -276,13 +276,13 @@ function create_eventWall($detailsRow, $wallResults, $loggedin) {
 	  function handleSubmit() {
 		if (confirm("Are you sure you want to post your comment?")) {
 			<?php
-			 if (!$user_data) {
+			 if (!$user_data){
 			  $login_str = <<<LOGIN
 			   FB.login(function(response) {
-				if (response.authResponse) {
-			LOGIN;
-			  echo $login_str;
-			 }
+				if (response.authResponse){
+LOGIN;
+					echo $login_str;
+				}
 			?>
 				 document.getElementById('createEventForm').submit();
 			<?php
@@ -291,10 +291,11 @@ function create_eventWall($detailsRow, $wallResults, $loggedin) {
 				} else {
 				window.location = 'borednomore.cs147.org';
 			   }}, {scope: 'read_friendlists'});
-			LOGIN2;
+LOGIN2;
 			  echo $login_str2;
 		      }
 		  ?>
+			}
 			}
 		}
    </script>
