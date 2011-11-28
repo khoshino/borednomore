@@ -127,13 +127,24 @@ function calc_end_time($startTimeStr, $duration) {
  return strtotime($startTimeStr, $duration * 60);
 }
 
-function create_eventPage($row, $backid, $joinable, $leaveable, $loggedin) {
+/* create_eventPage
+ * $row is the event data obtained from the database
+ * $backid is the id for the back button
+ * $joinable is a boolean for if the event can be joined or not
+ * $leaveable is a boolean for if the event can be left or not
+ * $user_id is the logged-in user's id. if set to 0, then assume user is not logged in.
+ * If leaveable and user_id is the event's id, then add editing buttons and deleting buttons
+ */
+
+function create_eventPage($row, $backid, $joinable, $leaveable, $user_id) {
  $pgID = "event" . $row['e_id'];
+ $is_creator = ($user_id == $row['creator_fbid']);
+ $deleteable = ($is_creator && $leaveable); // if deleteable, it is also editable
  $pgIDContent = $pgID . "Content";
  $pgTitle = $pgID . "_" . trimharmful($row['name']);
  $dmin = $row['duration'];
  $duration = floor($dmin / 60) . 'hr  ' . ($dmin % 60) . 'min';
- $location = ($loggedin) ? $row['location'] : "Log in to get Location Info";
+ $location = ($user_id) ? $row['location'] : "Log in to get Location Info";
  $start = strtotime($row['start_time']);
  $startTime = date("g:i A", $start);
  $startDate = date("M j, Y", $start);
@@ -141,16 +152,22 @@ function create_eventPage($row, $backid, $joinable, $leaveable, $loggedin) {
  $endTime = date("g:i A", $end);
  $endDate = date("M j, Y", $end);
  $category = ucwords($row['category']);
- $name = ucwords($row['name']);
+ $name = $row['name'];
+ $title = ucwords($row['name']);
+ $private = ($row['private']) ? "Private" : "Public";
  $num_participants = ($row['num_participants']) ? $row['num_participants'] : 1;
+ $desc = $row['description'];
  $join_button = "";
  $leave_button = "";
+ $leave_str = ($deleteable) ? "delete" : "leave";
+ $leave_str_cap = ($deleteable) ? "Delete" : "Leave";
+ $edit_button = "";
  $creator = get_userdata($row['creator_fbid']);
- $creator_name = ($loggedin) ? $creator['name'] : "Log in to see Creator";
+ $creator_name = ($user_id) ? (($is_creator) ? "Me" : $creator['name'] ) : "Log in to see Creator";
  $loginstr = '';
  $loginstr2 = '';
  $eventWall = $pgID .  "Wall";
- if (!$loggedin) {
+ if (!$user_id) {
   $loginstr = <<<LOGIN1
    FB.login(function(response) {
     if (response.authResponse) {
@@ -164,7 +181,7 @@ LOGIN2;
  if ($joinable) {
   $join_button = <<<JOINBUTTON
  <form id = "join$row[e_id]" action = "../mine/myEvents.php" method="POST" data-ajax = "false" name = "join$row[e_id]">
-  <input type="hidden" name="join" value="1"/>
+  <input type="hidden" name="type" value="join"/>
   <input type="hidden" name="eventid" value="$row[e_id]"/>
   <a onClick='if (confirm("Are you sure you want to join this event?")) {
    $loginstr
@@ -178,35 +195,55 @@ JOINBUTTON;
  if ($leaveable) {
   $leave_button = <<<LEAVEBUTTON
  <form id = "leave$row[e_id]" action = "./myEvents.php" method="POST" data-ajax = "false" name = "leave$row[e_id]">
-  <input type="hidden" name="leave" value="1"/>
+  <input type="hidden" name="type" value="leave"/>
   <input type="hidden" name="eventid" value="$row[e_id]"/>
-  <a onClick='if (confirm("Are you sure you want to leave this event?")) {
+  <a onClick='if (confirm("Are you sure you want to $leave_str this event?")) {
   document.getElementById("leave$row[e_id]").submit();
-  }' data-role = 'button'>Leave Event</a>
+  }' data-role = 'button'>$leave_str_cap Event</a>
  </form>
 LEAVEBUTTON;
+ }
+ if ($deleteable) {
+  $edit_button = <<<EDITBUTTON
+ <form id = "edit$row[e_id]" action = "../create/create_event.php" method="POST" data-ajax = "false" name = "leave$row[e_id]">
+  <input type="hidden" name="editing" value="1"/>
+  <input type="hidden" name="name" value="$name"/>
+  <input type="hidden" name="type" value="$category"/>
+  <input type="hidden" name="location" value="$row[location]"/>
+  <input type="hidden" name="start_time" value="$row[start_time]"/>
+  <input type="hidden" name="private" value="$row[private]"/>
+  <input type="hidden" name="e_id" value="$row[e_id]"/>
+  <input type="hidden" name="duration" value="$row[duration]"/>
+  <input type="hidden" name="desc" value="$row[description]"/>
+  <input type="hidden" name="backloc" value="../mine/myEvents.php#event$row[e_id]"/>
+  <a onClick='document.getElementById("edit$row[e_id]").submit();' data-role= 'button'>Edit Event</a>
+ </form>
+EDITBUTTON;
  }
  $returnstr = <<<EVENTPAGE
  <div data-role = "page" id = "$pgID" data-title = "$pgTitle" data-url="$pgID">
   <div data-role="header">
-   <h1 class = "pageTitleText">$name Event</h1>
+   <h1 class = "pageTitleText">$title Event</h1>
    <a href = "#$backid" data-direction="reverse">Back</a>
    <a href = "../index.php" data-ajax="false">Home</a>
   </div>
   <div data-role="content" id="$pgIDContent">
-   <p><strong>Title: </strong> $name</p>
-   <p><strong>Category: </strong>$category</p>
-   <p><strong>Starts: </strong>$startTime $startDate<strong> Ends: </strong> $endTime $endDate</p>
-   <p><strong>Duration: </strong>$duration</p>
-   <p><strong>Location: </strong>$location</p>
+   $edit_button_start
+   <p><strong style="float:left">Title: </strong> $name</p>
+   <p><strong>$private</strong> Event</p>
+   <p><strong style="float:left">Category: </strong>$category</p>
+   <p><strong style="float:left">Starts: </strong><div style="float:left">$startTime <br/>$startDate</div><strong style="float:left"> Ends: </strong> <div>$endTime <br/>$endDate</div></p>
+   <p><strong style="float:left">Duration: </strong>$duration</p>
+   <p><strong style="float:left">Location: </strong>$location</p>
    <p><strong>Creator: </strong>$creator_name</p>
    <p><strong>Number of Participants: </strong>$num_participants</p>
-   <p><strong>Details: </strong>$row[description]</p>
+   <p><strong style="float:left">Details: </strong>$desc</p>
    <br/>
    <a href = "#$eventWall">View Wall Posts</a>
    <br/>
    <br/>
    $join_button
+   $edit_button
    $leave_button
   </div>
   <div data-role="footer"></div>

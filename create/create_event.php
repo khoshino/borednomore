@@ -2,9 +2,20 @@
 <?php
  include '../import/utility.php';
  $user_data = get_fbtoken($appid, $appsecret);
+ $edit = ($_POST['editing']);
+ $time = ($edit) ? strtotime($_POST['start_time']) : time();
+ $duration = ($edit) ? $_POST['duration'] : 60;
+ $duration = (gettype($duration) == "string") ? intval($duration) : $duration;
+ $startHour = intval(date("g", $time));
+ $startHour = ($startHour == 0) ? 12 : $startHour;
+ $startMin = (intval(date("i", $time))) / 15;
+ $startAMPM = date("A", $time);
+ $durationHour = $duration / 60;
+ $durationHour = ($duration == 0) ? 1 : $durationHour;
+ $durationMin = ($duration % 60) / 15;
 ?>
 <html>
-<head><title>CreateEventsPage</title>
+<head><title><?php echo ($edit) ? "EditEventsPage" : "CreateEventsPage";?></title>
 	<?php include("../import/header.php");?>
 </head>
 
@@ -12,18 +23,22 @@
 <?php if (!$user_data) echo getFBJS($appid); ?>
 <div data-role="page" id = "createEvent" data-title="createEvent"> 
 	<div data-role="header">
-		<h1 class = "pageTitleText"><b> Create an Event </b></h1>
+		<h1 class = "pageTitleText"><b> <?php echo ($edit) ? "Edit" : "Create";?> an Event </b></h1>
 		<!-- Navigation Buttons- Change these links to link to different back pages or add links to new pages -->
-		<a href = "./create_event_type.php" data-icon="back" data-direction="reverse">Back</a>
+		<a href = "<?php echo ($edit) ? $_POST["backloc"] : "./create_event_type.php";?>" data-icon="back" data-direction="reverse" <?php echo ($edit) ? 'data-ajax="false"' : "" ;?>>Back</a>
 		<a href = "../index.php" data-icon="home" data-ajax="false">Home</a>
 		<br/>
 	</div> 
 	
 	<div data-role="content" id = "createEventContent">
 		<p> Required fields are marked with an '*' </p>
-		<form id = "createEventForm" action = "../mine/myEvents.php" method="POST" data-ajax = "false" name = "createEventForm">
-		*Title: <input type="text" id="eventTitle" name="eventTitle" required="required" /><br />
-		*Location: <input type="text" id="eventLocation" name="location" required="required" /><br />
+		<form id = "createEventForm" action = "<?php echo ($edit) ? $_POST['backloc'] : '../mine/myEvents.php'; ?>" method="POST" data-ajax = "false" name = "createEventForm">
+		<input type="hidden" id="eventEdit" name="type" value="<?php echo ($edit) ? "edit" : "create";?>"/>
+<?php 
+ echo ($edit) ? '<input type="hidden" id="eventEID" name="e_id" value="' . $_POST["e_id"] . '"/>' : '';
+?>
+		*Title: <input type="text" id="eventTitle" name="eventTitle" <?php if ($edit) echo 'value = "' . $_POST["name"] . '"';?>required="required" /><br />
+		*Location: <input type="text" id="eventLocation" name="location" <?php if ($edit) echo 'value = "' . $_POST["location"] . '"';?>required="required" /><br />
 		*Type: <?php echo $_POST["type"]; ?><input type="hidden" id="eventType" name="eventType" value="<?echo $_POST["type"]; ?>"/><br /><br />
 		
 		
@@ -37,18 +52,13 @@
 				<div class = "ui-block-b">
 				<label for = "select-hour" > Hour</label>
 				<select name = "select-hour" id = "select-hour">
-					<option value = 1> 1</option>
-					<option value = 2> 2</option>
-					<option value = 3> 3</option>
-					<option value = 4> 4</option>
-					<option value = 5> 5</option>
-					<option value = 6> 6</option>
-					<option value = 7> 7</option>
-					<option value = 8> 8</option>
-					<option value = 9> 9</option>
-					<option value = 10> 10</option>
-					<option value = 11> 11</option>
-					<option value = 12> 12</option>
+<?php 
+ $options = "";
+ for ($i = 1; $i <= 12; $i++) {
+  $options .= ($startHour != $i) ? '<option value = "' . $i . '"> ' . $i . '</option>' : '<option value = "'. $i . '" selected="selected"> ' . $i . '</option>';
+ } 
+ echo $options;
+?>
 				</select>
 				
 				 
@@ -56,10 +66,13 @@
 				<div class = ui-block-c>  
 				<label for = "select-min"> Min</label>
 				<select name = "select-min" id = "select-min">
-					<option value = "00"> 0 </option>
-					<option value = "15"> 15 </option>
-					<option value = "30"> 30 </option>
-					<option value = "45"> 45 </option>
+<?php
+ $options = "";
+ for ($i = 0; $i <= 45; $i += 15) {
+  $options .= ($startMin * 15 != $i) ? '<option value = "' . $i .'"> '. $i .'</option>' : '<option value = "' . $i .'" selected="selected"> ' . $i . '</option>';
+ }
+ echo $options;
+?>
 				</select>
 				</div>
 				
@@ -67,8 +80,8 @@
 				<div class = ui-block-d>  
 				<label for = "select-min"> AM/PM </label><!--need this label as a spacing placeholder-->
 				<select name = "select-amPm" id = "select-amPm">
-					<option value = "0"> AM </option>
-					<option value = "12"> PM </option>
+					<option value = "0" <?php echo ($startAMPM == "AM") ? 'selected="selected"' : "";?>> AM </option>
+					<option value = "12" <?php echo ($startAMPM == "PM") ? 'selected="selected"' : "";?>> PM </option>
 				</select>
 				</div>
 			</fieldset>
@@ -82,28 +95,26 @@
 				<div class = "ui-block-b">
 				<label for = "select-hour_dur" > Hour</label>
 				<select name = "select-hour-dur" id = "select-hour-dur" required="required">
-					<option value = "1"> 1</option>
-					<option value = "2"> 2</option>
-					<option value = "3"> 3</option>
-					<option value = "4"> 4</option>
-					<option value = "5"> 5</option>
-					<option value = "6"> 6</option>
-					<option value = "7"> 7</option>
-					<option value = "8"> 8</option>
-					<option value = "9"> 9</option>
-					<option value = "10"> 10</option>
-					<option value = "11"> 11</option>
-					<option value = "12"> 12</option>
+<?php
+ $options = "";
+ for ($i = 1; $i <= 12; $i++) {
+  $options .= ($durationHour != $i) ? '<option value = "' . $i . '"> ' . $i . '</option>' : '<option value = "' . $i . '" selected="selected"> ' . $i . '</option>';
+ }
+ echo $options;
+?>
 				</select>
 				</div>
 				
 				<div class = ui-block-c>  
 				<label for = "select-min-dur"> Min</label>
 				<select name = "select-min-dur" id = "select-min-dur">
-					<option value = "00"> 0 </option>
-					<option value = "15"> 15 </option>
-					<option value = "30"> 30 </option>
-					<option value = "45"> 45 </option>
+<?php
+ $options = "";
+ for ($i = 0; $i <= 45; $i += 15) {
+  $options .= ($durationMin * 15 != $i) ? '<option value = "' . $i . '"> ' . $i . '</option>' : '<option value = "' . $i . '" selected="selected"> ' . $i . '</option>';
+ }
+ echo $options;
+?>
 				</select>
 				</div>
 			
@@ -113,17 +124,17 @@
 		<div data-role = "fieldcontain" >
 			<fieldset data-role = "controlgroup" data-type = "horizontal">
 			<legend>Event Type:</legend>
-			<input type = "radio" name = "radio" id="radio-public" value= "public" checked = "checked">
+			<input type = "radio" name = "radio" id="radio-public" value= "public" <?php echo (!$_POST['private']) ? 'checked = "checked"' : "";?>>
 			<label for = "radio-public"> Public </label>
 			
-         	<input type="radio" name="radio" id="radio-private" value="private" >
+         	<input type="radio" name="radio" id="radio-private" value="private" <?php echo ($_POST['private']) ? 'checked = "checked"' : "";?>>
 			<label for = "radio-private"> Private</label>
 			
 			</fieldset>
 		</div>
 		Description: <br />
-		<textarea id="eventDescription" name="eventDescription" placeholder="A description of your awesome event!"></textarea><br/>
-		<a onClick="handleSubmit();" data-role = 'button'>Create Event!</a><br /> <!--onClick="handleSubmit()"-->
+		<textarea id="eventDescription" name="eventDescription" placeholder="A description of your awesome event!"><?php if ($edit) echo $_POST["desc"];?></textarea><br/>
+		<a onClick="handleSubmit();" data-role = 'button'><?php echo ($edit) ? "Edit" : "Create";?> Event!</a><br /> <!--onClick="handleSubmit()"-->
 		<script>
    function handleSubmit() {
     if (confirm("Is the above information correct?")) {
