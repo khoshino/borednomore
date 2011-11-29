@@ -28,7 +28,7 @@
   // VARIABLE INIT
   $eid = intval($_POST['eid']);
   $eid = strval($eid);
-  $fbid = strval($user_data['user_id']);
+  $fbid = strval($fbtoken['user_id']);
   $time = date('Y-n-j g:i:s', time());
   $message = $_POST['wallPostMessage'];
   $message = mysql_real_escape_string($message);
@@ -250,7 +250,6 @@
     ;//echo "database input was successful!<br/>";
    //if (!$success)
    // echo "failure reason: " . $failure_reason . "<br/>";
-   echo $failureq;
    if ($success_myevents) {
     $wall = '';
     mysql_select_db("khoshino_mysql", $con);
