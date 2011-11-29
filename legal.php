@@ -89,7 +89,9 @@
 					<ol type ="i"><li>modify or copy the materials;</li><li>use the materials for any commercial purpose, or for any public display (commercial or non-commercial);</li><li>attempt to decompile or  reverse engineer any software contained on Bored No More's web site;</li></ol></li>
 					<li>This license shall not automatically terminate if you violate any of these restrictions and may be terminated by Bored No More at any time.  Upon terminating your viewing of these materials or upon termination of this license, you must destroy any downloaded materials in your possession whether in electronic or printed format.</li>
 				</ol>
+				</p>
 				<h3>3. Disclaimer</h3>
+				<p>
 				<ol type="a">
 					<li>The materials on Bored No More's web site are provided "as is".  Bored No More makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties, including without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.  Further, Bored No More does not warrant or make an representations concerning the accuracy, likely results, or reliability of the use of the materials on its Internet web site or otherwise relating to such materials or on any websites linked to this site.</li>
 				</ol>	
