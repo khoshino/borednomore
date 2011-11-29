@@ -1,8 +1,43 @@
 <!DOCTYPE html>
 <?
 include '../import/utility.php';
+$con = mysql_connect("mysql.cs147.org", "khoshino", "JXDBsbH9");
+if (!$con)
+    {
+        die('Could not connect:' . mysql_error());
+    }
 $user_data = get_fbtoken($appid, $appsecret);
 $loggedin = ($user_data) ? true : false;
+if ($_POST['type'] == "post") {
+ // SECURITY BEFORE POSTING ON WALL
+ $post = true;
+ if (!$loggedin) $post = false;
+ // VARIABLE INIT
+ $eid = intval($_POST['eid']);          // dangerous
+ $eid = strval($eid);                   // now safe
+ $fbid = strval($user_data['user_id']); // safe
+ $time = date('Y-n-j g:i:s', time());   // safe
+ $message = $_POST['wallPostMessage'];  // dangerous
+ $message = mysql_real_escape_string($message); // safe
+ $creator = false;                      // safe
+ $failure = -1; // debugging variable
+ if ($post) {
+  mysql_select_db("khoshino_mysql", $con);
+  $query = "SELECT creator_fbid FROM events WHERE e_id='".$eid."'";
+  $result = mysql_query($query);
+  if ($result) {
+   $row = mysql_fetch_array($result);
+   $creator = ($row['creator_fbid'] == $fbid) ? '1' : '0';
+   $query = "INSERT INTO wallposts (e_id, fbid, time, message, creator) VALUES (".$eid.", ".$fbid.", '".$time."', '".$message."', ".$creator.");";
+   $result = mysql_query($query);
+   if (!$result) $failure = 2;
+  } else {
+   $failure = 1;
+  }
+ }
+}
+
+
 $user_fbid = ($user_data) ? $user_data['user_id'] : 0;
 $friendlist = ($user_data) ? get_friendlist($user_data['access_token'], $user_data['user_id']) : array();
 $query_start  = " WHERE ";
@@ -22,12 +57,7 @@ if (count($friendlist)) {
 }
 $query_appendend = ") ";
 
-$con = mysql_connect("mysql.cs147.org", "khoshino", "JXDBsbH9");
 $success = false;
-if (!$con)
-    {
-        die('Could not connect:' . mysql_error());
-    }
 mysql_select_db("khoshino_mysql", $con);
 	$queryType = $_POST["searchOption"];
 	$category = $_POST["category"];
@@ -65,7 +95,7 @@ mysql_select_db("khoshino_mysql", $con);
 	<?php include("../import/header.php");?>
 </head>
 <body>
-<?php if (!$loggedin) echo getFBJS($appid);?>
+<?php if (!$user_data) echo getFBJS($appid);?>
 
 <div data-role = "page" id = "searchEventsCategory" data-title = "searchEvents">
 	<div data-role = "header" >
@@ -155,7 +185,7 @@ mysql_select_db("khoshino_mysql", $con);
 			$wallQuery = "SELECT * FROM `wallposts` " . "WHERE e_id=". $eventArray['e_id']. " ORDER BY `time` DESC";
 			$wallResults = mysql_query($wallQuery, $con) or die (mysql_error());
 			
-			$eventWall = create_eventWall($eventArray, $wallResults, $loggedin);
+			$eventWall = create_eventWall($eventArray, $wallResults, $loggedin, $_POST['searchOption'], $_POST['category']);
 			
 			$pagesArray[$i] =$eventPage;
 			$newPagesHtml .= $eventPage;

@@ -2,7 +2,7 @@
 /* get_facebook_cookie
  * authenticates user's cookie server-side. Code from:
  * developers.facebook.com/docs/guides/web
-*/
+ */
 function get_facebook_cookie($app_id, $app_secret) {
   $args = array();
   parse_str(trim($_COOKIE['fbs_' . $app_id], '\\"'), $args);
@@ -174,7 +174,7 @@ function create_eventPage($row, $backid, $joinable, $leaveable, $user_id) {
 LOGIN1;
   $loginstr2 = <<<LOGIN2
     } else {
-    window.location = "borednomore.cs147.org";
+    window.location = "borednomore.cs147.org/recent/index.php";
    }}, {scope: "read_friendlists"});
 LOGIN2;
  }
@@ -251,45 +251,36 @@ EDITBUTTON;
 EVENTPAGE;
  return $returnstr;
 }
-
-function create_eventWall($detailsRow, $wallResults, $loggedin) {
+/* detailsRow is row for events table
+ * wallResults is the set of relevant rows with e_id == relevant e_id
+ * loggedin is boolean for whether user is logged in or not
+ * searchOption is $_POST['searchOption']
+ * category is $_POST['category']
+ */
+function create_eventWall($detailsRow, $wallResults, $loggedin, $searchOption, $category) {
+ $eid = $detailsRow['e_id'];
  $pgID = "event" . $detailsRow['e_id'] . "Wall";
  $name = ucwords($detailsRow['name']);
  $pgIDContent = $pgID . "Content";
- $pgTitle = $pgID . "_" . trimharmful($row['name']);
- $backid = "event" . $detailsRow['e_id'];// the page id of the corresponding event page
- 
- 
+ $pgTitle = $pgID . "_" . trimharmful($detailsRow['name']);
+ $backid = "event" . $detailsRow['e_id'];// the page id of the corresponding event page 
  $numRows =  mysql_num_rows($wallResults);
  $postsHtml = '';
-		
-	for( $i = 0; $i < $numRows; $i++){
-		$post = mysql_fetch_array($wallResults);
-		$wallPostId = $post['wallpost_id'];
-		$userName = ($loggedin) ? get_userdata($post['fbid']) : "Anonymous";
-		$message = $post['message'];
-		$creator = $post['creator'];
-		$uglyTime = strtotime($row['start_time']);
-		$time = date("g:i A", $uglyTime);
-		$date = date("M j, Y", $uglyTime);
-		
-		$postStr =  $message . " <sub> posted by " . $userName . " at " . $time .
-			" on " . $date;
-		if(!$loggedin) $postStr .= " (Log in to view names)";
-		$postStr .=  "</sub><br/>";
-		$postsHtml .= $postStr;
-	}
- /*
- $wallpostId = $row['wallpost_id'];
- $userName = get_userdata($row['fbid'];
- $message = row['message'];
- $creator = row['creator'];
- */
 
- 
-
- //$time = date("g:i A", $row['time']) ;
- // $date = date("M j, Y", $row['time']);
+ for( $i = 0; $i < $numRows; $i++){
+  $post = mysql_fetch_array($wallResults);
+  $wallPostId = $post['wallpost_id'];
+  $userName = ($loggedin) ? get_userdata($post['fbid']) : "Anonymous";
+  $message = $post['message'];
+  $creator = $post['creator'];
+  $uglyTime = strtotime($detailsRow['start_time']);
+  $time = date("g:i A", $uglyTime);
+  $date = date("M j, Y", $uglyTime);
+  $postStr =  "<strong>" . $userName['name'] . ":</strong> " . $message . " <sub> " . $time . " on " . $date;
+  if(!$loggedin) $postStr .= " (Log in to view names)";
+  $postStr .=  "</sub><br/>";
+  $postsHtml .= $postStr;
+ }
  
  
  $returnstr = <<<EVENTWALL
@@ -300,33 +291,25 @@ function create_eventWall($detailsRow, $wallResults, $loggedin) {
    <a href = "../index.php" data-ajax="false">Home</a>
   </div>
   <div data-role="content" id="$pgIDContent">
-  <p><strong>Title: </strong> $name</p>
-  
-
-  <p><strong>Posts: </strong> <br/>	 
-		$postsHtml </p>
-  <br/><br/>
-  <form id = "postCommentForm" action = "wallPostCheck.php" method="POST" data-ajax = "false" name = "wallPostForm">
-	<textarea id="wallPostMessage" name="wallPostMessage" placeholder="type a message here!"></textarea><br/>
-   <a data-role = 'submit'>PostNoHandle!</a><br />
-   <a onClick="handleSubmit();" data-role = 'button'>Post!</a><br />
-	<script>
-	   function handleSubmit() {
-		if (confirm("Is the above information correct?")) {
-			FB.login(function(response) {
-			if (response.authResponse) {
-				 document.getElementById('createEventForm').submit();
-				 } else {
-			window.location = 'borednomore.cs147.org';
-		   }}, {scope: 'read_friendlists'});
-		}
-	   }
-	</script>
-  </form>
-  <a href ="wallPostCheck.php"  data-icon="home" data-ajax="false" >check posts </a>
-   <br/>
-   <br/>
-	 <a href = "#$backid" data-direction="reverse">Back to Event Details</a>
+   <p><strong>Title: </strong> $name</p>
+   <p><strong>Posts: </strong> <br/>
+   $postsHtml </p>
+   <br/><br/>
+   <form id = "postCommentForm$eid" action = "searchListings.php#$pgID" method="POST" data-ajax = "false" name = "wallPostForm">
+   <input type="hidden" name="searchOption" value="$searchOption"/>
+   <input type="hidden" name="category" value="$category"/>
+   <input type="hidden" name="type" value="post"/>
+   <input type="hidden" name="eid" value="$eid"/>
+   <textarea id="wallPostMessage" name="wallPostMessage" placeholder="type a message here!"></textarea><br/>
+    <a onClick="
+ if (confirm('Is the above information correct?')) {
+  document.getElementById('postCommentForm$eid').submit();
+ }" data-role = 'button'>Post!</a><br />
+   </form>
+   <a href ="wallPostCheck.php"  data-icon="home" data-ajax="false" >check posts </a>
+    <br/>
+    <br/>
+   <a href = "#$backid" data-direction="reverse">Back to Event Details</a>
   </div>
   <div data-role="footer">  </div>
  </div>

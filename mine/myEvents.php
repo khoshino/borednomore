@@ -42,6 +42,8 @@
  /*** Deal with Leave Event Request ***/
  if ($_POST["type"] == "leave") {
   $eventid = $_POST["eventid"];
+  $eventid = intval($eventid);
+  $eventid = strval($eventid);
   if ($loggedin) {
    mysql_select_db("khoshino_mysql", $con);
    $query = "SELECT * FROM participants WHERE fbid='" . $fbtoken['user_id'] . "' AND e_id='" . $eventid . "';";
@@ -214,10 +216,8 @@
   <?php 
    if ($add_to_database)
     ;//echo "database input was successful!<br/>";
-   if (!$success)
-    echo "failure reason: " . $failure_reason . "<br/>";
-   echo ($success) ? $failure_loc ."<br/>" : "failure<br/>";
-   echo "Query: " . $querytmp;
+   //if (!$success)
+   // echo "failure reason: " . $failure_reason . "<br/>";
    if ($success_myevents) {
     foreach ($myevents as $event) {
      echo "<a href = '#event" . $event['e_id'] . "' data-role='button' data-icon='arrow-r' data-iconpos='right'>" . alphanumeric($event['name']) . " </a>"; 

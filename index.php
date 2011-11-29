@@ -55,7 +55,7 @@ function handleStatusChange(response) {
 		<h1 class = "pageTitleClass">Bored No More</h1>
 		<!-- Navigation Buttons- Change these links to link to different back pages or add links to new pages -->
 		<a href = "index.php" data-icon="back" data-direction="reverse" data-ajax="false">Back</a>
-		<a href = "index.php" data-icon="home" data-ajax="false">Home</a>
+		<a href = "about.php" data-icon="info" data-ajax="false">About</a>
 	</div>
 	<div data-role = "content" id = "homeIndexContent"> 				
 		<h3>Let's Do Something!</h3>
@@ -99,7 +99,9 @@ function handleStatusChange(response) {
 			</button>
 		</form>
 	</div>	
-	<div data-role= "footer"><a href="legal.php" rel="external">Legal</a> Footer...</div>
+	<div data-role= "footer"><a href="legal.php" rel="external">Legal</a>Bored No More
+							
+	</div>
 	
 </div>
 

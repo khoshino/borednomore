@@ -4,7 +4,7 @@
 	<head>
 		<title>Legal</title>
 		
-		<meta name="viewport" content="width=device-width, intials-scale=1">
+		<meta name="viewport" content="width=device-width, intial-scale=1">
 		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0rc2/jquery.mobile-1.0rc2.min.css" />
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
 		<script type="text/javascript" src="http://code.jquery.com/mobile/1.0rc2/jquery.mobile-1.0rc2.min.js"></script>
@@ -20,7 +20,7 @@
 			<div data-role="content">
 				<p><a href="legal.php#privpol">Privacy Policy</a> & <a href="legal.php#tos" >Terms of Service<a></p>
 			</div>
-			<div data-role="footer"><h4>Random Footer is Random</h4></div>
+			<div data-role="footer"><h1 class = "pageTitleClass">Bored No More</h1></div>
 		</div>
 		<!-- end main -->
 		
@@ -28,7 +28,7 @@
 		<div data-role="page" id="privpol" data-title="Privacy Policy">
 			<div data-role="header">
 				<h1 class="pageTitleClass">Privacy Policy</h1>
-				<a href="legal.php" data-role="button" data-icon="back" data-direction="reverse">Back</a>
+				<a href="legal.php#main" data-role="button" data-icon="back" data-direction="reverse" data-ajax="false">Back</a>
 				<a href="index.php" data-role="button" data-icon="home" data-ajax="false">Home</a>
 			</div>
 			<div data-role="content">
@@ -44,34 +44,34 @@
 				You may, however, view events anonymously.<br /><br />
 				<strong>What do we use your information for?</strong><br />
 				Any information we collect from you may be used in one of the following ways:
-				<ul><li>to create events</li><li>to list who is attending an event</li><li>Other ways not listed here</li></ul>
+				<ul><li>To create events</li><li>To list who is attending an event</li><li>Other ways not listed here</li></ul>
 				Your information, whether public or private, will not be sold, exchanged, transferred, or given to any other company for any reason whatsoever, without your consent, other than for express purpose of delivering the purchased product or service requested.<br /><br />
 				<strong>How do we protect your information?</strong><br />
 				We feel that your information is securest with a party you already trust.  By using Facebook's API, we guarantee the same security that Facebook does.  We will never exchange or sell your public or private information to a third party.<br /><br /> 
 				<strong>Do we use cookies?</strong><br />
-				No, this website does NOT use cookies<br /><br />
+				Our site does not use cookies, but Facebook may.<br /><br />
 				<strong>Do we disclose any information to outside parties?</strong><br />
-				We do not sell, trade, or otherwise transfer to outside parties your personally identifiable information.  This does not include trusted third parties (Facebook) who assist us in operating our website, conducting our business, or servicing you, so long as those parties agree to keep this information confidential.  We may also release your information when we believe release is approripate to compy with the law, enforce our site policies, or protect ours or others rights, property, or safety.  However, non-personally identifiable visitor information may be provided to other parties for research uses.<br /><br />
+				We do not sell, trade, or otherwise transfer to outside parties your personally identifiable information.  This does not include trusted third parties (Facebook) who assist us in operating our website, conducting our business, or servicing you, so long as those parties agree to keep this information confidential.  We may also release your information when we believe release is appropriate to comply with the law, enforce our site policies, or protect ours or others rights, property, or safety.  However, non-personally identifiable visitor information may be provided to other parties for research uses.<br /><br />
 				<strong>California Online Privacy Protecting Art Compliance</strong><br />
 				Because we value your privacy we have taken the necessary precautions to be in compliance with the Californian Online Privacy Protection Act.  We therefore will not distribute your personal information to outside parties without your consent.<br /><br />
-				<strong>Childrens Online Privacy Protection Act Compliance</strong><br />
-				We are in compliance with the requirements of Childrens Online Privacy Protection Act (CORPA), we do not collect any information from anyone under 13 years of age.  OUr website, products and services are all directd to people who are at least 13 years of age or older.<br /><br />
-				<strong>Stanford Univeristy</strong><br/>
+				<strong>Children's Online Privacy Protection Act Compliance</strong><br />
+				We are in compliance with the requirements of Children's Online Privacy Protection Act (CORPA), we do not collect any information from anyone under 13 years of age.  Our website, products and services are all directed to people who are at least 13 years of age or older.<br /><br />
+				<strong>Stanford University</strong><br/>
 				This website and service was created to be used for the Stanford Computer Science 147 class, <em>Introduction to Human-Computer Interaction Design</em>.  Other than that, this web application is not affiliated with Stanford University.  Using this application gives the creators of the application permission to use data collected on this website to complete course goals and to learn from the experience.<br /><br />
 				<strong>Online Privacy Policy Only</strong><br />
 				This online privacy policy applies only to information collected through our website and not to information collected offline.<br /><br />
 				<strong>Your Consent</Strong><br />
 				By using our site, you consent to our web site privacy policy.<br /><br />
 				<strong>Changes to our Privacy Policy</strong><br />
-				If we decide to change our privacy policy, we will update the Privacy Policy modication date below.<br /><br />
+				If we decide to change our privacy policy, we will update the Privacy Policy modification date below.<br /><br />
 				This policy was last modified on 30 October 2011.<br /><br />
 				</p>
 				
 				<p>
-				We are commited to conducting our business in accordance with these principles in order to ensure that the confidentiality of personal information is protected and maintained.
+				We are committed to conducting our business in accordance with these principles in order to ensure that the confidentiality of personal information is protected and maintained.
 				</p>
 			</div>
-			<div data-role="footer"><h4>Random Footer is Random</h4></div>
+			<div data-role="footer"><h1 class = "pageTitleClass">Bored No More</h1></div>
 		</div>	
 		<!-- End Privacy Policy -->
 		
@@ -85,21 +85,21 @@
 			<div data-role="content">
 				<h2>Web Site Terms and Conditions of Use</h2>
 				<h3>1. Terms</h3>
-				<p>By accessing this web site, you are agreeing to be bound by the web site Terms and Conditions of Use, all applicable laws and regulations, and agree that you are responisble for compliance with any applicable local laws.  If you do not agree with any of these terms, you are prohibited from using or acessing this site.  The materials contained in this web site are protected by applicable copyright and trade mark law.</p>
+				<p>By accessing this web site, you are agreeing to be bound by the web site Terms and Conditions of Use, all applicable laws and regulations, and agree that you are responsible for compliance with any applicable local laws.  If you do not agree with any of these terms, you are prohibited from using or accessing this site.  The materials contained in this web site are protected by applicable copyright and trade mark law.</p>
 				<h3>2. Use License</h3>
 				<ol type="a">
-					<li>Permission is granted to temporaryily download one copy of the materials (information or software) on Bored No More's webs site for personal, non-commerical transitory viewing only.  This si the grant of a license, not a transfer of title, and under this license you may not:
-					<ol type ="i"><li>modify or copy the materials;</li><li>use the materials for any commericial purprose, or for any public display (commericial or non-commericial);</li><li>attempt to decompile or  reverse engineer any software contained on Bored No More's web site;</li></ol></li>
-					<li>This license shall not automatically terminiate if you violate any of these restrictions and may be terminiated by Bored No More at any time.  Upon terminiating your viewing of these materials or upon termination of this license, you must destroy any downloaded materials in your possession whether in electronic or printed format.</li>
+					<li>Permission is granted to temporarily download one copy of the materials (information or software) on Bored No More's webs site for personal, non-commercial transitory viewing only.  This is the grant of a license, not a transfer of title, and under this license you may not:
+					<ol type ="i"><li>modify or copy the materials;</li><li>use the materials for any commercial purpose, or for any public display (commercial or non-commercial);</li><li>attempt to decompile or  reverse engineer any software contained on Bored No More's web site;</li></ol></li>
+					<li>This license shall not automatically terminate if you violate any of these restrictions and may be terminated by Bored No More at any time.  Upon terminating your viewing of these materials or upon termination of this license, you must destroy any downloaded materials in your possession whether in electronic or printed format.</li>
 				</ol>
 				<h3>3. Disclaimer</h3>
 				<ol type="a">
-					<li>The materials on Bored No More's web site are provided "as is".  Bored No More makes no warranties, exprressed or implied, and hereby diclaims and negates all other warranties, including without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.  Further, Bored No More does not warrant or make an representations concerning the accuracy, likely results, or reliability of the use of the materials on its Internet web site or otherwise relating to such materials or on any websites linked to this site.</li>
+					<li>The materials on Bored No More's web site are provided "as is".  Bored No More makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties, including without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.  Further, Bored No More does not warrant or make an representations concerning the accuracy, likely results, or reliability of the use of the materials on its Internet web site or otherwise relating to such materials or on any websites linked to this site.</li>
 				</ol>	
 				<h3>4. Limitations</h3>
-				<p>In no event shall Bored No More or its suppliers be liable to any damages (including, without limitation, damages for loss of data or profit, or due to business interruption,) arising out of the use of inablity to use the materials of Bored No More's Internet site, even if Bored No More or a Bored No More authorized representative has been notified orally or in writing of the possibility of such damage.  Because some jurisdictions do not allow limiations on implied warranties, or limitations of liability for consequential or incidental damages, these limitations may not apply to you.</p>
+				<p>In no event shall Bored No More or its suppliers be liable to any damages (including, without limitation, damages for loss of data or profit, or due to business interruption,) arising out of the use of inability to use the materials of Bored No More's Internet site, even if Bored No More or a Bored No More authorized representative has been notified orally or in writing of the possibility of such damage.  Because some jurisdictions do not allow limitations on implied warranties, or limitations of liability for consequential or incidental damages, these limitations may not apply to you.</p>
 				<h3>5. Revisions and Errata</h3>
-				<p>The materials appearing on Bored No More's web site could include technical, typographical, or photographic errors.  Bored No More does not warrant that any of the materials on its website are accurate, complete, or curent.  Bored No More may make changes to the materials contained on its web site at any time without notice.  Bored No More does not, however, make any commitment to update the materials.</p>
+				<p>The materials appearing on Bored No More's web site could include technical, typographical, or photographic errors.  Bored No More does not warrant that any of the materials on its website are accurate, complete, or current.  Bored No More may make changes to the materials contained on its web site at any time without notice.  Bored No More does not, however, make any commitment to update the materials.</p>
 				<h3>6. Links</h3>
 				<p>Bored No More has not reviewed all of the sites linked to its Internet web site and is not responsible for the contents of any such linked site.  The inclusion of any link does not imply endorsement by Bored No More of the site.  Use of any such linked web site is at the user's own risk.</p>
 				<h3>7. Site Terms of Use Modifications</h3>
@@ -109,7 +109,7 @@
 				
 				<p>General Terms and Conditions applicable to Use of a Web Site.</p>
 			</div>
-			<div data-role="footer"><h4>Random Footer is Random</h4></div>
+			<div data-role="footer"><h1 class = "pageTitleClass">Bored No More</h1></div>
 		</div>	
 		<!-- End Terms of Service -->	
 	</body>
