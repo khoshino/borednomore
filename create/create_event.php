@@ -37,16 +37,16 @@
 <?php 
  echo ($edit) ? '<input type="hidden" id="eventEID" name="e_id" value="' . $_POST["e_id"] . '"/>' : '';
 ?>
-		*Title: <input type="text" id="eventTitle" name="eventTitle" <?php if ($edit) echo 'value = "' . $_POST["name"] . '"';?>required="required" /><br />
-		*Location: <input type="text" id="eventLocation" name="location" <?php if ($edit) echo 'value = "' . $_POST["location"] . '"';?>required="required" /><br />
-		*Type: <?php echo $_POST["type"]; ?><input type="hidden" id="eventType" name="eventType" value="<?echo $_POST["type"]; ?>"/><br /><br />
+		<legend class = "required"><*Title: </legend><input type="text" id="eventTitle" name="eventTitle" <?php if ($edit) echo 'value = "' . $_POST["name"] . '"';?>required="required" /><br />
+		<legend class = "required">*Location: </legend><input type="text" id="eventLocation" name="location" <?php if ($edit) echo 'value = "' . $_POST["location"] . '"';?>required="required" /><br />
+		<legend class = "required">*Type: </legend><?php echo $_POST["type"]; ?><input type="hidden" id="eventType" name="eventType" value="<?echo $_POST["type"]; ?>"/><br /><br />
 		
 		
 		<div data-role = "fieldcontain" data-type = "horizontal">
 			<fieldset data-role = "controlgroup" class = "ui-grid-c" data-type = "horizontal">
 				
 				<div class = "ui-block-a">
-				<legend>*Start Time:</legend>
+				<legend class = "required">*Start Time:</legend>
 				</div>
 
 				<div class = "ui-block-b">
