@@ -54,6 +54,7 @@
 				<select name = "select-hour" id = "select-hour">
 <?php 
  $options = "";
+ $options .= '<option value = "-1"> Hour</option>'
  for ($i = 1; $i <= 12; $i++) {
   $options .= ($startHour != $i) ? '<option value = "' . $i . '"> ' . $i . '</option>' : '<option value = "'. $i . '" selected="selected"> ' . $i . '</option>';
  } 
@@ -68,6 +69,7 @@
 				<select name = "select-min" id = "select-min">
 <?php
  $options = "";
+ $options .= '<option value = "-1"> Min</option>';
  for ($i = 0; $i <= 45; $i += 15) {
   $options .= ($startMin * 15 != $i) ? '<option value = "' . $i .'"> '. $i .'</option>' : '<option value = "' . $i .'" selected="selected"> ' . $i . '</option>';
  }
