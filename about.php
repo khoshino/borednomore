@@ -2,7 +2,7 @@
 <html>
 
 	<head><title>AboutBoredNoMore</title>
-		<?php include("./import/header.php");?>>
+		<?php include("./import/header.php"); ?>>
 	</head>
 	<body>
 		<div data-role="page" id="main">
