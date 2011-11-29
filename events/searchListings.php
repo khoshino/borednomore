@@ -53,6 +53,7 @@ if (count($friendlist)) {
    $first = 0;
   $query_clause .= $friend;
  }
+ $query_clause .= ($loggedin) ? ", " . $user_data['user_id'] : '';
  $query_clause .= ")) ";
 }
 $query_appendend = ") ";
@@ -180,7 +181,7 @@ mysql_select_db("khoshino_mysql", $con);
 			
 			
 			echo $eventButton;			
-			$eventPage = create_eventPage($eventArray, "searchEventsCategory", true, false, $user_fbid);
+			$eventPage = ($loggedin) ? create_eventPage($eventArray, "searchEventsCategory", false, true, $user_fbid) : create_eventPage($eventArray, "searchEventsCategory", true, false, $user_fbid);
 			
 			//creating event wall
 			$wallQuery = "SELECT * FROM `wallposts` " . "WHERE e_id=". $eventArray['e_id']. " ORDER BY `time` DESC";
