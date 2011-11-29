@@ -20,5 +20,9 @@ ol{
 }
 .footer{
 	font-family:"Comic Sans MS", cursive, sans-serif;
-	color:purpleS;
+	color:purple;
+}
+.ui-btn-text{
+	font-family:"Comic Sans MS", cursive, sans-serif;
+	color:cyan;
 }
