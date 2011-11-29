@@ -40,7 +40,9 @@
 				You may, however, view events anonymously.<br /><br />
 				<strong>What do we use your information for?</strong><br />
 				Any information we collect from you may be used in one of the following ways:
+				</p>
 				<ul><li>To create events</li><li>To list who is attending an event</li><li>Other ways not listed here</li></ul>
+				<p>
 				Your information, whether public or private, will not be sold, exchanged, transferred, or given to any other company for any reason whatsoever, without your consent, other than for express purpose of delivering the purchased product or service requested.<br /><br />
 				<strong>How do we protect your information?</strong><br />
 				We feel that your information is securest with a party you already trust.  By using Facebook's API, we guarantee the same security that Facebook does.  We will never exchange or sell your public or private information to a third party.<br /><br /> 
@@ -83,19 +85,16 @@
 				<h3>1. Terms</h3>
 				<p>By accessing this web site, you are agreeing to be bound by the web site Terms and Conditions of Use, all applicable laws and regulations, and agree that you are responsible for compliance with any applicable local laws.  If you do not agree with any of these terms, you are prohibited from using or accessing this site.  The materials contained in this web site are protected by applicable copyright and trade mark law.</p>
 				<h3>2. Use License</h3>
-				<p><!-- modified-->
 				<ol type="a">
 					<li>Permission is granted to temporarily download one copy of the materials (information or software) on Bored No More's webs site for personal, non-commercial transitory viewing only.  This is the grant of a license, not a transfer of title, and under this license you may not:
 					<ol type ="i"><li>modify or copy the materials;</li><li>use the materials for any commercial purpose, or for any public display (commercial or non-commercial);</li><li>attempt to decompile or  reverse engineer any software contained on Bored No More's web site;</li></ol></li>
 					<li>This license shall not automatically terminate if you violate any of these restrictions and may be terminated by Bored No More at any time.  Upon terminating your viewing of these materials or upon termination of this license, you must destroy any downloaded materials in your possession whether in electronic or printed format.</li>
 				</ol>
-				</p>
+				
 				<h3>3. Disclaimer</h3>
-				<p>
 				<ol type="a">
 					<li>The materials on Bored No More's web site are provided "as is".  Bored No More makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties, including without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.  Further, Bored No More does not warrant or make an representations concerning the accuracy, likely results, or reliability of the use of the materials on its Internet web site or otherwise relating to such materials or on any websites linked to this site.</li>
 				</ol>	
-				</p><!-- modified-->
 				<h3>4. Limitations</h3>
 				<p>In no event shall Bored No More or its suppliers be liable to any damages (including, without limitation, damages for loss of data or profit, or due to business interruption,) arising out of the use of inability to use the materials of Bored No More's Internet site, even if Bored No More or a Bored No More authorized representative has been notified orally or in writing of the possibility of such damage.  Because some jurisdictions do not allow limitations on implied warranties, or limitations of liability for consequential or incidental damages, these limitations may not apply to you.</p>
 				<h3>5. Revisions and Errata</h3>
