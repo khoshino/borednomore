@@ -26,3 +26,6 @@ ol{
 	font-family:"Comic Sans MS", cursive, sans-serif;
 	color:purple;
 }
+.required{
+	color:red;
+}
