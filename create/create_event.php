@@ -76,7 +76,7 @@
 				</select>
 				</div>
 				
-					
+				<!--	
 				<div class = ui-block-d>  
 				<label for = "select-min"> AM/PM </label><!--need this label as a spacing placeholder-->
 				<select name = "select-amPm" id = "select-amPm">
@@ -89,7 +89,7 @@
 			<fieldset data-role = "controlgroup" class = "ui-grid-c" data-type = "horizontal">
 				
 				<div class = "ui-block-a">
-				<legend>*Approximate Duration:</legend>
+				<legend>*Duration:</legend>
 				</div>
 
 				<div class = "ui-block-b">
