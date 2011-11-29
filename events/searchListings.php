@@ -110,6 +110,7 @@ mysql_select_db("khoshino_mysql", $con);
 		<a href = "<?php echo $prevPage ?>" data-icon="back" data-direction="reverse">Back</a>
 		<a href = "../index.php"  data-icon="home" data-ajax="false" >Home</a>
 		<div data-role="navbar">
+		<!-- nav bar class="ui-btn-active"-->
 			<ul>
 				<li>
 					<form action = "searchListings.php" method = "post" data-ajax = "false"> 
