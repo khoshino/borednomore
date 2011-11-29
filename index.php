@@ -99,7 +99,8 @@ function handleStatusChange(response) {
 			</button>
 		</form>
 	</div>	
-	<div data-role= "footer"><a href="legal.php" rel="external">Legal</a>Bored No More
+	<div data-role= "footer" class = "footer"><a href="legal.php" rel="external">Legal</a>
+	<p>Bored No More</p>
 							
 	</div>
 	
