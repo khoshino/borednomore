@@ -109,7 +109,7 @@ function alphanumeric($str) {
 }
 
 function trimharmful($str) {
- return preg_replace('/^\d\w\s\.\?!\(\)/', '', $str);
+ return htmlspecialchars($str);//preg_replace('/^\d\w\.\s\?!\(\)/', '', $str);
 }
 
 function get_hours($duration) {
@@ -156,7 +156,7 @@ function create_eventPage($row, $backid, $joinable, $leaveable, $user_id) {
  $title = ucwords($row['name']);
  $private = ($row['private']) ? "Private" : "Public";
  $num_participants = ($row['num_participants']) ? $row['num_participants'] : 1;
- $desc = $row['description'];
+ $desc = trimharmful($row['description']);
  $join_button = "";
  $leave_button = "";
  $leave_str = ($deleteable) ? "delete" : "leave";
@@ -260,7 +260,7 @@ EVENTPAGE;
 function create_eventWall($detailsRow, $wallResults, $loggedin, $searchOption, $category, $targetPage) {
  $eid = $detailsRow['e_id'];
  $pgID = "event" . $detailsRow['e_id'] . "Wall";
- $name = ucwords($detailsRow['name']);
+ $name = ucwords(trimharmful($detailsRow['name']));
  $pgIDContent = $pgID . "Content";
  $pgTitle = $pgID . "_" . trimharmful($detailsRow['name']);
  $backid = "event" . $detailsRow['e_id'];// the page id of the corresponding event page 
@@ -271,7 +271,7 @@ function create_eventWall($detailsRow, $wallResults, $loggedin, $searchOption, $
   $post = mysql_fetch_array($wallResults);
   $wallPostId = $post['wallpost_id'];
   $userName = ($loggedin) ? get_userdata($post['fbid']) : "Anonymous";
-  $message = $post['message'];
+  $message = trimharmful($post['message']);
   $creator = $post['creator'];
   $uglyTime = strtotime($post['time']);
   $time = date("g:i A", $uglyTime);
