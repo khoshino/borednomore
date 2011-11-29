@@ -6,6 +6,8 @@
  $con = mysql_connect("mysql.cs147.org", "khoshino", "JXDBsbH9");
  $success = false;
  $success_myevents = false;
+ $failure = -1;
+ $failureq = 'No failure';
  $failure_reason = "";
  $failure_reason_myevents = "";
  $fbtoken = get_fbtoken($appid, $appsecret);
@@ -16,6 +18,38 @@
  if (!$con)
  {
   die('Could not connect: ' . mysql_error());
+ }
+
+ /*** Deal with Wall Post Request ***/
+ if ($_POST["type"] == "post") {
+  // SECURITY BEFORE POSTING ON WALL
+  $post = true;
+  if (!$loggedin) $post = false;
+  // VARIABLE INIT
+  $eid = intval($_POST['eid']);
+  $eid = strval($eid);
+  $fbid = strval($fbtoken['user_id']);
+  $time = date('Y-n-j g:i:s', time());
+  $message = $_POST['wallPostMessage'];
+  $message = mysql_real_escape_string($message);
+  $post = (strlen($message) > 0) ? $post : false;
+  $creator = false;
+  $failure = -1; // debugging var
+  if ($post) {
+   mysql_select_db("khoshino_mysql", $con);
+   $query = "SELECT creator_fbid FROM events WHERE e_id='".$eid."'";
+   $result = mysql_query($query);
+   if ($result) {
+    $row = mysql_fetch_array($result);
+    $creator = ($row['creator_fbid'] == $fbid) ? '1' : '0';
+    $query = "INSERT INTO wallposts (e_id, fbid, time, message, creator) VALUES (".$eid.", ".$fbid.", '".$time."', '".$message."', ".$creator.");";
+    $failureq = $query;
+    $result = mysql_query($query);
+    if (!$result) $failure = 2;
+   } else {
+    $failure = 1;
+   }
+  }
  }
 
  /*** Deal with Join Event Request ***/
@@ -190,8 +224,6 @@
    }
  }
  
- /*** Close connection with Database ***/
- mysql_close($con);
     
 ?>
 <html>
@@ -219,8 +251,13 @@
    //if (!$success)
    // echo "failure reason: " . $failure_reason . "<br/>";
    if ($success_myevents) {
+    $wall = '';
+    mysql_select_db("khoshino_mysql", $con);
     foreach ($myevents as $event) {
      echo "<a href = '#event" . $event['e_id'] . "' data-role='button' data-icon='arrow-r' data-iconpos='right'>" . alphanumeric($event['name']) . " </a>"; 
+     $query = "SELECT * FROM wallposts WHERE e_id='" . $event['e_id'] . "' ORDER BY time DESC";
+     $query_results = mysql_query($query) or die (mysql_error());
+     $wall .= create_eventWall($event, $query_results, $loggedin, '', '', "myEvents.php"); 
     }
    } else {
     ;//echo "failure reason for my_events: " . $failure_reason_myevents . "<br/>";
@@ -245,9 +282,12 @@
    $multipages .= create_eventPage($row, "myEvents", false, true, $fbtoken['user_id']);
   }
   echo $multipages;
+  echo $wall;
  } else {
   ;//echo "failure reason for my_events: " . $failure_reason_myevents . "<br/>";
  }
+ /*** Close connection with Database ***/
+ mysql_close($con);
 ?>
 </body>
 

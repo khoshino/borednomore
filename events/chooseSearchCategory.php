@@ -56,7 +56,7 @@ $user_fbid = ($user_data)? $user_data['user_id'] : 0;
 		</form>
 		
 	</div>
-	<div data-role = "footer">footer...</div>
+	<div data-role = "footer"><h1 class = "pageTitleText">Bored No More</h1></div>
 </div>
 
 </body>

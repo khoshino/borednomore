@@ -19,6 +19,7 @@ if ($_POST['type'] == "post") {
  $time = date('Y-n-j g:i:s', time());   // safe
  $message = $_POST['wallPostMessage'];  // dangerous
  $message = mysql_real_escape_string($message); // safe
+ $post = (strlen($message) > 0) ? $post : false;
  $creator = false;                      // safe
  $failure = -1; // debugging variable
  if ($post) {
@@ -53,7 +54,6 @@ if (count($friendlist)) {
    $first = 0;
   $query_clause .= $friend;
  }
- $query_clause .= ($loggedin) ? ", " . $user_data['user_id'] : '';
  $query_clause .= ")) ";
 }
 $query_appendend = ") ";
@@ -187,7 +187,7 @@ mysql_select_db("khoshino_mysql", $con);
 			$wallQuery = "SELECT * FROM `wallposts` " . "WHERE e_id=". $eventArray['e_id']. " ORDER BY `time` DESC";
 			$wallResults = mysql_query($wallQuery, $con) or die (mysql_error());
 			
-			$eventWall = create_eventWall($eventArray, $wallResults, $loggedin, $_POST['searchOption'], $_POST['category']);
+			$eventWall = create_eventWall($eventArray, $wallResults, $loggedin, $_POST['searchOption'], $_POST['category'], "searchListings.php");
 			
 			$pagesArray[$i] =$eventPage;
 			$newPagesHtml .= $eventPage;
@@ -199,7 +199,7 @@ mysql_select_db("khoshino_mysql", $con);
 		</div>
 	</div>
 	
-	<div data-role = "footer">footer...<!-- <?php // echo $newPagesHtml; ?> --></div>
+	<div data-role = "footer"><h1 class = "pageTitleText">Bored No More</h1><!-- <?php // echo $newPagesHtml; ?> --></div>
 </div>
 
 <?php 
@@ -207,4 +207,5 @@ mysql_select_db("khoshino_mysql", $con);
 ?>
 </body>
 </html>
+
 
