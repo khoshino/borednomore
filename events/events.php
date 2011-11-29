@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> <!-- this page is NOT in use -->
 <?
 include ("../import/utility.php");
 $user_token = get_fbtoken($appid, $appsecret);

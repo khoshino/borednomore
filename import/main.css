@@ -2,7 +2,15 @@ body {
 	font-family:"Comic Sans MS", cursive, sans-serif;
 	color:blue;
 }
-p, ul, ol{
+p{
 	font-family:"Comic Sans MS", cursive, sans-serif;
 	color:green;
+}
+ul{
+	font-family:"Comic Sans MS", cursive, sans-serif;
+	color:yellow;
+}
+ol{
+	font-family:"Comic Sans MS", cursive, sans-serif;
+	color:teal;
 }
