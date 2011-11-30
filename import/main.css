@@ -30,5 +30,10 @@ ol{
 	color:red;
 }
 .headerButton{
+	
+	color:green;
+}
+.headerButton.ui-btn-text{
+	
 	color:cyan;
 }
