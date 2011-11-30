@@ -103,8 +103,8 @@ mysql_select_db("khoshino_mysql", $con);
 		<h1 class = "pageTitleText"> Search Events </h1>
 		<!-- Navigation Buttons Change these links to link to different back pages or add links to new pages-->
 		
-		<a href = "../index.php" data-icon="back" data-direction="reverse">Back</a>
-		<a href = "../index.php"  data-icon="home" data-ajax="false" >Home</a>
+		<a href = "../index.php" class = "headerButton" data-icon="back" data-direction="reverse">Back</a>
+		<a href = "../index.php"  class = "headerButton" data-icon="home" data-ajax="false" >Home</a>
 		<div data-role="navbar">
 		<!-- nav bar class="ui-btn-active"-->
 			<ul>
