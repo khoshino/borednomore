@@ -98,17 +98,12 @@ mysql_select_db("khoshino_mysql", $con);
 <body>
 <?php if (!$user_data) echo getFBJS($appid);?>
 
-<div data-role = "page" id = "searchEventsCategory" data-title = "searchEvents">
+<div data-role = "page" id = "searchListings" data-title = "searchListings">
 	<div data-role = "header" >
 		<h1 class = "pageTitleText"> Search Events </h1>
 		<!-- Navigation Buttons Change these links to link to different back pages or add links to new pages-->
-		<?php
-		$prevPage = "./events.php"; //previous page defaults to the search option page
-		if ($queryType == $typeCat){ //if searching by "category" change the previous page to be the category selection page 
-			$prevPage = "./chooseSearchCategory.php";
-		}
-		?>
-		<a href = "<?php echo $prevPage ?>" data-icon="back" data-direction="reverse">Back</a>
+		
+		<a href = "../index.php" data-icon="back" data-direction="reverse">Back</a>
 		<a href = "../index.php"  data-icon="home" data-ajax="false" >Home</a>
 		<div data-role="navbar">
 		<!-- nav bar class="ui-btn-active"-->
