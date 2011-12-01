@@ -38,8 +38,8 @@ $user_fbid = ($user_data)? $user_data['user_id'] : 0;
 	<div data-role = "header">
 		<h1 class = "pageTitleText"><b> Select a Type of Event </b></h1>
 		<!-- Navigation Buttons- Change these links to link to different back pages or add links to new pages-->
-		<a href = "./events.php" data-ajax = "false" data-icon="back" data-direction="reverse">Back</a>
-		<a href = "../index.php" data-icon="home" data-ajax="false">Home</a>
+		<a href = "./events.php" class = "headerButton" data-ajax = "false" data-icon="back" data-direction="reverse">Back</a>
+		<a href = "../index.php" class = "headerButton" data-icon="home" data-ajax="false">Home</a>
 	</div>
 
 	<div data-role = "content" id = "categorySelectionPageContent">
