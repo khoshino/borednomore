@@ -59,3 +59,7 @@ h3{
 	font-family: "Verdana", Geneva, sans-serif;
 	color:rgb(200,200,100);
 }
+#indexFooter {
+	text-align:center;
+	data-position:fixed;
+}

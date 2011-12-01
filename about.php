@@ -7,7 +7,7 @@
 	<body>
 		<div data-role="page" id="main">
 			<div data-role="header">
-				<h1 class = "pageTitleClass">About</h1>
+				<h1 class = "pageTitleText">About</h1>
 				<!-- Navigation Buttons- Change these links to link to different back pages or add links to new pages -->
 				<a href = "index.php" class = "headerButton" data-icon="back" data-direction="reverse">Back</a>
 				<a href = "index.php" class = "headerButton" data-icon="home" data-ajax="false">Home</a>
@@ -19,7 +19,7 @@
 				<p>"Busy, busy, busy" is the motto of modern society. In our tightly scheduled lives, it is often difficult or impossible to engage in spontaneous activities, especially if those activities involve other people with their own packed schedules. When we only have an hour free, rather than wasting half an hour of our precious time trying to figure out who is available to play a game, we'd rather sit alone and surf the net or be bored. <em>Bored No More</em> is an app that allows currently free people to easily connect with others so they can plan spontaneous group activities.</p>
 				
 			</div>
-			<div data-role="footer"><h1 class = "pageTitleClass">Bored No More</h1></div>
+			<div data-role="footer"><h1 class = "pageTitleText">Bored No More</h1></div>
 		</div>
 		<!-- end main -->
 		

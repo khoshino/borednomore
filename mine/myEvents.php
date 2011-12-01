@@ -266,7 +266,7 @@
   ?>
 
  </div>
- <div data-role = "footer"> footer...</div>
+ <div data-role = "footer"> <h1 class = "pageTitleClass">Bored No More</h1></div>
 </div>
 <?php
  if ($success_myevents) {
