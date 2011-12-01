@@ -9,8 +9,8 @@
 			<div data-role="header">
 				<h1 class = "pageTitleClass">About</h1>
 				<!-- Navigation Buttons- Change these links to link to different back pages or add links to new pages -->
-				<a href = "index.php" data-icon="back" data-direction="reverse">Back</a>
-				<a href = "index.php" data-icon="home" data-ajax="false">Home</a>
+				<a href = "index.php" class = "headerButton" data-icon="back" data-direction="reverse">Back</a>
+				<a href = "index.php" class = "headerButton" data-icon="home" data-ajax="false">Home</a>
 			</div>
 			<div data-role="content">
 				<p>Forgot class was cancelled and found yourself with an unexpected hour of freedom? Finding yourself bored because you don't know who else is available, or what events are going on? Feel the urge to play a pick-up game of basket ball or Super-Smash Brawl but don't know who is free or how to contact them?</p>

@@ -25,8 +25,8 @@
 	<div data-role="header">
 		<h1 class = "pageTitleText"><b> <?php echo ($edit) ? "Edit" : "Create";?> an Event </b></h1>
 		<!-- Navigation Buttons- Change these links to link to different back pages or add links to new pages -->
-		<a href = "<?php echo ($edit) ? $_POST["backloc"] : "./create_event_type.php";?>" data-icon="back" data-direction="reverse" <?php echo ($edit) ? 'data-ajax="false"' : "" ;?>>Back</a>
-		<a href = "../index.php" data-icon="home" data-ajax="false">Home</a>
+		<a href = "<?php echo ($edit) ? $_POST["backloc"] : "./create_event_type.php";?>" class = "headerButton" data-icon="back" data-direction="reverse" <?php echo ($edit) ? 'data-ajax="false"' : "" ;?>>Back</a>
+		<a href = "../index.php" class = "headerButton" data-icon="home" data-ajax="false">Home</a>
 		<br/>
 	</div> 
 	

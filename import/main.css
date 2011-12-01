@@ -18,12 +18,22 @@ ol{
 	font-family:"Comic Sans MS", cursive, sans-serif;
 	color:teal;
 }
+h3{
+	font-family:"Comic Sans MS", cursive, sans-serif;
+	//font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	//font-family: "Verdana", Geneva, sans-serif;
+	//font-family: "Trebuchet MS", Helvetica, sans-serif;
+	color:rgb(0,0,255);
+}
 .footer{
 	font-family:"Comic Sans MS", cursive, sans-serif;
 	color:purple;
 }
 .ui-btn-text{
 	font-family:"Comic Sans MS", cursive, sans-serif;
+	//font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	font-family: "Verdana", Geneva, sans-serif;
+	//font-family: "Trebuchet MS", Helvetica, sans-serif;
 	color:purple;
 }
 .required{

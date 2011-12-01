@@ -10,8 +10,8 @@
 			<div data-role="header">
 				<h1 class = "pageTitleClass">Legal</h1>
 				<!-- Navigation Buttons- Change these links to link to different back pages or add links to new pages -->
-				<a href = "index.php" data-icon="back" data-direction="reverse">Back</a>
-				<a href = "index.php" data-icon="home" data-ajax="false">Home</a>
+				<a href = "index.php" class = "headerButton" data-icon="back" data-direction="reverse">Back</a>
+				<a href = "index.php" class = "headerButton" data-icon="home" data-ajax="false">Home</a>
 			</div>
 			<div data-role="content">
 				<p><a href="legal.php#privpol">Privacy Policy</a> & <a href="legal.php#tos" >Terms of Service<a></p>

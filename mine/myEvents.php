@@ -228,10 +228,11 @@
 ?>
 <html>
 <head><title>MyEvents</title>
- <!--scripts to use JQuery Mobile-->
+ <!--scripts to use JQuery Mobile--
  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0rc2/jquery.mobile-1.0rc2.min.css" />
  <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
  <script src="http://code.jquery.com/mobile/1.0rc2/jquery.mobile-1.0rc2.min.js"></script> 
+ -->
  <?php
   include('../import/header.php');
  ?>
@@ -241,8 +242,8 @@
  <div data-role = "header">
   <h1 class = "pageTitleText">My Events</h1>
   <!-- Navigation Button Change these links to link to different back pages or add links to new pages-->
-  <a href = "../index.php"data-icon="back" data-direction="reverse" data-ajax="false">Back</a>
-  <a href = "../index.php" data-icon="home" data-ajax="false">Home</a>
+  <a href = "../index.php" class = "headerButton" data-icon="back" data-direction="reverse" data-ajax="false">Back</a>
+  <a href = "../index.php" class = "headerButton" data-icon="home" data-ajax="false">Home</a>
  </div>
  <div data-role = "content" id = "myEventsContent">
   <?php 
