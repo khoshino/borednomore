@@ -29,12 +29,16 @@ legend{
 	font-family:"Comic Sans MS", cursive, sans-serif;
 	color:teal;
 }
+strong{
+	font-family:"Comic Sans MS", cursive, sans-serif;
+	color:rgb(0,0,255);
+}
 .footer{
 	font-family:"Comic Sans MS", cursive, sans-serif;
 	color:purple;
 }
 .ui-btn-text{
-	font-family:"Comic Sans MS", cursive, sans-serif;
+	//font-family:"Comic Sans MS", cursive, sans-serif;
 	//font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
 	font-family: "Verdana", Geneva, sans-serif;
 	//font-family: "Trebuchet MS", Helvetica, sans-serif;
@@ -45,9 +49,6 @@ legend{
 }
 
 .headerButton span.ui-btn-text{
-	//font-family:"Tahoma, Geneva", sans-serif;
-	//font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
-	//font-family: "Verdana", Geneva, sans-serif;
 	color:rgb(200,255,255);
 }
 .pageTitleText{
@@ -61,7 +62,7 @@ legend{
 }
 .ui-li-heading{
 	font-family: "Verdana", Geneva, sans-serif;
-	color:rgb(200,200,100);
+	color:rgb(200,200,100); //lihgt yellow
 }
 .ui-controlgroup-label{
 	font-family:"Comic Sans MS", cursive, sans-serif;
