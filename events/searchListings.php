@@ -108,13 +108,13 @@ mysql_select_db("khoshino_mysql", $con);
 		<div data-role="navbar">
 		<!-- nav bar class="ui-btn-active"-->
 			<form action = "searchListings.php" id = "searchByTimeForm method = "post" data-ajax = "false"> 
-				<input type="hidden" name="searchOption" id="eventEdit"  value="time"/>
+				<input type="hidden" name="searchOption" id="searchByTime"  target="searchListings.php" value="time"  type = "submit" />
 			</form>
 			<form action = "searchListings.php" id = "searchByLocationForm method = "post" data-ajax = "false"> 
-				<input type="hidden" name="searchOption" id="eventEdit"  value="location"/>
+				<input type="hidden" name="searchOption" id="searchByLoc"  value="location" target="searchListings.php"  type = "submit" />
 			</form>
 			<form action = "chooseSearchCategory.php" id = "searchByCategoryForm method = "post" data-ajax = "false"> 
-				<input type="hidden" name="searchOption" id="eventEdit"  value="category"/>
+				<input type="hidden" name="searchOption" id="searchByCat"  value="category" target="chooseSearchCategory.php"  type = "submit" />
 			</form>
 			<script>
 				function searchByTime{document.getElementById('searchByTimeForm').submit();}
