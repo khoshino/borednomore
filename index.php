@@ -99,9 +99,9 @@ function handleStatusChange(response) {
 			</button>
 		</form>
 	</div>	
-	<div data-role= "footer" style="text-align:center" data-position="fixed">
+	<div data-role= "footer" id = "indexFooter">
 		<a href="legal.php" class = "headerButton" rel="external" style="float: left">Legal</a>
-		<h4>Bored No More</h4>
+		<h1 class = "pageTitleText">Bored No More</h1>
 	</div>
 	
 </div>

@@ -39,7 +39,7 @@
 ?>
 		<legend class = "required">*Title: </legend><input type="text" id="eventTitle" name="eventTitle" <?php if ($edit) echo 'value = "' . $_POST["name"] . '"';?>required="required" /><br />
 		<legend class = "required">*Location: </legend><input type="text" id="eventLocation" name="location" <?php if ($edit) echo 'value = "' . $_POST["location"] . '"';?>required="required" /><br />
-		<span class = "required">*Type:</span> <?php echo ucwords($_POST["type"]); ?><input type="hidden" id="eventType" name="eventType" value="<?echo $_POST["type"]; ?>"/><br /><br />
+		<span class = "required">*Type:</span><p> <?php echo ucwords($_POST["type"]); ?></p><input type="hidden" id="eventType" name="eventType" value="<?echo $_POST["type"]; ?>"/><br /><br />
 		
 		
 		<div data-role = "fieldcontain" data-type = "horizontal">
@@ -99,6 +99,7 @@
 				<select name = "select-hour-dur" id = "select-hour-dur" required="required">
 <?php
  $options = "";
+ $options .= '<option value = "-1"> Hour</option>';
  for ($i = 1; $i <= 12; $i++) {
   $options .= ($durationHour != $i) ? '<option value = "' . $i . '"> ' . $i . '</option>' : '<option value = "' . $i . '" selected="selected"> ' . $i . '</option>';
  }
@@ -112,6 +113,7 @@
 				<select name = "select-min-dur" id = "select-min-dur">
 <?php
  $options = "";
+ $options .= '<option value = "-1"> Min</option>';
  for ($i = 0; $i <= 45; $i += 15) {
   $options .= ($durationMin * 15 != $i) ? '<option value = "' . $i . '"> ' . $i . '</option>' : '<option value = "' . $i . '" selected="selected"> ' . $i . '</option>';
  }
