@@ -29,11 +29,23 @@ ol{
 .required{
 	color:red;
 }
-.headerButton{
-	
-	color:cyan;
+
+.headerButton span.ui-btn-text{
+	//font-family:"Tahoma, Geneva", sans-serif;
+	//font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	//font-family: "Verdana", Geneva, sans-serif;
+	color:rgb(200,255,255);
 }
-.headerButton.ui-btn-text{
-	
-	color:green;
+.pageTitleText{
+	//color:white;
+	//font-family:"Tahoma, Geneva", sans-serif;
+	//font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	font-family: "Verdana", Geneva, sans-serif;
+	//font-family: "Trebuchet MS", Helvetica, sans-serif;
+	//font-family:"Comic Sans MS", cursive, sans-serif;
+	color:rgb(100,255,255);
+}
+.ui-li-heading{
+	font-family: "Verdana", Geneva, sans-serif;
+	color:rgb(200,200,100);
 }
