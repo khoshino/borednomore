@@ -160,7 +160,7 @@ LOGIN2;
 		</script>
 		</form>
 	</div> 
-	<div data-role="footer"><h1 class = "pageTitleClass">Bored No More</h1></div> 
+	<div data-role="footer"><h1 class = "pageTitleText">Bored No More</h1></div> 
 </div> 
 <div data-role = "page" id = "nextPage" data-title = "nextPage">
 	<div data-role = "header">
@@ -172,6 +172,7 @@ LOGIN2;
 	<div data-role = "content">
 		<p> testing </p>
 	</div>
+	<div data-role = "footer"></div>
 </div>
 
 

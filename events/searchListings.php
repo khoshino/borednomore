@@ -119,10 +119,12 @@ mysql_select_db("khoshino_mysql", $con);
 			<script>
 				function searchByTime(){document.getElementById('searchByTimeForm').submit();}
 				function searchByLoc(){document.getElementById('searchByLocationForm').submit();}
+				function searchByCat(){document.getElementById('searchByCategoryForm').submit();}
 			</script>
 			<ul>
 				<li><a onClick = "searchByTime();" class = "headerButton <?if($queryType == $typeTime) echo 'ui-btn-active';?>"> Time </a></li>
 				<li><a onClick = "searchByLoc();" class = "headerButton <?if($queryType == $typeLoc) echo 'ui-btn-active';?>"> Location </a></li>
+				<li><a onClick = "searchByCat();" class = "headerButton <?if($queryType == $typecCat) echo 'ui-btn-active';?>"> Category </a></li>
 			<!--
 				<li>
 					<form action = "searchListings.php" method = "post" data-ajax = "false"> 
