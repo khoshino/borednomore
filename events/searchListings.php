@@ -116,9 +116,13 @@ mysql_select_db("khoshino_mysql", $con);
 			<form action = "chooseSearchCategory.php" id = "searchByCategoryForm method = "post" data-ajax = "false"> 
 				<input type="hidden" name="searchOption" id="eventEdit"  value="category"/>
 			</form>
+			<script>
+				function searchByTime{document.getElementById('searchByTimeForm').submit();}
+				function searchByLoc{document.getElementById('searchByLocationForm').submit();}
+			</script>
 			<ul>
-				<li><a onClick = "document.getElementById('searchByTimeForm').submit();"> Time </a></li>
-				<li><a onClick = "document.getElementById('searchByLocationForm').submit();"> Location </a></li>
+				<li><a onClick = "searchByTime();"> Time </a></li>
+				<li><a onClick = "searchByLoc();"> Location </a></li>
 			<!--
 				<li>
 					<form action = "searchListings.php" method = "post" data-ajax = "false"> 
