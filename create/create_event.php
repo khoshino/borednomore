@@ -8,7 +8,7 @@
  $duration = (gettype($duration) == "string") ? intval($duration) : $duration;
  $startHour = intval(date("g", $time));
  $startHour = ($startHour == 0) ? 12 : $startHour;
- $startMin = (intval(date("i", $time))) / 15;
+ $startMin = floor((intval(date("i", $time))) / 15);
  $startAMPM = date("A", $time);
  $durationHour = $duration / 60;
  $durationHour = ($duration == 0) ? 1 : $durationHour;
