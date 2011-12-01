@@ -63,6 +63,13 @@ legend{
 	font-family: "Verdana", Geneva, sans-serif;
 	color:rgb(200,200,100);
 }
+.ui-controlgroup-label{
+	font-family:"Comic Sans MS", cursive, sans-serif;
+	color:teal;
+}
+.ui-input-text{
+	font-family:"Comic Sans MS", cursive, sans-serif;
+}
 #indexFooter {
 	text-align:center;
 	data-position:fixed;

@@ -39,8 +39,7 @@
 ?>
 		<legend class = "required">*Title: </legend><input type="text" id="eventTitle" name="eventTitle" <?php if ($edit) echo 'value = "' . $_POST["name"] . '"';?>required="required" /><br />
 		<legend class = "required">*Location: </legend><input type="text" id="eventLocation" name="location" <?php if ($edit) echo 'value = "' . $_POST["location"] . '"';?>required="required" /><br />
-		<p><span class = "required">*Type:</span> <?php echo ucwords($_POST["type"]); ?></p><input type="hidden" id="eventType" name="eventType" value="<?echo $_POST["type"]; ?>"/><br /><br />
-		
+		<p><span class = "required">*Type:</span> <?php echo ucwords($_POST["type"]); ?></p><input type="hidden" id="eventType" name="eventType" value="<?echo $_POST["type"]; ?>"/><br />		
 		
 		<div data-role = "fieldcontain" data-type = "horizontal">
 			<fieldset data-role = "controlgroup" class = "ui-grid-c" data-type = "horizontal">
@@ -60,8 +59,6 @@
  echo $options;
 ?>
 				</select>
-				
-				 
 				</div>
 				<div class = ui-block-c>  
 				<select name = "select-min" id = "select-min">
