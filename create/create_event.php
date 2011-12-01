@@ -39,7 +39,7 @@
 ?>
 		<legend class = "required">*Title: </legend><input type="text" id="eventTitle" name="eventTitle" <?php if ($edit) echo 'value = "' . $_POST["name"] . '"';?>required="required" /><br />
 		<legend class = "required">*Location: </legend><input type="text" id="eventLocation" name="location" <?php if ($edit) echo 'value = "' . $_POST["location"] . '"';?>required="required" /><br />
-		<span class = "required">*Type:</span><p> <?php echo ucwords($_POST["type"]); ?></p><input type="hidden" id="eventType" name="eventType" value="<?echo $_POST["type"]; ?>"/><br /><br />
+		<p><span class = "required">*Type:</span> <?php echo ucwords($_POST["type"]); ?></p><input type="hidden" id="eventType" name="eventType" value="<?echo $_POST["type"]; ?>"/><br /><br />
 		
 		
 		<div data-role = "fieldcontain" data-type = "horizontal">
@@ -50,7 +50,6 @@
 				</div>
 
 				<div class = "ui-block-b">
-				<label for = "select-hour" > Hour</label>
 				<select name = "select-hour" id = "select-hour">
 <?php 
  $options = "";
@@ -65,7 +64,6 @@
 				 
 				</div>
 				<div class = ui-block-c>  
-				<label for = "select-min"> Min</label>
 				<select name = "select-min" id = "select-min">
 <?php
  $options = "";
@@ -91,11 +89,10 @@
 			<fieldset data-role = "controlgroup" class = "ui-grid-c" data-type = "horizontal">
 				
 				<div class = "ui-block-a">
-				<legend>*Duration:</legend>
+				<legend class = "required">*Duration:</legend>
 				</div>
 
 				<div class = "ui-block-b">
-				<label for = "select-hour_dur" > Hour</label>
 				<select name = "select-hour-dur" id = "select-hour-dur" required="required">
 <?php
  $options = "";
@@ -109,7 +106,6 @@
 				</div>
 				
 				<div class = ui-block-c>  
-				<label for = "select-min-dur"> Min</label>
 				<select name = "select-min-dur" id = "select-min-dur">
 <?php
  $options = "";
@@ -136,7 +132,7 @@
 			
 			</fieldset>
 		</div>
-		Description: <br />
+		<legend>Description:</legend> <br />
 		<textarea id="eventDescription" name="eventDescription" placeholder="A description of your awesome event!"><?php if ($edit) echo $_POST["desc"];?></textarea><br/>
 		<a onClick="handleSubmit();" data-role = 'button'><?php echo ($edit) ? "Edit" : "Create";?> Event!</a><br /> <!--onClick="handleSubmit()"-->
 		<script>
