@@ -25,6 +25,11 @@ h3{
 	//font-family: "Trebuchet MS", Helvetica, sans-serif;
 	color:rgb(0,0,255);
 }
+h2{
+	color:rgb(0,0,115);
+	font-family:"Comic Sans MS", cursive, sans-serif;
+	
+}
 legend{
 	font-family:"Comic Sans MS", cursive, sans-serif;
 	color:teal;

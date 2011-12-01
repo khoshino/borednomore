@@ -78,8 +78,8 @@
 		<div data-role="page" id="tos" data-title="Terms of Service">
 			<div data-role="header">
 				<h1 class="pageTitleClass">Terms of Service</h1>
-				<a href="legal.php#main" data-role="button" data-icon="back" data-direction="reverse">Back</a>
-				<a href="index.php" data-role="button" data-icon="home" data-ajax="false">Home</a>
+				<a href="legal.php#main" class = "headerButton" data-role="button" data-icon="back" data-direction="reverse">Back</a>
+				<a href="index.php" class = "headerButton" data-role="button" data-icon="home" data-ajax="false">Home</a>
 			</div>
 			<div data-role="content">
 				<h2>Web Site Terms and Conditions of Use</h2>
