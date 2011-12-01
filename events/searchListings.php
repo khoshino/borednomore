@@ -121,8 +121,8 @@ mysql_select_db("khoshino_mysql", $con);
 				function searchByLoc(){document.getElementById('searchByLocationForm').submit();}
 			</script>
 			<ul>
-				<li><a onClick = "searchByTime();"> Time </a></li>
-				<li><a onClick = "searchByLoc();"> Location </a></li>
+				<li><a onClick = "searchByTime();" class = "headerButton <?if($queryType == $typeTime) echo 'ui-btn-active';?>"> Time </a></li>
+				<li><a onClick = "searchByLoc();" class = "headerButton <?if($queryType == $typeLoc) echo 'ui-btn-active';?>> Location </a></li>
 			<!--
 				<li>
 					<form action = "searchListings.php" method = "post" data-ajax = "false"> 
