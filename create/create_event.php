@@ -54,7 +54,7 @@
 				<select name = "select-hour" id = "select-hour">
 <?php 
  $options = "";
- $options .= '<option value = "-1"> Hour</option>'
+ $options .= '<option value = "-1"> Hour</option>';
  for ($i = 1; $i <= 12; $i++) {
   $options .= ($startHour != $i) ? '<option value = "' . $i . '"> ' . $i . '</option>' : '<option value = "'. $i . '" selected="selected"> ' . $i . '</option>';
  } 
