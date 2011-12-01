@@ -52,7 +52,7 @@ function handleStatusChange(response) {
 	This allows auto formatting of headers and footers-->
 <div data-role="page" id = "homeIndex" data-title="homeIndex"> 
 	<div data-role="header">
-		<h1 class = "pageTitleClass">Bored No More</h1>
+		<h1 class = "pageTitleText">Bored No More</h1>
 		<!-- Navigation Buttons- Change these links to link to different back pages or add links to new pages -->
 		<a href = "index.php" class = "headerButton" data-icon="back" data-direction="reverse" data-ajax="false">Back</a>
 		<a href = "about.php" class = "headerButton" data-icon="info" data-ajax="false">About</a>
