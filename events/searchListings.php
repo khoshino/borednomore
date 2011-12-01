@@ -117,8 +117,8 @@ mysql_select_db("khoshino_mysql", $con);
 				<input type="hidden" name="searchOption" id="searchByCat"  value="category" target="chooseSearchCategory.php"  type = "submit" />
 			</form>
 			<script>
-				function searchByTime{document.getElementById('searchByTimeForm').submit();}
-				function searchByLoc{document.getElementById('searchByLocationForm').submit();}
+				function searchByTime(){document.getElementById('searchByTimeForm').submit();}
+				function searchByLoc(){document.getElementById('searchByLocationForm').submit();}
 			</script>
 			<ul>
 				<li><a onClick = "searchByTime();"> Time </a></li>
