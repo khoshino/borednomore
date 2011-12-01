@@ -25,8 +25,8 @@
 			<div data-role="header">
 				<h1>Privacy Policy</h1>
 				<!-- Navigation Buttons- Change these links to link to different back pages or add links to new pages -->
-				<a href="legal.php#main" data-role="button" data-icon="back" data-direction="reverse">Back</a>
-				<a href="index.php" data-role="button" data-icon="home" data-ajax="false">Home</a>
+				<a href="legal.php#main" class = "headerButton" data-role="button" data-icon="back" data-direction="reverse">Back</a>
+				<a href="index.php" class = "headerButton" data-role="button" data-icon="home" data-ajax="false">Home</a>
 			</div>
 			<div data-role="content">
 				<p>

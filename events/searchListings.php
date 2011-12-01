@@ -107,7 +107,19 @@ mysql_select_db("khoshino_mysql", $con);
 		<a href = "../index.php"  class = "headerButton" data-icon="home" data-ajax="false" >Home</a>
 		<div data-role="navbar">
 		<!-- nav bar class="ui-btn-active"-->
+			<form action = "searchListings.php" id = "searchByTimeForm method = "post" data-ajax = "false"> 
+				<input type="hidden" name="searchOption" id="eventEdit"  value="time"/>
+			</form>
+			<form action = "searchListings.php" id = "searchByLocationForm method = "post" data-ajax = "false"> 
+				<input type="hidden" name="searchOption" id="eventEdit"  value="location"/>
+			</form>
+			<form action = "chooseSearchCategory.php" id = "searchByCategoryForm method = "post" data-ajax = "false"> 
+				<input type="hidden" name="searchOption" id="eventEdit"  value="category"/>
+			</form>
 			<ul>
+				<li><a onClick = "document.getElementById('searchByTimeForm').submit();"> Time </a></li>
+				<li><a onClick = "document.getElementById('searchByLocationForm').submit();"> Location </a></li>
+			<!--
 				<li>
 					<form action = "searchListings.php" method = "post" data-ajax = "false"> 
 					<button name="searchOption" target="searchListings.php" value="time" type = "submit">
@@ -131,6 +143,7 @@ mysql_select_db("khoshino_mysql", $con);
 						</button>
 					</form>
 				</li>
+				-->
 			</ul>
 
 		</div><!-- /navbar -->
