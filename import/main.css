@@ -70,6 +70,8 @@ legend{
 .ui-input-text{
 	font-family:"Comic Sans MS", cursive, sans-serif;
 }
+.ui-shadow {
+}
 #indexFooter {
 	text-align:center;
 	data-position:fixed;
