@@ -249,6 +249,7 @@ EDITBUTTON;
   <div data-role="footer"><h1 class = "pageTitleText">Bored No More</h1></div>
  </div>
 EVENTPAGE;
+	echo "backid is: ". $backid;
  return $returnstr;
 }
 /* detailsRow is row for events table
