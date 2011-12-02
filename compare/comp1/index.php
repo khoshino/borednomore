@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- INDEX for COMPARE 1 Changing button order on homescreen -->
 <?php
  ini_set('display_errors', 0); // for display. NOT FOR DEBUGGING
  include './import/utility.php';
@@ -62,9 +63,7 @@ function handleStatusChange(response) {
 <div id="login">
   <p><input id="loginbutton" type='button' value="Login" <?php if ($loggedin) echo "disabled";?>/></p>
 </div>
-<div id="logout">
-  <p><input id="logoutbutton" type='button' value="Logout" <?php if (!$loggedin) echo "disabled";?>/></p>
-</div>
+
 
 <script>
   function loginUser() {
@@ -86,21 +85,25 @@ function handleStatusChange(response) {
   $('#logoutbutton').click(logoutUser);
 </script>
 <!--<div class="fb-login-button" data-perms="read_friendlists" data-show-faces="false" data-width="200" data-max-rows="1"></div>-->
-		<form method="link" action="create/create_event_type.php">
-		<input type="submit" value="Create an Event"></form>
-		<form method="link" action="mine/myEvents.php" data-ajax="false">
-		<input type="submit" value="My Events"></form>
-		
 		<form action = "events/searchListings.php" method = "post" data-ajax = "false"> 
 			<button name="searchOption" target="events/searchListings.php" value="time" type = "submit">
-				<img src="http://www.garrykelly.ie/wp-content/uploads/2010/05/20061006213300Sports_icon.png	" alt="Time" />
 				View Events
 			</button>
+		</form>		
+		<form method="link" action="create/create_event_type.php">
+			<input type="submit" value="Create an Event">
 		</form>
+		<form method="link" action="mine/myEvents.php" data-ajax="false">		
+			<input type="submit" value="My Events">
+		</form>
+		<br/><br/>
 	</div>	
 	<div data-role= "footer" id = "indexFooter">
 		<a href="legal.php" class = "headerButton" rel="external" style="float: left">Legal</a>
 		<h1 class = "pageTitleText">Bored No More</h1>
+	</div>
+	<div id="logout">
+	  <p><input id="logoutbutton" type='button' value="Logout" <?php if (!$loggedin) echo "disabled";?>/></p>
 	</div>
 	
 </div>
