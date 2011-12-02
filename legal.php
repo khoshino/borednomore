@@ -21,7 +21,7 @@
 		<!-- end main -->
 		
 		<!-- Start Privacy Policy -->
-		<div data-role="page" id="privpol" data-title="Privacy Policy">
+		<div data-role="page" id="privpol" class = "pageTitleText" data-title="Privacy Policy">
 			<div data-role="header">
 				<h1>Privacy Policy</h1>
 				<!-- Navigation Buttons- Change these links to link to different back pages or add links to new pages -->
@@ -60,7 +60,7 @@
 				<strong>Online Privacy Policy Only</strong><br />
 				This online privacy policy applies only to information collected through our website and not to information collected offline.<br /><br />
 				<strong>Your Consent</Strong><br />
-				By using our site, you consent to our web site privacy policy.<br /><br />
+				By using our site, you consent to our web site's privacy policy.<br /><br />
 				<strong>Changes to our Privacy Policy</strong><br />
 				If we decide to change our privacy policy, we will update the Privacy Policy modification date below.<br /><br />
 				This policy was last modified on 30 October 2011.<br /><br />
