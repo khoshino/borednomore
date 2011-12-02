@@ -67,9 +67,7 @@ function handleStatusChange(response) {
 <div id="login">
   <p><input id="loginbutton" type='button' value="Login" <?php if ($loggedin) echo "disabled";?>/></p>
 </div>
-<div id="logout">
-  <p><input id="logoutbutton" type='button' value="Logout" <?php if (!$loggedin) echo "disabled";?>/></p>
-</div>
+
 
 <script>
   function loginUser() {
