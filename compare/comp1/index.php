@@ -97,15 +97,15 @@ function handleStatusChange(response) {
 			<input type="submit" value="My Events">
 		</form>
 		<br/><br/>
+		<div id="logout">
+			<p><input id="logoutbutton" type='button' value="Logout" <?php if (!$loggedin) echo "disabled";?>/></p>
+		</div>
+
 	</div>	
 	<div data-role= "footer" id = "indexFooter">
 		<a href="legal.php" class = "headerButton" rel="external" style="float: left">Legal</a>
 		<h1 class = "pageTitleText">Bored No More</h1>
 	</div>
-	<div id="logout">
-	  <p><input id="logoutbutton" type='button' value="Logout" <?php if (!$loggedin) echo "disabled";?>/></p>
-	</div>
-	
 </div>
 
 </body>
