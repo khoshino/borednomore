@@ -1,0 +1,89 @@
+body {
+	font-family:"Comic Sans MS", cursive, sans-serif;
+	color:blue;
+}
+head{
+font-family:"Comic Sans MS", cursive, sans-serif;
+	color:blue;
+}
+p{
+	font-family:"Comic Sans MS", cursive, sans-serif;
+	color:green;
+}
+ul{
+	font-family:"Comic Sans MS", cursive, sans-serif;
+	color:green;
+}
+ol{
+	font-family:"Comic Sans MS", cursive, sans-serif;
+	color:green;
+}
+h3{
+	font-family:"Comic Sans MS", cursive, sans-serif;
+	//font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	//font-family: "Verdana", Geneva, sans-serif;
+	//font-family: "Trebuchet MS", Helvetica, sans-serif;
+	color:rgb(0,0,255);
+}
+h2{
+	color:rgb(0,0,115);
+	font-family:"Comic Sans MS", cursive, sans-serif;
+	
+}
+legend{
+	font-family:"Comic Sans MS", cursive, sans-serif;
+	color:teal;
+}
+strong{
+	font-family:"Comic Sans MS", cursive, sans-serif;
+	color:rgb(0,0,255);
+}
+.footer{
+	font-family:"Comic Sans MS", cursive, sans-serif;
+	color:purple;
+}
+.ui-btn-text{
+	//font-family:"Comic Sans MS", cursive, sans-serif;
+	//font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	font-family: "Verdana", Geneva, sans-serif;
+	//font-family: "Trebuchet MS", Helvetica, sans-serif;
+	color:purple;
+}
+.required{
+	color:red;
+}
+
+.headerButton span.ui-btn-text{
+	color:rgb(200,255,255);
+}
+.pageTitleText{
+	//color:white;
+	//font-family:"Tahoma, Geneva", sans-serif;
+	//font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	font-family: "Verdana", Geneva, sans-serif;
+	//font-family: "Trebuchet MS", Helvetica, sans-serif;
+	//font-family:"Comic Sans MS", cursive, sans-serif;
+	color:rgb(100,255,255);
+}
+.ui-li-heading{
+	font-family: "Verdana", Geneva, sans-serif;
+	color:rgb(200,200,100); //lihgt yellow
+}
+.ui-controlgroup-label{
+	font-family:"Comic Sans MS", cursive, sans-serif;
+	color:teal;
+}
+.ui-input-text{
+	font-family:"Comic Sans MS", cursive, sans-serif;
+}
+.createEventLabel {
+	color:teal;
+}
+#indexFooter {
+	text-align:center;
+	data-position:fixed;
+}
+button.foodbutton{
+	background-image: url(../icons/food.png);
+	background-repeat: no-repeat;
+}
