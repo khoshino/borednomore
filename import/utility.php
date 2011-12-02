@@ -139,7 +139,7 @@ function calc_end_time($startTimeStr, $duration) {
 function create_eventPage($row, $backid, $joinable, $leaveable, $user_id) {
  $pgID = "event" . $row['e_id'];
  $is_creator = ($user_id == $row['creator_fbid']);
- $deleteable = ($is_creator && $leaveable); // if deleteable, it is also editable
+ $deleteable = ($is_creator && $leaveable);  // if deleteable, it is also editable
  $pgIDContent = $pgID . "Content";
  $pgTitle = $pgID . "_" . trimharmful($row['name']);
  $dmin = $row['duration'];

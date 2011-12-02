@@ -46,7 +46,7 @@ $user_fbid = ($user_data)? $user_data['user_id'] : 0;
 		
 		
 		<form action="searchListings.php" method="post" data-ajax="false">
-		<button name="category" value="food" type="submit" target="searchListings.php " data-ajax="false">food</button>
+		<button name="category" value="food" type="submit" target="searchListings.php " data-ajax="false">Food</button>
 		<button name="category" value="sport" type="submit" target="searchListings.php" data-ajax="false">Sports</button>
 		<button name="category" value="game" type="submit" target="searchListings.php" data-ajax="false">Games</button>
 		<button name="category" value="watch" type="submit" target="searchListings.php" data-ajax="false">Film</button>
