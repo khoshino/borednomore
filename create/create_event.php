@@ -41,9 +41,9 @@
 		<legend> <span class = "required">*Location: </span></legend><input type="text" id="eventLocation" name="location" <?php if ($edit) echo 'value = "' . $_POST["location"] . '"';?>required="required" /><br/>
 		<legend><span class = "required">*Type:</span> <?php echo ucwords($_POST["type"]); ?></legend><input type="hidden" id="eventType" name="eventType" value="<?echo $_POST["type"]; ?>"/><br/>		
 		
-		<div class = "ui-block-a">
+		<!--<div class = "ui-block-a"> -->
 				<legend ><span class = "required">*Start Time:</span></legend>
-		</div>
+		<!--</div>-->
 		<div data-role = "fieldcontain" data-type = "horizontal">
 			<fieldset data-role = "controlgroup" class = "ui-grid-c" data-type = "horizontal">
 				<div class = "ui-block-b">
@@ -81,12 +81,10 @@
 				</div>
 			</fieldset>
 		
-			<fieldset data-role = "controlgroup" class = "ui-grid-c" data-type = "horizontal">
-				
+			<fieldset data-role = "controlgroup" class = "ui-grid-c" data-type = "horizontal">				
 				<div class = "ui-block-a">
 				<legend ><span class = "required">*Duration:</span></legend>
 				</div>
-
 				<div class = "ui-block-b">
 				<select name = "select-hour-dur" id = "select-hour-dur" required="required">
 <?php
@@ -127,7 +125,7 @@
 			
 			</fieldset>
 		</div>
-		<legend>Description:</legend> <br />
+		<legend><span class = "createEventLabel"> Description:</span></legend> <br />
 		<textarea id="eventDescription" name="eventDescription" placeholder="A description of your awesome event!"><?php if ($edit) echo $_POST["desc"];?></textarea><br/>
 		<a onClick="handleSubmit();" data-role = 'button'><?php echo ($edit) ? "Edit" : "Create";?> Event!</a><br /> <!--onClick="handleSubmit()"-->
 		<script>

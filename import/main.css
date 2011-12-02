@@ -76,7 +76,8 @@ strong{
 .ui-input-text{
 	font-family:"Comic Sans MS", cursive, sans-serif;
 }
-.ui-shadow {
+.createEventLabel {
+	color:teal;
 }
 #indexFooter {
 	text-align:center;
