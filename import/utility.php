@@ -225,7 +225,7 @@ EDITBUTTON;
   <div data-role="header">
    <h1 class = "pageTitleText">$title Event</h1>
    <a href = "#$backid" class = "headerButton" data-icon="back" data-direction="reverse">Back</a>
-   <a href = "../index.php" class = "headerButton" data-icon="back" data-ajax="false">Home</a>
+   <a href = "../index.php" class = "headerButton" data-icon="home" data-ajax="false">Home</a>
   </div>
   <div data-role="content" id="$pgIDContent">
    $edit_button_start
