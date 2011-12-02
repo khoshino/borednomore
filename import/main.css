@@ -83,3 +83,16 @@ strong{
 	text-align:center;
 	data-position:fixed;
 }
+button.foodbutton{
+	background-image: url(../icons/food.png);
+	background-repeat: no-repeat;
+}
+button.sportsbutton{
+	background-image: url(../icons/sports32C.png);
+	background-repeat: no-repeat;
+	
+}
+
+.ui-icon-sports {
+	background: url(../icons/sports18c.png) no-repeat rgba(0, 0, 0, 0.4) !important;
+}
