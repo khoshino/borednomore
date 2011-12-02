@@ -264,12 +264,14 @@
    if ($success_myevents) {
     $wall = '';
     mysql_select_db("khoshino_mysql", $con);
+    echo "<ul data-role='listview' data-theme='d' data-dividertheme='a'><li data-role='list-divider'><h3>My Events</h3></li>";
     foreach ($myevents as $event) {
-     echo "<a href = '#event" . $event['e_id'] . "' data-role='button' data-icon='arrow-r' data-iconpos='right'>" . alphanumeric($event['name']) . " </a>"; 
+     echo "<li><a href = '#event" . $event['e_id'] . "'>" . trimharmful($event['name']) . " </a></li>"; 
      $query = "SELECT * FROM wallposts WHERE e_id='" . $event['e_id'] . "' ORDER BY time DESC";
      $query_results = mysql_query($query) or die (mysql_error());
      $wall .= create_eventWall($event, $query_results, $loggedin, '', '', "myEvents.php"); 
     }
+    echo "</ul>";
    } else {
     ;//echo "failure reason for my_events: " . $failure_reason_myevents . "<br/>";
    }

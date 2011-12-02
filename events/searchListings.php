@@ -190,7 +190,8 @@ mysql_select_db("khoshino_mysql", $con);
 			$result_participant = mysql_query($query, $con) or die(mysql_error());
 			$creator_var = (mysql_num_rows($result_participant) > 0) ? mysql_fetch_array($result_participant) : -1;
 			$is_creator = ($creator_var != -1) ? ($creator_var['creator']) : -1;
-			$eventButton = '<li><a href = "#'. $pgId . '"> ' . $name . '</a><br/></li>';
+			$creator_class = ($is_creator == 1) ? " class='creator' " : "";
+			$eventButton = '<li><a href = "#'. $pgId . '" ' . $creator_class . '> ' . $name . '</a><br/></li>';
 			if($queryType == $typeTime){
 				$eventButton = '<li><a href = "#'. $pgId . '"> ' . $startTime . "		-" . $name . '</a><br/></li>';
 			}

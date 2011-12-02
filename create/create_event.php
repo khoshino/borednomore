@@ -128,7 +128,59 @@
 		<a onClick="handleSubmit();" data-role = 'button'><?php echo ($edit) ? "Edit" : "Create";?> Event!</a><br /> <!--onClick="handleSubmit()"-->
 		<script>
    function handleSubmit() {
-    if (confirm("Is the above information correct?")) {
+    var title = document.getElementById("eventTitle").value.length;
+    var loc = document.getElementById("eventLocation").value.length;
+    var ev_type = document.getElementById("eventType").value.length;
+    var st_hour = document.getElementById("select-hour").value;
+    var st_min = document.getElementById("select-min").value;
+    var st_ampm_pub = document.getElementById("radio-public").checked; // boolean
+    var st_ampm_pri = document.getElementById("radio-private").checked; // boolean
+    var dr_hour = document.getElementById("select-hour-dur").value;
+    var dr_min  = document.getElementById("select-min-dur").value;
+    var failstrfirst = "Please fill out the following: ";
+    var failstr = "";
+    var fail = false;
+    var back_ev = false;
+    if (title == 0) {
+     failstr += "Title";
+     fail = true;
+    }
+    if (loc == 0) {
+     failstr += (failstr.length == 0) ? "Location" : ", Location";
+     fail = true;
+    }
+    if (ev_type == 0) {
+     back_ev = true;
+    } 
+    if (!(parseInt(st_hour) >= 1 && parseInt(st_hour) <= 12)) {
+     failstr += (failstr.length == 0) ? "Starting Hour" : ", Starting Hour";
+     fail = true;
+    }
+    if (!(parseInt(st_min) == 0 || parseInt(st_min) == 15 || parseInt(st_min) == 30 || parseInt(st_min) == 45)) {
+     failstr += (failstr.length == 0) ? "Starting Minute" : ", Starting Minute";
+     fail = true;
+    }
+    if (!st_ampm_pub && !st_ampm_pri) {
+     failstr += (failstr.length == 0) ? "AM or PM" : ", AM or PM";
+     fail = true;
+    }
+    if (!(parseInt(dr_hour) >= 1 && parseInt(dr_hour) <= 12)) {
+     failstr += (failstr.length == 0) ? "Duration Hours" : ", Duration Hours";
+     fail = true;
+    }
+    if (!(parseInt(dr_min) == 0 || parseInt(dr_min) == 15 || parseInt(dr_min) == 30 || parseInt(dr_min) == 45)) {
+     failstr += (failstr.length == 0) ? "Duration Minutes" : ", Duration Mintues";
+     fail = true;
+    }
+    if (back_ev) {
+     if(confirm("You must first select a category. Would you like to select a category?")) {
+      window.location = "./create_event_type.php";
+     }
+    } else if (fail) {
+     failstr = failstrfirst + failstr + ".";
+     alert(failstr);
+    } else {
+     if (confirm("Is the above information correct?")) {
 <?php
  if (!$user_data) {
   $login_str = <<<LOGIN
@@ -149,6 +201,7 @@ LOGIN2;
   echo $login_str2;
  }
 ?>
+     }
     }
    }
 		</script>

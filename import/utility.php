@@ -144,16 +144,16 @@ function create_eventPage($row, $backid, $joinable, $leaveable, $user_id) {
  $pgTitle = $pgID . "_" . trimharmful($row['name']);
  $dmin = $row['duration'];
  $duration = floor($dmin / 60) . 'hr  ' . ($dmin % 60) . 'min';
- $location = ($user_id) ? $row['location'] : "Log in to get Location Info";
+ $location = ($user_id) ? trimharmful($row['location']) : "Log in to get Location Info";
  $start = strtotime($row['start_time']);
  $startTime = date("g:i A", $start);
  $startDate = date("M j, Y", $start);
  $end = $start + $dmin * 60;
  $endTime = date("g:i A", $end);
  $endDate = date("M j, Y", $end);
- $category = ucwords($row['category']);
- $name = $row['name'];
- $title = ucwords($row['name']);
+ $category = ucwords(trimharmful($row['category']));
+ $name = trimharmful($row['name']);
+ $title = ucwords(trimharmful($row['name']));
  $private = ($row['private']) ? "Private" : "Public";
  $num_participants = ($row['num_participants']) ? $row['num_participants'] : 1;
  $desc = trimharmful($row['description']);
@@ -209,12 +209,12 @@ LEAVEBUTTON;
   <input type="hidden" name="editing" value="1"/>
   <input type="hidden" name="name" value="$name"/>
   <input type="hidden" name="type" value="$category"/>
-  <input type="hidden" name="location" value="$row[location]"/>
+  <input type="hidden" name="location" value="$location"/>
   <input type="hidden" name="start_time" value="$row[start_time]"/>
   <input type="hidden" name="private" value="$row[private]"/>
   <input type="hidden" name="e_id" value="$row[e_id]"/>
   <input type="hidden" name="duration" value="$row[duration]"/>
-  <input type="hidden" name="desc" value="$row[description]"/>
+  <input type="hidden" name="desc" value="$desc"/>
   <input type="hidden" name="backloc" value="../mine/myEvents.php#event$row[e_id]"/>
   <a onClick='document.getElementById("edit$row[e_id]").submit();' data-role= 'button'>Edit Event</a>
  </form>
@@ -273,11 +273,11 @@ function create_eventWall($detailsRow, $wallResults, $loggedin, $searchOption, $
   $wallPostId = $post['wallpost_id'];
   $userName = ($loggedin) ? get_userdata($post['fbid']) : "Anonymous";
   $message = trimharmful($post['message']);
-  $creator = $post['creator'];
+  $creator = trimharmful($post['creator']);
   $uglyTime = strtotime($post['time']);
   $time = date("g:i A", $uglyTime);
   $date = date("M j, Y", $uglyTime);
-  $postStr =  "<strong>" . $userName['name'] . ":</strong> " . $message . " <sub> " . $time . " on " . $date;
+  $postStr =  "<strong>" . trimharmful($userName['name']) . ":</strong> " . $message . " <sub> " . $time . " on " . $date;
   if(!$loggedin) $postStr .= " (Log in to view names)";
   $postStr .=  "</sub><br/>";
   $postsHtml .= $postStr;

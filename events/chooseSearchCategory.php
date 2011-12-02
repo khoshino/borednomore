@@ -47,11 +47,11 @@ $user_fbid = ($user_data)? $user_data['user_id'] : 0;
 		
 		<form action="searchListings.php" method="post" data-ajax="false">
 		<button name="category" value="food" class="foodbutton" type="submit" target="searchListings.php " data-ajax="false">Food</button>
-		<button name="category" value="sport" type="submit" target="searchListings.php" data-ajax="false"><img src = "../icons/sports32C.png"/>Sports</button>
-		<button name="category" value="game" type="submit" target="searchListings.php" data-ajax="false" >Games</button>
-		<button name="category" value="watch" type="submit" target="searchListings.php" data-ajax="false">Film</button>
-		<button name="category" value="study" type="submit" target="searchListings.php" data-ajax="false">Study</button>
-		<button name="category" value="other" type="submit" target="searchListings.php" data-ajax="false">Other</button>
+		<button name="category" value="sport" type="submit" class="sportsbutton" target="searchListings.php" data-ajax="false">Sports</button>
+		<button name="category" value="game" class="gamesbutton" type="submit" target="searchListings.php" data-ajax="false" >Games</button>
+		<button name="category" value="watch" class="watchbutton" type="submit" target="searchListings.php" data-ajax="false">Film</button>
+		<button name="category" value="study" class="studybutton" type="submit" target="searchListings.php" data-ajax="false">Study</button>
+		<button name="category" value="other" class="otherbutton" type="submit" target="searchListings.php" data-ajax="false">Other</button>
 		<input type="hidden" value="<?php echo $user_fbid;?>" name="fbid"/>
 		</form>
 		

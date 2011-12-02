@@ -84,15 +84,29 @@ strong{
 	data-position:fixed;
 }
 button.foodbutton{
-	background-image: url(../icons/food.png);
+	background-image: url(../icons/food32c.png);
 	background-repeat: no-repeat;
 }
 button.sportsbutton{
 	background-image: url(../icons/sports32C.png);
 	background-repeat: no-repeat;
-	
 }
-
+button.gamesbutton{
+	background-image: url(../icons/games32C.png);
+	background-repeat: no-repeat;
+}
+button.watchbutton{
+	background-image: url(../icons/watch32C.png);
+	background-repeat: no-repeat;
+}
+button.studybutton{
+	background-image: url(../icons/study32c.png);
+	background-repeat: no-repeat;
+}
+button.otherbutton{
+	background-image: url(../icons/other32C.png);
+	background-repeat: no-repeat;
+}
 .ui-icon-sports {
 	background: url(../icons/sports18c.png) no-repeat rgba(0, 0, 0, 0.4) !important;
 }
