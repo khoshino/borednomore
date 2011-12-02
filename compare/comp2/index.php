@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Comp2 home page. This version will display curent events that are happening at the top of page.-->
 <?php
  ini_set('display_errors', 0); // for display. NOT FOR DEBUGGING
  include './import/utility.php';
@@ -59,6 +60,10 @@ function handleStatusChange(response) {
 	</div>
 	<div data-role = "content" id = "homeIndexContent"> 				
 		<h3>Let's Do Something!</h3>
+		<p>Current Events: <a href="http://borednomore.cs147.org/recent/events/searchListings.php#event101">Early Late Night</a> , 
+			<a href="http://borednomore.cs147.org/recent/events/searchListings.php#event100">Late late night</a>,  
+			<a href="http://borednomore.cs147.org/recent/events/searchListings.php#event97"> Ping pong</a>
+		</p>
 <div id="login">
   <p><input id="loginbutton" type='button' value="Login" <?php if ($loggedin) echo "disabled";?>/></p>
 </div>
