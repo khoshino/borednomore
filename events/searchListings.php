@@ -41,7 +41,9 @@ if ($_POST['type'] == "post") {
 
 $user_fbid = ($user_data) ? $user_data['user_id'] : 0;
 $friendlist = ($user_data) ? get_friendlist($user_data['access_token'], $user_data['user_id']) : array();
-$query_start  = " WHERE ";
+$min_date = date('Y-n-j G',time() - 3600);
+$min_date .= ':00:00';
+$query_start  = " WHERE start_time >= '".$min_date."' AND (";
 $query_append = " AND (";
 $query_clause = "private='0' ";
 if (count($friendlist)) {
@@ -73,11 +75,11 @@ mysql_select_db("khoshino_mysql", $con);
 	echo "querytype is: " . $queryType;
 	
 	if($queryType == $typeLoc){
-	  $query = "SELECT * FROM `events` " . $query_start .  $query_clause . " ORDER BY `location` ASC"; //sort alphebetically by location
+	  $query = "SELECT * FROM `events` " . $query_start .  $query_clause . ") ORDER BY `location` ASC"; //sort alphebetically by location
 	}elseif($queryType == $typeTime){
-	  $query = "SELECT * FROM `events` " . $query_start . $query_clause . " ORDER BY `start_time` DESC"; //sort by starting time, most recent first
+	  $query = "SELECT * FROM `events` " . $query_start . $query_clause . ") ORDER BY `start_time` DESC"; //sort by starting time, most recent first
 	}else{  // if the type is category,  then query is coming from the "chooseSearchCategory.php" and there is no queryType option .
-		$query = "SELECT * FROM `events` WHERE `category` = '". $category . "' " . $query_append . $query_clause . $query_appendend . "ORDER BY `name` ASC";
+		$query = "SELECT * FROM `events` WHERE (start_time >= '".$min_date."' AND `category` = '". $category . "') " . $query_append . $query_clause . $query_appendend . "ORDER BY `name` ASC";
 	}
 	
 	//$query = "SELECT * FROM `events` WHERE `category` = '". $category . "' ORDER BY `name`  ASC";
@@ -184,7 +186,10 @@ mysql_select_db("khoshino_mysql", $con);
 			$dmin = $eventArray['duration'];
 			$duration = floor($eventArray['duration']/60) . 'hr ' . ($dmin % 60) . 'min'; 
 			$location = $eventArray['location'];
-			
+			$query = "SELECT * FROM participants WHERE e_id=".$eventArray['e_id']." AND fbid=".strval($user_data['user_id']);
+			$result_participant = mysql_query($query, $con) or die(mysql_error());
+			$creator_var = (mysql_num_rows($result_participant) > 0) ? mysql_fetch_array($result_participant) : -1;
+			$is_creator = ($creator_var != -1) ? ($creator_var['creator']) : -1;
 			$eventButton = '<li><a href = "#'. $pgId . '"> ' . $name . '</a><br/></li>';
 			if($queryType == $typeTime){
 				$eventButton = '<li><a href = "#'. $pgId . '"> ' . $startTime . "		-" . $name . '</a><br/></li>';
@@ -195,7 +200,7 @@ mysql_select_db("khoshino_mysql", $con);
 			
 			
 			echo $eventButton;			
-			$eventPage = ($loggedin) ? create_eventPage($eventArray, "searchListings", false, true, $user_fbid) : create_eventPage($eventArray, "searchListings", true, false, $user_fbid);
+			$eventPage = ($loggedin) ? (($is_creator >= 0) ? create_eventPage($eventArray, "searchListings", false, true, $user_fbid) : create_eventPage($eventArray, "searchListings", true, false, $user_fbid)) : create_eventPage($eventArray, "searchListings", true, false, $user_fbid);
 			
 			// creating event wall
 			$wallQuery = "SELECT * FROM `wallposts` " . "WHERE e_id=". $eventArray['e_id']. " ORDER BY `time` DESC";

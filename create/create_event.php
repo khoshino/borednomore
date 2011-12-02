@@ -41,7 +41,7 @@
 		<legend> <span class = "required">*Location: </span></legend><input type="text" id="eventLocation" name="location" <?php if ($edit) echo 'value = "' . $_POST["location"] . '"';?>required="required" /><br/>
 		<legend><span class = "required">*Type:</span> <?php echo ucwords($_POST["type"]); ?></legend><input type="hidden" id="eventType" name="eventType" value="<?echo $_POST["type"]; ?>"/><br/>		
 		
-		<!--<div class = "ui-block-a"> -->
+		<!--<div class = "ui-block-a">-->
 				<legend ><span class = "required">*Start Time:</span></legend>
 		<!--</div>-->
 		<div data-role = "fieldcontain" data-type = "horizontal">
@@ -64,21 +64,18 @@
  $options = "";
  $options .= '<option value = "-1"> Min</option>';
  for ($i = 0; $i <= 45; $i += 15) {
-  $options .= ($startMin * 15 != $i) ? '<option value = "' . $i .'"> '. $i .'</option>' : '<option value = "' . $i .'" selected="selected"> ' . $i . '</option>';
+  $optiondisp = ($i != 0) ? $i : "00";
+  $options .= ($startMin * 15 != $i) ? '<option value = "' . $i .'"> '. $optiondisp .'</option>' : '<option value = "' . $i .'" selected="selected"> ' . $optiondisp . '</option>';
  }
  echo $options;
 ?>
 				</select>
 				</div>
 				
-				<!--	 
-				<div class = ui-block-d>  
-				<label for = "select-min"> AM/PM </label><!--need this label as a spacing placeholder-->
 				<select name = "select-amPm" id = "select-amPm">
 					<option value = "0" <?php echo ($startAMPM == "AM") ? 'selected="selected"' : "";?>> AM </option>
 					<option value = "12" <?php echo ($startAMPM == "PM") ? 'selected="selected"' : "";?>> PM </option>
 				</select>
-				</div>
 			</fieldset>
 		
 			<fieldset data-role = "controlgroup" class = "ui-grid-c" data-type = "horizontal">				
@@ -104,7 +101,8 @@
  $options = "";
  $options .= '<option value = "-1"> Min</option>';
  for ($i = 0; $i <= 45; $i += 15) {
-  $options .= ($durationMin * 15 != $i) ? '<option value = "' . $i . '"> ' . $i . '</option>' : '<option value = "' . $i . '" selected="selected"> ' . $i . '</option>';
+  $optiondisp = ($i != 0) ? $i : "00";
+  $options .= ($durationMin * 15 != $i) ? '<option value = "' . $i . '"> ' . $optiondisp . '</option>' : '<option value = "' . $i . '" selected="selected"> ' . $optiondisp . '</option>';
  }
  echo $options;
 ?>

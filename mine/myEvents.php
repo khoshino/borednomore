@@ -15,6 +15,7 @@
  $myevents = array();
  $query = "";
  $querytmp = "";
+ $min_date = 'tmp';
  if (!$con)
  {
   die('Could not connect: ' . mysql_error());
@@ -118,13 +119,13 @@
   $ampm  = intval($_POST["select-amPm"]);
   $starthour = -1;
   if (gettype($hour) == "integer" && gettype($ampm) == "integer" && gettype($min) == "integer" && $hour >= 1 && $hour <= 12 && ($min == 0 || $min == 15 || $min == 30 || $min == 45) && ($ampm == 0 || $ampm == 12))
-   $starthour = $hour + $ampm;
+   $starthour = ($hour != 12) ? $hour + $ampm : $ampm;
   $hour_d= intval($_POST["select-hour-dur"]);
   $min_d = intval($_POST["select-min-dur"]);
   $duration = -1;
   if (gettype($hour_d) == "integer" && gettype($min_d) == "integer" && ($hour_d >= 1 && $hour_d <= 12) && ($min_d == 0 || $min_d == 15 || $min_d == 30 || $min_d == 45))
    $duration = $hour_d * 60 + $min_d;
-  $public= $_POST["radio"];
+  $public = $_POST["radio"];
   $isPrivate = -1;
   if ($public == "public")
    $isPrivate = 0;
@@ -140,8 +141,14 @@
   }
 
   /*** Do basic security by checking input server-side here ***/
-  if ($starthour > -1)
+  if ($starthour > -1) {
    $start_time = $cur_date . " " . $starthour . ":" . $min . ":00"; 
+   $inputtime = strtotime($start_time);
+   $curtime = time();
+   if ($inputtime < $curtime - 1800)
+    $inputtime += 86400;
+   $start_time = date("Y-m-d G:i:s", $inputtime);
+  }
   $add_to_database = true;
   $failure_loc = -1;
   if (gettype($title) != "string" || strlen($title) <= 0 || strlen($title) > 40) {
@@ -215,7 +222,9 @@
  $fbtoken = get_fbtoken($appid, $appsecret);
  if ($fbtoken != null) {
   mysql_select_db("khoshino_mysql", $con);
-  $query = "SELECT * FROM events INNER JOIN participants ON events.e_id=participants.e_id WHERE participants.fbid='".$fbtoken['user_id']."' ORDER BY events.start_time ASC";
+  $min_date = date('Y-n-j G',time() - 3600);
+  $min_date .= ':00:00';
+  $query = "SELECT * FROM events INNER JOIN participants ON events.e_id=participants.e_id WHERE participants.fbid='".$fbtoken['user_id']."' AND start_time >= '".$min_date."' ORDER BY events.start_time ASC";
   $success_myevents = mysql_query($query) or die (mysql_error());
   if (!$success_myevents) 
    $failure_reason_myevents = mysql_error($success_myevents);
@@ -247,10 +256,11 @@
  </div>
  <div data-role = "content" id = "myEventsContent">
   <?php 
-   if ($add_to_database)
-    ;//echo "database input was successful!<br/>";
-   //if (!$success)
-   // echo "failure reason: " . $failure_reason . "<br/>";
+   if ($_POST['type'] == 'create') {
+    //echo $min_date;
+    if (!$add_to_database)
+     ;//echo "database input was fail.'".$_POST['radio']."' Reason: " . $failure_loc . "<br/>";
+   }
    if ($success_myevents) {
     $wall = '';
     mysql_select_db("khoshino_mysql", $con);
