@@ -71,7 +71,7 @@
 				</select>
 				</div>
 				
-				<!--	
+				<!--	 
 				<div class = ui-block-d>  
 				<label for = "select-min"> AM/PM </label><!--need this label as a spacing placeholder-->
 				<select name = "select-amPm" id = "select-amPm">
