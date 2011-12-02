@@ -110,3 +110,6 @@ button.otherbutton{
 .ui-icon-sports {
 	background: url(../icons/sports18c.png) no-repeat rgba(0, 0, 0, 0.4) !important;
 }
+.creator{
+	color:purple;
+}
