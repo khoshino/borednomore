@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Comp3 homepage reorders the buttons as well as displaying currently happening events at the top of the page -->
 <?php
  ini_set('display_errors', 0); // for display. NOT FOR DEBUGGING
  include './import/utility.php';
@@ -59,6 +60,10 @@ function handleStatusChange(response) {
 	</div>
 	<div data-role = "content" id = "homeIndexContent"> 				
 		<h3>Let's Do Something!</h3>
+		<p>Current Events: <a href="http://borednomore.cs147.org/recent/events/searchListings.php#event101">Early Late Night</a> , 
+			<a href="http://borednomore.cs147.org/recent/events/searchListings.php#event100">Late late night</a>,  
+			<a href="http://borednomore.cs147.org/recent/events/searchListings.php#event97"> Ping pong</a>
+		</p>
 <div id="login">
   <p><input id="loginbutton" type='button' value="Login" <?php if ($loggedin) echo "disabled";?>/></p>
 </div>
@@ -86,17 +91,21 @@ function handleStatusChange(response) {
   $('#logoutbutton').click(logoutUser);
 </script>
 <!--<div class="fb-login-button" data-perms="read_friendlists" data-show-faces="false" data-width="200" data-max-rows="1"></div>-->
-		<form method="link" action="create/create_event_type.php">
-		<input type="submit" value="Create an Event"></form>
-		<form method="link" action="mine/myEvents.php" data-ajax="false">
-		<input type="submit" value="My Events"></form>
-		
 		<form action = "events/searchListings.php" method = "post" data-ajax = "false"> 
 			<button name="searchOption" target="events/searchListings.php" value="time" type = "submit">
-				<img src="http://www.garrykelly.ie/wp-content/uploads/2010/05/20061006213300Sports_icon.png	" alt="Time" />
 				View Events
 			</button>
+		</form>		
+		<form method="link" action="create/create_event_type.php">
+			<input type="submit" value="Create an Event">
 		</form>
+		<form method="link" action="mine/myEvents.php" data-ajax="false">		
+			<input type="submit" value="My Events">
+		</form>
+		<br/><br/>
+		<div id="logout">
+			<p><input id="logoutbutton" type='button' value="Logout" <?php if (!$loggedin) echo "disabled";?>/></p>
+		</div>
 	</div>	
 	<div data-role= "footer" id = "indexFooter">
 		<a href="legal.php" class = "headerButton" rel="external" style="float: left">Legal</a>
