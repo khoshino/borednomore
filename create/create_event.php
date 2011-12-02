@@ -41,13 +41,11 @@
 		<legend> <span class = "required">*Location: </span></legend><input type="text" id="eventLocation" name="location" <?php if ($edit) echo 'value = "' . $_POST["location"] . '"';?>required="required" /><br/>
 		<legend><span class = "required">*Type:</span> <?php echo ucwords($_POST["type"]); ?></legend><input type="hidden" id="eventType" name="eventType" value="<?echo $_POST["type"]; ?>"/><br/>		
 		
+		<div class = "ui-block-a">
+				<legend ><span class = "required">*Start Time:</span></legend>
+		</div>
 		<div data-role = "fieldcontain" data-type = "horizontal">
 			<fieldset data-role = "controlgroup" class = "ui-grid-c" data-type = "horizontal">
-				
-				<div class = "ui-block-a">
-				<legend ><span class = "required">*Start Time:</span></legend>
-				</div>
-
 				<div class = "ui-block-b">
 				<select name = "select-hour" id = "select-hour">
 <?php 
