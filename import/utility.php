@@ -248,6 +248,7 @@ EDITBUTTON;
   </div>
   <div data-role="footer"><h1 class = "pageTitleText">Bored No More</h1></div>
  </div>
+ 
 EVENTPAGE;
 
  return $returnstr;
@@ -285,6 +286,7 @@ function create_eventWall($detailsRow, $wallResults, $loggedin, $searchOption, $
  
  
  $returnstr = <<<EVENTWALL
+ 
  <div data-role = "page" id = "$pgID" data-title = "$pgTitle" data-url="$pgID">
   <div data-role="header">
    <h1 class = "pageTitleText">$name Wall</h1>
