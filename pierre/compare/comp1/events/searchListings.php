@@ -177,8 +177,6 @@ mysql_select_db("khoshino_mysql", $con);
 		for( $i = 0; $i < $numRows; $i++){
 			$eventArray = mysql_fetch_array($result);
 			$name  = $eventArray['name'];
-			$creator_fbid = intval($eventArray['creator_fbid']);
-			$is_creator = (intval($creator_fbid) == intval($user_data['user_id']));
 			$pgId = "event" . $eventArray['e_id'];
 			$pgTitle = $pgId . "_" . $name;
 			//$startTime = $eventArray['start_time']; //TODO:convert this to human readable format
@@ -191,19 +189,18 @@ mysql_select_db("khoshino_mysql", $con);
 			$query = "SELECT * FROM participants WHERE e_id=".$eventArray['e_id']." AND fbid=".strval($user_data['user_id']);
 			$result_participant = mysql_query($query, $con) or die(mysql_error());
 			$creator_var = (mysql_num_rows($result_participant) > 0) ? mysql_fetch_array($result_participant) : -1;
-			//$is_creator = ($creator_var != -1) ? ($creator_var['creator']) : -1;
-			$creator_class = ($is_creator) ? " class='creator' " : "";
-			$eventButton = '<li><a href = "#'. $pgId . '" ' . $creator_class . '> ' . $name . '</a><br/></li>';
+			$is_creator = ($creator_var != -1) ? ($creator_var['creator']) : -1;
+			$eventButton = '<li><a href = "#'. $pgId . '"> ' . $name . '</a><br/></li>';
 			if($queryType == $typeTime){
-				$eventButton = '<li><a href = "#'. $pgId . '" '.$creator_class.'> ' . $startTime . "		-" . $name . '</a><br/></li>';
+				$eventButton = '<li><a href = "#'. $pgId . '"> ' . $startTime . "		-" . $name . '</a><br/></li>';
 			}
 			if($queryType == $typeLoc){
-				$eventButton = '<li><a href = "#'. $pgId . '" '.$creator_class.'> ' . $location . "	-" . $name . '</a><br/></li>';
+				$eventButton = '<li><a href = "#'. $pgId . '"> ' . $location . "	-" . $name . '</a><br/></li>';
 			}
 			
 			
 			echo $eventButton;			
-			$eventPage = ($loggedin) ? (($is_creator) ? create_eventPage($eventArray, "searchListings", false, true, $user_fbid) : create_eventPage($eventArray, "searchListings", true, false, $user_fbid)) : create_eventPage($eventArray, "searchListings", true, false, $user_fbid);
+			$eventPage = ($loggedin) ? (($is_creator >= 0) ? create_eventPage($eventArray, "searchListings", false, true, $user_fbid) : create_eventPage($eventArray, "searchListings", true, false, $user_fbid)) : create_eventPage($eventArray, "searchListings", true, false, $user_fbid);
 			
 			// creating event wall
 			$wallQuery = "SELECT * FROM `wallposts` " . "WHERE e_id=". $eventArray['e_id']. " ORDER BY `time` DESC";

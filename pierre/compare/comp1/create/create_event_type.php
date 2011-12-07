@@ -45,12 +45,12 @@ function redirectToCreate( category){
 		
 		
 		<form action="create_event.php" method="post">
-		<button name="type" value="food" class="foodbutton" type="submit" target="create_event.php">Food</button>
-		<button name="type" value="sport" class="sportsbutton" type="submit" target="create_event.php">Sports</button>
-		<button name="type" value="game" class="gamesbutton" type="submit" target="create_event.php">Games</button>
-		<button name="type" value="watch" class="watchbutton" type="submit" target="create_event.php">Film</button>
-		<button name="type" value="study" class="studybutton" type="submit" target="create_event.php">Study</button>
-		<button name="type" value="other" class="otherbutton" type="submit" target="create_event.php">Other</button>
+		<button name="type" value="food" type="submit" target="create_event.php">Let's Eat</button>
+		<button name="type" value="sport" type="submit" target="create_event.php">Let's Play a Sport</button>
+		<button name="type" value="game" type="submit" target="create_event.php">Let's Play a Game</button>
+		<button name="type" value="watch" type="submit" target="create_event.php">Let's Watch Something</button>
+		<button name="type" value="study" type="submit" target="create_event.php">Let's Study</button>
+		<button name="type" value="other" type="submit" target="create_event.php">Let's Do Something Else</button>
 		
 		<!--src="http://borednomore.cs147.org/icons/food.png" -->
 		</form>

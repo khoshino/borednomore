@@ -83,71 +83,11 @@ strong{
 	text-align:center;
 	data-position:fixed;
 }
-
-/*
-OLD ICONS
 button.foodbutton{
-	background-image: url(../icons/byTiph/food32c.png);
+	background-image: url(../icons/food.png);
 	background-repeat: no-repeat;
 }
 button.sportsbutton{
-	background-image: url(../icons/byTiph/sports32C.png);
+	background-image: url(../icons/sports100.png);
 	background-repeat: no-repeat;
-}
-button.gamesbutton{
-	background-image: url(../icons/byTiph/games32C.png);
-	background-repeat: no-repeat;
-}
-button.watchbutton{
-	background-image: url(../icons/byTiph/watch32C.png);
-	background-repeat: no-repeat;
-}
-button.studybutton{
-	background-image: url(../icons/byTiph/study32c.png);
-	background-repeat: no-repeat;
-}
-button.otherbutton{
-	background-image: url(../icons/byTiph/other32C.png);
-	background-repeat: no-repeat;
-}
-.ui-icon-sports {
-	background: url(../icons/byTiph/sports18c.png) no-repeat rgba(0, 0, 0, 0.4) !important;
-}
-*/
-
-button.foodbutton{
-	background-image: url(../icons/events/food.png);
-	background-repeat: no-repeat;
-	left:10px;
-	top: 5px;
-}
-button.sportsbutton{
-	background-image: url(../icons/events/sports.png);
-	background-repeat: no-repeat;
-	left:10px;
-	top:5px;
-}
-button.gamesbutton{
-	background-image: url(../icons/events/games.png);
-	background-repeat: no-repeat;
-	left:10px;
-	top:5px;
-}
-button.watchbutton{
-	background-image: url(../icons/events/watch.png);
-	background-repeat: no-repeat;
-	left:10px;
-	top:5px;
-}
-button.studybutton{
-	background-image: url(../icons/events/study.png);
-	background-repeat: no-repeat;
-	left:10px;
-	top:5px;
-}
-button.otherbutton{
-	background-image: url(../icons/events/other.png);
-	background-repeat: no-repeat;
-	left:10px;
-	top:5px;
 }
