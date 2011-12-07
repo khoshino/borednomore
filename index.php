@@ -13,7 +13,8 @@
  $loggedin = ($tokendata) ? true : false;
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US"> 
-<head><title>Bored no More</title>
+<head><script src="//cdn.optimizely.com/js/16240391.js"></script> <!--this script is for optimizely testing do not move! -->
+	<title>Bored no More</title>
 	<!--scripts to use JQuery Mobile-->
 	<?php include("./import/header.php");?>
 	
