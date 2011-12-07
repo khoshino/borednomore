@@ -120,34 +120,40 @@ button.foodbutton{
 	background-repeat: no-repeat;
 	left:10px;
 	top: 5px;
+	opacity:1.0;
 }
 button.sportsbutton{
 	background-image: url(../icons/events/sports.png);
 	background-repeat: no-repeat;
 	left:10px;
 	top:5px;
+	opacity:1.0;
 }
 button.gamesbutton{
 	background-image: url(../icons/events/games.png);
 	background-repeat: no-repeat;
 	left:10px;
 	top:5px;
+	opacity:1.0;
 }
 button.watchbutton{
 	background-image: url(../icons/events/watch.png);
 	background-repeat: no-repeat;
 	left:10px;
 	top:5px;
+	opacity:1.0;
 }
 button.studybutton{
 	background-image: url(../icons/events/study.png);
 	background-repeat: no-repeat;
 	left:10px;
 	top:5px;
+	opacity:1.0;
 }
 button.otherbutton{
 	background-image: url(../icons/events/other.png);
 	background-repeat: no-repeat;
 	left:10px;
 	top:5px;
+	opacity:1.0;
 }
