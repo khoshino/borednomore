@@ -34,7 +34,7 @@ h2{
 }
 legend{
 	font-family: "Verdana", Geneva, sans-serif;
-	color:teal;
+	color:black;
 }
 strong{
 	font-family: "Verdana", Geneva, sans-serif;
@@ -43,7 +43,7 @@ strong{
 .footer{
 	//font-family:"Comic Sans MS", cursive, sans-serif;
 	font-family: "Verdana", Geneva, sans-serif;
-	color:purple;
+	color:black;//purple
 }
 .ui-btn-text{
 	//font-family:"Comic Sans MS", cursive, sans-serif;
@@ -98,7 +98,7 @@ strong{
 	font-family: "Verdana", Geneva, sans-serif;
 }
 .createEventLabel {
-	color:purple;
+	color:black;
 }
 .logoImg {
 	
