@@ -79,6 +79,13 @@ strong{
 .createEventLabel {
 	color:teal;
 }
+.logoImg {
+	width: 200;
+	height:200;
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
 #indexFooter {
 	text-align:center;
 	data-position:fixed;
