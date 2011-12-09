@@ -203,17 +203,16 @@ if($queryType == $typeLoc){
 			
 			
 			echo $eventButton;			
-			$eventPage = ($loggedin) ? (($is_creator) ? create_eventPage($eventArray, "searchListings", false, true, $user_fbid, $loggedin) : create_eventPage($eventArray, "searchListings", true, false, $user_fbid, $loggedin)) : create_eventPage($eventArray, "searchListings", true, false, $user_fbid, $loggedin);
-			
 			// creating event wall
 			$wallQuery = "SELECT * FROM `wallposts` " . "WHERE e_id=". $eventArray['e_id']. " ORDER BY `time` DESC";
 			$wallResults = mysql_query($wallQuery, $con) or die (mysql_error());
 			
 			$eventWall = create_eventWall($eventArray, $wallResults, $loggedin, $_POST['searchOption'], $_POST['category'], "searchListings.php");
 			
+			$eventPage = ($loggedin) ? (($is_creator) ? create_eventPage($eventArray, "searchListings", false, true, $user_fbid, $loggedin, $eventWall) : create_eventPage($eventArray, "searchListings", true, false, $user_fbid, $loggedin, $eventWall)) : create_eventPage($eventArray, "searchListings", true, false, $user_fbid, $loggedin, $eventWall);
+			
 			$pagesArray[$i] =$eventPage;
 			$newPagesHtml .= $eventPage;
-			$newPagesHtml.= $eventWall;
 		}	
 			mysql_close($con);//closes the connection to the database
 		?>

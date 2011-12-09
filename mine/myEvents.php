@@ -16,6 +16,8 @@
  $query = "";
  $querytmp = "";
  $min_date = 'tmp';
+ $walls = array();
+
  if (!$con)
  {
   die('Could not connect: ' . mysql_error());
@@ -117,6 +119,7 @@
   $hour  = intval($_POST["select-hour"]);
   $min   = intval($_POST["select-min"]);
   $ampm  = intval($_POST["select-amPm"]);
+  $date = trimharmful($_POST["select-date"]);
   $starthour = -1;
   if (gettype($hour) == "integer" && gettype($ampm) == "integer" && gettype($min) == "integer" && $hour >= 1 && $hour <= 12 && ($min == 0 || $min == 15 || $min == 30 || $min == 45) && ($ampm == 0 || $ampm == 12))
    $starthour = ($hour != 12) ? $hour + $ampm : $ampm;
@@ -132,7 +135,7 @@
   if ($public == "private")
    $isPrivate = 1;
   $desc  = $_POST["eventDescription"];
-  $cur_date = date("Y-m-d");
+  $cur_date = ($date == "today") ? date("Y-m-d") : date("Y-m-d", time() + 86400);
   $start_time = -1;
   $fbtoken = get_fbtoken($appid, $appsecret);
   $user_id = 0;
@@ -145,8 +148,6 @@
    $start_time = $cur_date . " " . $starthour . ":" . $min . ":00"; 
    $inputtime = strtotime($start_time);
    $curtime = time();
-   if ($inputtime < $curtime - 1800)
-    $inputtime += 86400;
    $start_time = date("Y-m-d G:i:s", $inputtime);
   }
   $add_to_database = true;
@@ -262,7 +263,6 @@
      ;//echo "database input was fail.'".$_POST['radio']."' Reason: " . $failure_loc . "<br/>";
    }
    if ($success_myevents) {
-    $wall = '';
     mysql_select_db("khoshino_mysql", $con);
     echo "<ul data-role='listview' data-theme='d' data-dividertheme='a'><li data-role='list-divider'><h3>My Events</h3></li>";
     foreach ($myevents as $event) {
@@ -270,7 +270,7 @@
      echo "<li><a href = '#event" . $event['e_id'] . "' ".$creator_class.">" . trimharmful($event['name']) . " </a></li>"; 
      $query = "SELECT * FROM wallposts WHERE e_id='" . $event['e_id'] . "' ORDER BY time DESC";
      $query_results = mysql_query($query) or die (mysql_error());
-     $wall .= create_eventWall($event, $query_results, $loggedin, '', '', "myEvents.php"); 
+     $walls[intval($event['e_id'])] = create_eventWall($event, $query_results, $loggedin, '', '', "myEvents.php"); 
     }
     echo "</ul>";
    } else {
@@ -293,10 +293,9 @@
    $minutes   = get_minutes($row['duration']);
    $minutesstr= (!$minutes) ? '' : 'and ' . $minutes . ' minutes';
    $privatestr= ($private) ? 'Private Event' : 'Public Event';
-   $multipages .= create_eventPage($row, "myEvents", false, true, $fbtoken['user_id'], $loggedin);
+   $multipages .= create_eventPage($row, "myEvents", false, true, $fbtoken['user_id'], $loggedin, $walls[intval($row['e_id'])]);
   }
   echo $multipages;
-  echo $wall;
  } else {
   ;//echo "failure reason for my_events: " . $failure_reason_myevents . "<br/>";
  }

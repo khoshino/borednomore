@@ -4,12 +4,17 @@
  $user_data = get_fbtoken($appid, $appsecret);
  $edit = ($_POST['editing']);
  $time = ($edit) ? strtotime($_POST['start_time']) : time();
+ $min_time = time();
  $duration = ($edit) ? $_POST['duration'] : 60;
  $duration = (gettype($duration) == "string") ? intval($duration) : $duration;
  $startHour = intval(date("g", $time));
  $startHour = ($startHour == 0) ? 12 : $startHour;
+ $minHour = (intval(date("g", $min_time)));
+ $minHour = ($minHour == 0) ? 12 : $minHour;
  $startMin = floor((intval(date("i", $time))) / 15);
+ $minMin = floor((intval(date("i", $min_time))) / 15);
  $startAMPM = date("A", $time);
+ $minAMPM = date("A", $min_time);
  $durationHour = $duration / 60;
  $durationHour = ($duration == 0) ? 1 : $durationHour;
  $durationMin = ($duration % 60) / 15;
@@ -44,6 +49,13 @@
 		<!--<div class = "ui-block-a">-->
 				<legend ><span class = "required">*Start Time:</span></legend>
 		<!--</div>-->
+		<fieldset data-role = "controlgroup" data-type = "horizontal">
+		
+		<input type = "radio" name = "select-date" id="select-date-today" value= "today" <?php echo ($_POST['today'] != 'false') ? 'checked = "checked"' : "";?>>
+		<label for = "select-date-today"> Today </label>
+		<input type="radio" name="select-date" id="select-date-tomorrow" value="tomorrow" <?php echo ($_POST['today'] == 'false') ? 'checked = "checked"' : "";?>>
+		<label for = "select-date-tomorrow"> Tomorrow </label>
+		</fieldset>
 		<div data-role = "fieldcontain" data-type = "horizontal">
 			<fieldset data-role = "controlgroup" class = "ui-grid-c" data-type = "horizontal">
 				<div class = "ui-block-b">
@@ -131,16 +143,34 @@
     var title = document.getElementById("eventTitle").value.length;
     var loc = document.getElementById("eventLocation").value.length;
     var ev_type = document.getElementById("eventType").value.length;
+    var st_day_today = document.getElementById("select-date-today").checked;
+    var st_day_tomorrow = document.getElementById("select-date-tomorrow").checked;
     var st_hour = document.getElementById("select-hour").value;
     var st_min = document.getElementById("select-min").value;
     var st_ampm_pub = document.getElementById("radio-public").checked; // boolean
     var st_ampm_pri = document.getElementById("radio-private").checked; // boolean
+    var hour_int = parseInt(st_hour);
+    var min_int = parseInt(st_min);
+    var ampm = document.getElementById("select-amPm").value;
     var dr_hour = document.getElementById("select-hour-dur").value;
     var dr_min  = document.getElementById("select-min-dur").value;
     var failstrfirst = "Please fill out the following: ";
     var failstr = "";
+    var past_fail = false;
     var fail = false;
     var back_ev = false;
+    var trueval = true;
+    if (st_day_today) {
+     if (ampm == 0 && trueval == <?php echo ($minAMPM == "PM")? 'true' : 'false';?>) {
+       past_fail = true;
+     } else if (ampm == <?php echo ($minAMPM == "AM") ? '0' : '12';?>) {
+      if (hour_int < <?php echo $minHour;?> || hour_int == 12 && <?php echo $minHour;?> < 12) {
+        past_fail = true;
+      } else if (hour_int == <?php echo $minHour;?> && min_int < 15 * <?php echo $minMin;?>) {
+        past_fail = true;
+      }
+     }
+    }
     if (title == 0) {
      failstr += "Title";
      fail = true;
@@ -176,8 +206,11 @@
      if(confirm("You must first select a category. Would you like to select a category?")) {
       window.location = "./create_event_type.php";
      }
-    } else if (fail) {
-     failstr = failstrfirst + failstr + ".";
+    } else if (fail || past_fail) {
+     if (fail)
+      failstr = failstrfirst + failstr + ". ";
+     if (past_fail)
+      failstr = failstr + "You can't create an event in the past. ";
      alert(failstr);
     } else {
      if (confirm("Is the above information correct?")) {

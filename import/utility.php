@@ -127,6 +127,26 @@ function calc_end_time($startTimeStr, $duration) {
  return strtotime($startTimeStr, $duration * 60);
 }
 function get_icon($event_type) {
+ switch ($event_type) {
+  case "food":
+   return "../icons/events/food.png";
+   break;
+  case "sport":
+   return "../icons/events/sports.png";
+   break;
+  case "game":
+   return "../icons/events/games.png";
+   break;
+  case "watch":
+   return "../icons/events/watch.png";
+   break;
+  case "study":
+   return "../icons/events/study.png";
+   break;
+  case "other":
+   return "../icons/events/other.png";
+   break;
+ }
  return "";
 }
 
@@ -140,7 +160,7 @@ function get_icon($event_type) {
  * If leaveable and user_id is the event's id, then add editing buttons and deleting buttons
  */
 
-function create_eventPage($row, $backid, $joinable, $leaveable, $user_id, $loggedin) {
+function create_eventPage($row, $backid, $joinable, $leaveable, $user_id, $loggedin, $wall) {
  $pgID = "event" . $row['e_id'];
  $is_creator = ($user_id == $row['creator_fbid']);
  $deleteable = ($is_creator && $leaveable);  // if deleteable, it is also editable
@@ -155,6 +175,10 @@ function create_eventPage($row, $backid, $joinable, $leaveable, $user_id, $logge
  $end = $start + $dmin * 60;
  $endTime = date("g:i A", $end);
  $endDate = date("M j, Y", $end);
+ $is_today = (date("j") == date("j", $start)) ? 'true' : 'false';
+ $today_str = ($is_today == 'true') ? 'Today' : 'Tomorrow';
+ $today_str2 = (date("j") == date("j", $end)) ? 'Today' : 'Tomorrow';
+ $icon_url = get_icon(trimharmful($row['category']));
  $category = ucwords(trimharmful($row['category']));
  $name = trimharmful($row['name']);
  $title = ucwords(trimharmful($row['name']));
@@ -220,6 +244,7 @@ LEAVEBUTTON;
   <input type="hidden" name="e_id" value="$row[e_id]"/>
   <input type="hidden" name="duration" value="$row[duration]"/>
   <input type="hidden" name="desc" value="$desc"/>
+  <input type="hidden" name="today" value="$is_today"/>
   <input type="hidden" name="backloc" value="../mine/myEvents.php#event$row[e_id]"/>
   <a onClick='document.getElementById("edit$row[e_id]").submit();' data-role= 'button'>Edit Event</a>
  </form>
@@ -234,22 +259,27 @@ EDITBUTTON;
   </div>
   <div data-role="content" id="$pgIDContent">
    $edit_button_start
-   <p><strong style="float:left">$name</strong></p>
-   <br/><p>$location</p>
+   <div style="float:left;width:10%"><img src="$icon_url"/></div>
+   <strong style="float:left;text-align:center; width:80%">$name</strong>
+   <div style="float:left;width:10%;text-align:center">
+    <div style="float:right;clear:right;text-align:center;border:1px solid #000000;color:#d02428">$num_participants</div>
+    <div style="float:right;color:#B8008A;text-align:right">Current Participants</div>
+   </div>
+   <div style="clear:both"> </div>
+   <p>$location</p>
    <p><strong>$private</strong> Event $created_by</p>
-   <p><strong style="float:left">Category: </strong>$category</p>
-   <p><strong style="float:left">Starts: </strong><div style="float:left">$startTime <br/>$startDate</div><strong style="float:left"> Ends: </strong> <div>$endTime <br/>$endDate</div></p>
-   <p><strong style="float:left">Duration: </strong>$duration</p>
-   <p><strong style="float:left">Location: </strong>$location</p>
-   <p><strong>Number of Participants: </strong>$num_participants</p>
-   <p><strong style="float:left">Details: </strong>$desc</p>
-   <br/>
-   <a href = "#$eventWall">View Wall Posts</a>
+   <p><strong style="float:left">Starts: </strong><div style="float:left">$startTime <br/>$today_str</div></p>
+   <p><strong style="float:left"> Ends: <br/>&nbsp</strong> <div>$endTime <br/>$today_str2</div></p>
+   <p>$desc</p>
    <br/>
    <br/>
    $join_button
    $edit_button
    $leave_button
+   <br/>
+   <HR>
+   <br/>
+   $wall
   </div>
   <div data-role="footer"><h1 class = "pageTitleText">Bored No More</h1></div>
  </div>
@@ -266,14 +296,18 @@ EVENTPAGE;
  */
 function create_eventWall($detailsRow, $wallResults, $loggedin, $searchOption, $category, $targetPage) {
  $eid = $detailsRow['e_id'];
- $pgID = "event" . $detailsRow['e_id'] . "Wall";
+ $pgID = "event" . $detailsRow['e_id'];
  $name = ucwords(trimharmful($detailsRow['name']));
  $pgIDContent = $pgID . "Content";
  $pgTitle = $pgID . "_" . trimharmful($detailsRow['name']);
  $backid = "event" . $detailsRow['e_id'];// the page id of the corresponding event page 
  $numRows =  mysql_num_rows($wallResults);
+ $loginfunc = <<<LOGINONLY
+   <textarea id="wallPostMessage" name="wallPostMessage" placeholder="type a message here!"></textarea><br/>
+    <a onClick="document.getElementById('postCommentForm$eid').submit();" data-role = 'button'>Post!</a><br />
+LOGINONLY;
+ if (!$loggedin) $loginfunc = '';
  $postsHtml = '';
-
  for( $i = 0; $i < $numRows; $i++){
   $post = mysql_fetch_array($wallResults);
   $wallPostId = $post['wallpost_id'];
@@ -292,27 +326,14 @@ function create_eventWall($detailsRow, $wallResults, $loggedin, $searchOption, $
  
  $returnstr = <<<EVENTWALL
  
- <div data-role = "page" id = "$pgID" data-title = "$pgTitle" data-url="$pgID">
-  <div data-role="header">
-   <h1 class = "pageTitleText">$name Wall</h1>
-   <a href = "#$backid"  class = "headerButton" data-icon="back" data-direction="reverse">Back</a>
-   <a href = "../index.php"  class = "headerButton" data-icon="home" data-ajax="false">Home</a>
-  </div>
-  <div data-role="content" id="$pgIDContent">
-   <!--<p><strong>Title: </strong> $name</p>-->
-   <!--<p><strong>Posts: </strong> <br/></p>-->
    <form id = "postCommentForm$eid" action = "$targetPage#$pgID" method="POST" data-ajax = "false" name = "wallPostForm">
    <input type="hidden" name="searchOption" value="$searchOption"/>
    <input type="hidden" name="category" value="$category"/>
    <input type="hidden" name="type" value="post"/>
    <input type="hidden" name="eid" value="$eid"/>
-   <textarea id="wallPostMessage" name="wallPostMessage" placeholder="type a message here!"></textarea><br/>
-    <a onClick="document.getElementById('postCommentForm$eid').submit();" data-role = 'button'>Post!</a><br />
+   $loginfunc
    </form>
    <p>$postsHtml</p>
-  </div>
-  <div data-role="footer"><h1 class = "pageTitleText">Bored No More</h1></div>
- </div>
 EVENTWALL;
  return $returnstr;
 }
