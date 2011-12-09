@@ -11,15 +11,15 @@ div{
 }
 p{
 	font-family: "Verdana", Geneva, sans-serif;
-	color:green;
+	color:purple;
 }
 ul{
 	font-family: "Verdana", Geneva, sans-serif;
-	color:green;
+	color:purple;
 }
 ol{
 	font-family: "Verdana", Geneva, sans-serif;
-	color:green;
+	color:purple;
 }
 h3{
 	font-family: "Verdana", Geneva, sans-serif;
@@ -71,17 +71,17 @@ strong{
 	font-family: "Verdana", Geneva, sans-serif;
 	color:rgb(200,200,100); //lihgt yellow
 }
-.ui-controlgroup-label{
+.ui-controlgroup-label
 	//font-family:"Comic Sans MS", cursive, sans-serif;
 	font-family: "Verdana", Geneva, sans-serif;
-	color:teal;
+	color:purple;
 }
 .ui-input-text{
 	//font-family:"Comic Sans MS", cursive, sans-serif;
 	font-family: "Verdana", Geneva, sans-serif;
 }
 .createEventLabel {
-	color:teal;
+	color:purple;
 }
 .logoImg {
 	
