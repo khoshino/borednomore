@@ -59,7 +59,7 @@ function handleStatusChange(response) {
 		<a href = "about.php" class = "headerButton" data-icon="info" data-ajax="false">About</a>
 	</div>
 	<div data-role = "content" id = "homeIndexContent"> 	
-		<img src= "../recent/icons/BoredNoMoreLogoMiniTrans.png" class = "logoImg" id = "homePgLogo" width="200en" height="200en" alt="Bored No More Logo"  />
+		<img src= "../icons/BoredNoMoreLogoMiniTrans.png" class = "logoImg" id = "homePgLogo" width="200en" height="200en" alt="Bored No More Logo"  />
 		<h3>Let's Do Something!</h3>
 <div id="login">
   <p><input id="loginbutton" type='button' value="Login" <?php if ($loggedin) echo "disabled";?>/></p>
