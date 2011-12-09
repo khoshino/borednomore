@@ -67,7 +67,7 @@ strong{
 	background-repeat: repeat;
 	left:10px;
 	top: 5px;
-	opacity: 1.0; !important
+	opacity: 0.4; !important
 }
 .required{
 	color:rgb(208,36,40);

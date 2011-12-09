@@ -71,10 +71,10 @@ function handleStatusChange(response) {
 		</button>
 	</form>
 
-	<form method="link" class = "button" action="mine/myEvents.php" data-ajax="false">
+	<form method="link"  action="mine/myEvents.php" data-ajax="false">
 		<input type="submit" class = "button" value="My Events">
 	</form>
-	<form method="link" class= "button" action="create/create_event_type.php">
+	<form method="link"  action="create/create_event_type.php">
 		<input type="submit" class = "button" value="Create an Event">
 	</form>
 	
