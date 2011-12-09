@@ -11,15 +11,15 @@ div{
 }
 p{
 	font-family: "Verdana", Geneva, sans-serif;
-	color:purple;
+	color:black;
 }
 ul{
 	font-family: "Verdana", Geneva, sans-serif;
-	color:purple;
+	color:black;
 }
 ol{
 	font-family: "Verdana", Geneva, sans-serif;
-	color:purple;
+	color:black;
 }
 h3{
 	font-family: "Verdana", Geneva, sans-serif;
@@ -69,7 +69,7 @@ strong{
 }
 .ui-li-heading{
 	font-family: "Verdana", Geneva, sans-serif;
-	color:rgb(200,200,100); //lihgt yellow
+	color:rgb(200,255,255); //lihgt yellow
 }
 .ui-controlgroup-label
 	//font-family:"Comic Sans MS", cursive, sans-serif;
