@@ -75,7 +75,7 @@ function handleStatusChange(response) {
 		<input type="submit" class = "button" value="My Events">
 	</form>
 	<form method="link" class= "button" action="create/create_event_type.php">
-		<input type="submit"  value="Create an Event">
+		<input type="submit" class = "button" value="Create an Event">
 	</form>
 	
 	<br/><br/>
