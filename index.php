@@ -78,7 +78,7 @@ function handleStatusChange(response) {
 		<input type="submit"  value="Create an Event">
 	</form>
 	
-
+	<br/><br/>
 <div id="logout">
   <p><input id="logoutbutton" type='button' class = "button" value="Logout" <?php if (!$loggedin) echo "disabled";?>/></p>
 </div>
