@@ -60,7 +60,7 @@ function handleStatusChange(response) {
 	</div>
 	<div data-role = "content" id = "homeIndexContent"> 	
 		<img src= "../icons/BoredNoMoreLogoMiniTrans.png" class = "logoImg" id = "homePgLogo" width="200en" height="200en" alt="Bored No More Logo"  />
-		<h3>Let's Do Something!</h3>
+		<h2>Let's Do Something!</h2>
 <div id="login">
   <p><input id="loginbutton" type='button' value="Login" <?php if ($loggedin) echo "disabled";?>/></p>
 </div>
