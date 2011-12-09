@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php
  include '../import/utility.php';
+ ini_set('display_errors', 0); // for display. NOT FOR DEBUGGING
  $user_data = get_fbtoken($appid, $appsecret);
  $edit = ($_POST['editing']);
  $time = ($edit) ? strtotime($_POST['start_time']) : time();

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
- //ini_set('display_errors', 0); // for display. NOT FOR DEBUGGING
+ ini_set('display_errors', 0); // for display. NOT FOR DEBUGGING
  include "../import/utility.php";
  /*** Initialize connection with Database here ***/
  $con = mysql_connect("mysql.cs147.org", "khoshino", "JXDBsbH9");

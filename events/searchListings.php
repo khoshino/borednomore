@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?
 include '../import/utility.php';
+ ini_set('display_errors', 0); // for display. NOT FOR DEBUGGING
 $con = mysql_connect("mysql.cs147.org", "khoshino", "JXDBsbH9");
 if (!$con)
     {
