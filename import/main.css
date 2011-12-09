@@ -6,6 +6,9 @@ head{
 font-family:"Comic Sans MS", cursive, sans-serif;
 	color:blue;
 }
+div{
+	background-color:rgb(222, 230, 255);
+}
 p{
 	font-family:"Comic Sans MS", cursive, sans-serif;
 	color:green;
