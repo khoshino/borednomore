@@ -23,7 +23,7 @@
 		<!-- Start Privacy Policy -->
 		<div data-role="page" id="privpol" class = "pageTitleText" data-title="Privacy Policy">
 			<div data-role="header">
-				<h1>Privacy Policy</h1>
+				<h1 class = "pageTitleText">Privacy Policy</h1>
 				<!-- Navigation Buttons- Change these links to link to different back pages or add links to new pages -->
 				<a href="legal.php#main" class = "headerButton" data-role="button" data-icon="back" data-direction="reverse">Back</a>
 				<a href="index.php" class = "headerButton" data-role="button" data-icon="home" data-ajax="false">Home</a>
@@ -77,7 +77,7 @@
 		<!-- Start Terms of Service -->
 		<div data-role="page" id="tos" data-title="Terms of Service">
 			<div data-role="header">
-				<h1 class="pageTitleClass">Terms of Service</h1>
+				<h1 class="pageTitleText">Terms of Service</h1>
 				<a href="legal.php#main" class = "headerButton" data-role="button" data-icon="back" data-direction="reverse">Back</a>
 				<a href="index.php" class = "headerButton" data-role="button" data-icon="home" data-ajax="false">Home</a>
 			</div>

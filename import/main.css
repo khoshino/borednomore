@@ -25,7 +25,7 @@ h3{
 	font-family: "Verdana", Geneva, sans-serif;
 	//font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
 	//font-family: "Trebuchet MS", Helvetica, sans-serif;
-	color:rgb(0,0,255);
+	color:rgb(55,161,214);
 }
 h2{
 	color:rgb(0,0,115);
@@ -53,7 +53,7 @@ strong{
 	color:purple;
 }
 .required{
-	color:red;
+	color:rgb(208,36,40);
 }
 
 .headerButton span.ui-btn-text{
