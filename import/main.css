@@ -64,10 +64,10 @@ strong{
 */
 .button{
 	background-image: url(../icons/tinybubble.png);
-	background-repeat: repeat;
+	background-repeat: no-repeat;
 	left:10px;
 	top: 5px;
-	opacity: 0.4; !important
+	opacity: 1.0; !important
 }
 .required{
 	color:rgb(208,36,40);
