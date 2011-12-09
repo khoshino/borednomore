@@ -293,7 +293,7 @@
    $minutes   = get_minutes($row['duration']);
    $minutesstr= (!$minutes) ? '' : 'and ' . $minutes . ' minutes';
    $privatestr= ($private) ? 'Private Event' : 'Public Event';
-   $multipages .= create_eventPage($row, "myEvents", false, true, $fbtoken['user_id']);
+   $multipages .= create_eventPage($row, "myEvents", false, true, $fbtoken['user_id'], $loggedin);
   }
   echo $multipages;
   echo $wall;
