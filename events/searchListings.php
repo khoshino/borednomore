@@ -62,29 +62,28 @@ $query_appendend = ") ";
 
 $success = false;
 mysql_select_db("khoshino_mysql", $con);
-	$queryType = $_POST["searchOption"];
-	$category = $_POST["category"];
-	if($queryType == ""){ 		  //note that the query type is the empty string if the user selects type "category" because the form 
-		$queryType = "category"; //redirects to the chooseSearchCategory which will NOT post a "searchOption" value.
-	}
-	
-	$typeCat = "category";
-	$typeLoc = "location";
-	$typeTime = "time";
-	$query = "";
-	echo "querytype is: " . $queryType;
-	
-	if($queryType == $typeLoc){
-	  $query = "SELECT * FROM `events` " . $query_start .  $query_clause . ") ORDER BY `location` ASC"; //sort alphebetically by location
-	}elseif($queryType == $typeTime){
-	  $query = "SELECT * FROM `events` " . $query_start . $query_clause . ") ORDER BY `start_time` DESC"; //sort by starting time, most recent first
-	}else{  // if the type is category,  then query is coming from the "chooseSearchCategory.php" and there is no queryType option .
-		$query = "SELECT * FROM `events` WHERE (start_time >= '".$min_date."' AND `category` = '". $category . "') " . $query_append . $query_clause . $query_appendend . "ORDER BY `name` ASC";
-	}
-	
+$queryType = $_POST["searchOption"];
+$category = $_POST["category"];
+if($queryType == ""){ 		  //note that the query type is the empty string if the user selects type "category" because the form 
+ $queryType = "category"; //redirects to the chooseSearchCategory which will NOT post a "searchOption" value.
+}
+
+$typeCat = "category";
+$typeLoc = "location";
+$typeTime = "time";
+$query = "";
+
+if($queryType == $typeLoc){
+ $query = "SELECT * FROM `events` " . $query_start .  $query_clause . ") ORDER BY `location` ASC"; //sort alphebetically by location
+}elseif($queryType == $typeTime){
+ $query = "SELECT * FROM `events` " . $query_start . $query_clause . ") ORDER BY `start_time` DESC"; //sort by starting time, most recent first
+}else{  // if the type is category,  then query is coming from the "chooseSearchCategory.php" and there is no queryType option .
+ $query = "SELECT * FROM `events` WHERE (start_time >= '".$min_date."' AND `category` = '". $category . "') " . $query_append . $query_clause . $query_appendend . "ORDER BY `name` ASC";
+}
+
 	//$query = "SELECT * FROM `events` WHERE `category` = '". $category . "' ORDER BY `name`  ASC";
-	
-	
+
+
  $result = mysql_query($query, $con) or die (mysql_error());
 	
 
@@ -165,7 +164,7 @@ mysql_select_db("khoshino_mysql", $con);
 		</div>	
 		<div id = "searchResults">
 		<ul data-role="listview" data-theme="d" data-dividertheme="a"> <!--starts listing all the events returned from the search-->
-			<li data-role="list-divider"><h3>Listing search results by <?php echo ucfirst($queryType) . ' '. ucfirst($category)?>...</h3></li>
+			<li data-role="list-divider"><h3>Listing search results by <?php echo ucfirst($queryType) . ' '. ucfirst($category);?>...</h3></li>
 			
 		<?php
 		//need to query all the wall posts for each event
@@ -188,7 +187,8 @@ mysql_select_db("khoshino_mysql", $con);
 			$dmin = $eventArray['duration'];
 			$duration = floor($eventArray['duration']/60) . 'hr ' . ($dmin % 60) . 'min'; 
 			$location = $eventArray['location'];
-			$query = "SELECT * FROM participants WHERE e_id=".$eventArray['e_id']." AND fbid=".strval($user_data['user_id']);
+			$query = "SELECT * FROM participants WHERE e_id=".$eventArray['e_id'];//." AND fbid=".strval($user_data['user_id']);
+			$query = ($loggedin) ? $query . " AND fbid=" . strval($user_data['user_id']) : $query;
 			$result_participant = mysql_query($query, $con) or die(mysql_error());
 			$creator_var = (mysql_num_rows($result_participant) > 0) ? mysql_fetch_array($result_participant) : -1;
 			//$is_creator = ($creator_var != -1) ? ($creator_var['creator']) : -1;
@@ -203,7 +203,7 @@ mysql_select_db("khoshino_mysql", $con);
 			
 			
 			echo $eventButton;			
-			$eventPage = ($loggedin) ? (($is_creator) ? create_eventPage($eventArray, "searchListings", false, true, $user_fbid) : create_eventPage($eventArray, "searchListings", true, false, $user_fbid)) : create_eventPage($eventArray, "searchListings", true, false, $user_fbid);
+			$eventPage = ($loggedin) ? (($is_creator) ? create_eventPage($eventArray, "searchListings", false, true, $user_fbid, $loggedin) : create_eventPage($eventArray, "searchListings", true, false, $user_fbid, $loggedin)) : create_eventPage($eventArray, "searchListings", true, false, $user_fbid, $loggedin);
 			
 			// creating event wall
 			$wallQuery = "SELECT * FROM `wallposts` " . "WHERE e_id=". $eventArray['e_id']. " ORDER BY `time` DESC";

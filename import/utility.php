@@ -126,6 +126,10 @@ function to_minutes($hours, $minutes) {
 function calc_end_time($startTimeStr, $duration) {
  return strtotime($startTimeStr, $duration * 60);
 }
+function get_icon($event_type) {
+ return "";
+}
+
 
 /* create_eventPage
  * $row is the event data obtained from the database
@@ -136,7 +140,7 @@ function calc_end_time($startTimeStr, $duration) {
  * If leaveable and user_id is the event's id, then add editing buttons and deleting buttons
  */
 
-function create_eventPage($row, $backid, $joinable, $leaveable, $user_id) {
+function create_eventPage($row, $backid, $joinable, $leaveable, $user_id, $loggedin) {
  $pgID = "event" . $row['e_id'];
  $is_creator = ($user_id == $row['creator_fbid']);
  $deleteable = ($is_creator && $leaveable);  // if deleteable, it is also editable
@@ -164,6 +168,7 @@ function create_eventPage($row, $backid, $joinable, $leaveable, $user_id) {
  $edit_button = "";
  $creator = get_userdata($row['creator_fbid']);
  $creator_name = ($user_id) ? (($is_creator) ? "Me" : $creator['name'] ) : "Log in to see Creator";
+ $created_by = ($loggedin) ? "created by " . $creator_name : "";
  $loginstr = '';
  $loginstr2 = '';
  $eventWall = $pgID .  "Wall";
@@ -223,19 +228,19 @@ EDITBUTTON;
  $returnstr = <<<EVENTPAGE
  <div data-role = "page" id = "$pgID" data-title = "$pgTitle" data-url="$pgID">
   <div data-role="header">
-   <h1 class = "pageTitleText">$title Event</h1>
+   <h1 class = "pageTitleText">$title</h1>
    <a href = "#$backid" class = "headerButton" data-icon="back" data-direction="reverse">Back</a>
    <a href = "../index.php" class = "headerButton" data-icon="home" data-ajax="false">Home</a>
   </div>
   <div data-role="content" id="$pgIDContent">
    $edit_button_start
-   <p><strong style="float:left">Title: </strong> $name</p>
-   <p><strong>$private</strong> Event</p>
+   <p><strong style="float:left">$name</strong></p>
+   <br/><p>$location</p>
+   <p><strong>$private</strong> Event $created_by</p>
    <p><strong style="float:left">Category: </strong>$category</p>
    <p><strong style="float:left">Starts: </strong><div style="float:left">$startTime <br/>$startDate</div><strong style="float:left"> Ends: </strong> <div>$endTime <br/>$endDate</div></p>
    <p><strong style="float:left">Duration: </strong>$duration</p>
    <p><strong style="float:left">Location: </strong>$location</p>
-   <p><strong>Creator: </strong>$creator_name</p>
    <p><strong>Number of Participants: </strong>$num_participants</p>
    <p><strong style="float:left">Details: </strong>$desc</p>
    <br/>
