@@ -53,6 +53,7 @@ strong{
 	//color:purple;
 	color:black;
 }
+/*
 .ui-btn{
 	background-image: url(../icons/bubble.jpg);
 	background-repeat: repeat;
@@ -60,6 +61,7 @@ strong{
 	top: 5px;
 	opacity: 1.0; !important
 }
+*/
 .required{
 	color:rgb(208,36,40);
 }

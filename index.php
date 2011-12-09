@@ -61,11 +61,26 @@ function handleStatusChange(response) {
 	<div data-role = "content" id = "homeIndexContent"> 	
 		<img src= "../icons/BoredNoMoreLogoMiniTrans.png" class = "logoImg" id = "homePgLogo" width="200en" height="200en" alt="Bored No More Logo"  />
 		<h2>Let's Do Something!</h2>
-<div id="login">
-  <p><input id="loginbutton" type='button' value="Login" <?php if ($loggedin) echo "disabled";?>/></p>
-</div>
+	<div id="login">
+		<p><input id="loginbutton" type='button' class = "button" value="Login" <?php if ($loggedin) echo "disabled";?>/></p>
+	</div>
+	<form action = "events/searchListings.php" method = "post" data-ajax = "false"> 
+		<button name="searchOption"  class = "button" target="events/searchListings.php" value="time" type = "submit">
+			<!--<img src="http://www.garrykelly.ie/wp-content/uploads/2010/05/20061006213300Sports_icon.png	" alt="Time" />-->
+			View Events
+		</button>
+	</form>
+
+	<form method="link" class = "button" action="mine/myEvents.php" data-ajax="false">
+		<input type="submit" class = "button" value="My Events">
+	</form>
+	<form method="link" class= "button" action="create/create_event_type.php">
+		<input type="submit"  value="Create an Event">
+	</form>
+	
+
 <div id="logout">
-  <p><input id="logoutbutton" type='button' value="Logout" <?php if (!$loggedin) echo "disabled";?>/></p>
+  <p><input id="logoutbutton" type='button' class = "button" value="Logout" <?php if (!$loggedin) echo "disabled";?>/></p>
 </div>
 
 <script>
@@ -88,17 +103,7 @@ function handleStatusChange(response) {
   $('#logoutbutton').click(logoutUser);
 </script>
 <!--<div class="fb-login-button" data-perms="read_friendlists" data-show-faces="false" data-width="200" data-max-rows="1"></div>-->
-		<form method="link" action="create/create_event_type.php">
-		<input type="submit" value="Create an Event"></form>
-		<form method="link" action="mine/myEvents.php" data-ajax="false">
-		<input type="submit" value="My Events"></form>
 		
-		<form action = "events/searchListings.php" method = "post" data-ajax = "false"> 
-			<button name="searchOption" target="events/searchListings.php" value="time" type = "submit">
-				<!--<img src="http://www.garrykelly.ie/wp-content/uploads/2010/05/20061006213300Sports_icon.png	" alt="Time" />-->
-				View Events
-			</button>
-		</form>
 	</div>	
 	<div data-role= "footer" id = "indexFooter">
 		<a href="legal.php" class = "headerButton" rel="external" style="float: left">Legal</a>
